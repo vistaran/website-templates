@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "public": true,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/template-1", "destination": "/template-1.html" },
+    { "source": "/template-1-product", "destination": "/template-1-product.html" },
+    { "source": "/template-3", "destination": "/template-3.html" },
+    { "source": "/template-3-product", "destination": "/template-3-product.html" }
+  ]
+}

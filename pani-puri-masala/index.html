@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>चटपटा KING — Pani Puri Masala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bricolage+Grotesque:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────── */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #FFFBE6;
+      color: #1A1A1A;
+      line-height: 1.5;
+    }
+    img { max-width:100%; display:block; }
+
+    /* ─── NEO-BRUTALISM UTILITIES ──────────────────────────────── */
+    .brutal-card {
+      background: #FFF;
+      border: 3px solid #1A1A1A;
+      box-shadow: 8px 8px 0 #1A1A1A;
+      padding: 2rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .brutal-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 12px 12px 0 #1A1A1A;
+    }
+    .brutal-btn {
+      display: inline-block;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 0.9rem 2.2rem;
+      border: 3px solid #1A1A1A;
+      box-shadow: 5px 5px 0 #1A1A1A;
+      cursor: pointer;
+      transition: transform 0.12s, box-shadow 0.12s;
+      text-decoration: none;
+      color: #1A1A1A;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .brutal-btn:active {
+      transform: translate(4px, 4px);
+      box-shadow: 1px 1px 0 #1A1A1A;
+    }
+    .brutal-btn--yellow { background: #FFD600; }
+    .brutal-btn--pink   { background: #FF006E; color:#FFF; }
+    .brutal-btn--blue   { background: #0044FF; color:#FFF; }
+    .brutal-btn--orange { background: #FF6B35; }
+    .brutal-btn--green  { background: #00C853; }
+    .brutal-btn--white  { background: #FFF; }
+
+    .brutal-badge {
+      display: inline-block;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 0.4rem 1rem;
+      border: 2px solid #1A1A1A;
+      box-shadow: 3px 3px 0 #1A1A1A;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .section-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #555;
+      max-width: 600px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+    .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; }
+    .flex-center { display:flex; align-items:center; justify-content:center; }
+    .text-center { text-align:center; }
+
+    @media (max-width:768px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns:1fr; }
+    }
+
+    /* ─── STICKY TOP BAR ───────────────────────────────────────── */
+    .top-bar {
+      position:sticky; top:0; z-index:100;
+      background: #FF006E;
+      border-bottom: 3px solid #1A1A1A;
+      padding: 0.7rem 1.5rem;
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:0.5rem;
+    }
+    .top-bar__logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: #FFF;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      display:flex; align-items:center; gap:0.5rem;
+    }
+    .top-bar__logo span { background:#1A1A1A; padding:0.1rem 0.4rem; font-size:0.9rem; }
+    .top-bar__nav { display:flex; gap:0.75rem; flex-wrap:wrap; }
+    .top-bar__nav a {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight:700;
+      color:#FFF;
+      text-decoration:none;
+      font-size:0.85rem;
+      text-transform:uppercase;
+      padding:0.3rem 0.8rem;
+      border:2px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .top-bar__nav a:hover { border-color:#FFF; }
+
+    /* ─── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      padding: 4rem 1.5rem 5rem;
+      background: linear-gradient(135deg, #FFD600 0%, #FF6B35 50%, #FF006E 100%);
+      border-bottom: 4px solid #1A1A1A;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "🌶️🫓🔥";
+      position:absolute; top:-10px; right:-10px;
+      font-size:12rem; opacity:0.12; transform:rotate(12deg);
+      pointer-events:none;
+    }
+    .hero__inner {
+      max-width:1200px; margin:0 auto;
+      display:grid; grid-template-columns:1fr 1fr; gap:3rem;
+      align-items:start;
+      position:relative; z-index:2;
+    }
+    .hero__badge {
+      display:inline-block;
+      background:#1A1A1A; color:#FFF;
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:800; font-size:0.8rem;
+      padding:0.35rem 1.2rem;
+      text-transform:uppercase;
+      margin-bottom:1rem;
+      border:2px solid #1A1A1A;
+    }
+    .hero h1 {
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:900;
+      font-size:clamp(3rem,8vw,6rem);
+      line-height:0.9;
+      text-transform:uppercase;
+      color:#1A1A1A;
+      margin-bottom:1rem;
+    }
+    .hero h1 .highlight {
+      display:inline-block;
+      background:#FFF; color:#FF006E;
+      padding:0 0.3rem;
+      box-shadow:6px 6px 0 #1A1A1A;
+    }
+    .hero p {
+      font-size:1.2rem; font-weight:500;
+      color:#1A1A1A; margin-bottom:2rem;
+      max-width:500px;
+    }
+    .hero__ctas { display:flex; gap:1rem; flex-wrap:wrap; }
+    .hero__visual {
+      position:relative;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .hero__product-card {
+      background:#FFF; border:4px solid #1A1A1A;
+      box-shadow:10px 10px 0 #1A1A1A;
+      padding:1.5rem 1.2rem;
+      text-align:center;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .hero__product-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow:14px 14px 0 #1A1A1A;
+    }
+    .hero__product-card .emoji-big { font-size:3rem; display:block; margin-bottom:0.3rem; }
+    .hero__product-card h3 {
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:900; font-size:1rem; text-transform:uppercase;
+      line-height:1.2;
+    }
+    .hero__product-card .price-tag {
+      display:inline-block;
+      background:#FF006E; color:#FFF;
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:800; font-size:1.2rem;
+      padding:0.2rem 1.2rem;
+      border:3px solid #1A1A1A;
+      box-shadow:3px 3px 0 #1A1A1A;
+      margin-top:0.6rem;
+    }
+    .hero__product-card .tagline {
+      font-size:0.75rem; color:#555; margin-top:0.2rem; font-weight:500;
+      text-transform:uppercase; letter-spacing:0.05em;
+    }
+    .hero__card-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1.2rem;
+    }
+    .hero__product-card--v1 { transform:rotate(-1deg); background:#FFF; }
+    .hero__product-card--v2 { transform:rotate(1.5deg); background:#FFD600; }
+    .hero__product-card--v3 { transform:rotate(-0.5deg); background:#E0FFE0; }
+    .hero__product-card--v4 { transform:rotate(2deg); background:#FFE0F0; }
+    .badge-top {
+      display:inline-block;
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:800; font-size:0.6rem;
+      padding:0.2rem 0.7rem;
+      border:2px solid #1A1A1A;
+      box-shadow:2px 2px 0 #1A1A1A;
+      text-transform:uppercase;
+      margin-bottom:0.5rem;
+    }
+
+    @media (max-width:768px) {
+      .hero__inner { grid-template-columns:1fr; text-align:center; }
+      .hero p { margin-left:auto; margin-right:auto; }
+      .hero__ctas { justify-content:center; }
+      .hero__card-grid { grid-template-columns:1fr; max-width:400px; margin:0 auto; }
+    }
+
+    /* ─── STRIP ─────────────────────────────────────────────────── */
+    .strip {
+      background:#1A1A1A; color:#FFF;
+      padding:1.2rem 0;
+      overflow:hidden;
+      border-bottom:3px solid #FFD600;
+    }
+    .strip__inner {
+      display:flex; gap:3rem;
+      animation: scrollStrip 22s linear infinite;
+      white-space:nowrap;
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:800;
+      font-size:1.1rem;
+      text-transform:uppercase;
+    }
+    .strip__inner span { display:flex; align-items:center; gap:1rem; }
+    .strip__inner span::after { content:"✦"; color:#FFD600; }
+    @keyframes scrollStrip {
+      0% { transform:translateX(0); }
+      100% { transform:translateX(-50%); }
+    }
+
+    /* ─── FLAVOUR SECTION ───────────────────────────────────────── */
+    .flavour {
+      padding:5rem 1.5rem;
+      background:#FFFBE6;
+    }
+    .flavour .section-title { color:#FF006E; }
+    .flavour-grid { margin-top:3rem; }
+    .flavour-card {
+      background:#FFF; border:3px solid #1A1A1A;
+      box-shadow:8px 8px 0 #1A1A1A;
+      padding:2rem;
+      text-align:center;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .flavour-card:hover {
+      transform:translate(-3px,-3px);
+      box-shadow:12px 12px 0 #1A1A1A;
+    }
+    .flavour-card .icon { font-size:3rem; margin-bottom:0.8rem; display:block; }
+    .flavour-card h3 {
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:800; font-size:1.2rem; text-transform:uppercase;
+      margin-bottom:0.4rem;
+    }
+    .flavour-card p { font-size:0.95rem; color:#555; }
+
+    /* ─── HOW TO SECTION ────────────────────────────────────────── */
+    .howto {
+      padding:5rem 1.5rem;
+      background:#FFD600;
+      border-top:4px solid #1A1A1A;
+      border-bottom:4px solid #1A1A1A;
+    }
+    .howto .section-title { color:#1A1A1A; }
+    .howto-steps { margin-top:3rem; }
+    .step-card {
+      background:#FFF; border:3px solid #1A1A1A;
+      box-shadow:8px 8px 0 #1A1A1A;
+      padding:2rem 1.5rem;
+      position:relative;
+    }
+    .step-card__num {
+      position:absolute; top:-1rem; left:-0.5rem;
+      background:#FF006E; color:#FFF;
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:900; font-size:1.8rem;
+      width:2.8rem; height:2.8rem;
+      display:flex; align-items:center; justify-content:center;
+      border:3px solid #1A1A1A;
+      box-shadow:4px 4px 0 #1A1A1A;
+    }
+    .step-card h3 {
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:800; font-size:1.2rem; text-transform:uppercase;
+      margin-top:0.8rem; margin-bottom:0.4rem;
+    }
+    .step-card p { font-size:0.95rem; color:#555; }
+
+    /* ─── INGREDIENTS ───────────────────────────────────────────── */
+    .ingredients {
+      padding:5rem 1.5rem;
+      background:#0044FF;
+      border-bottom:4px solid #1A1A1A;
+    }
+    .ingredients .section-title { color:#FFF; }
+    .ingredients .section-sub { color:rgba(255,255,255,0.75); }
+    .ingr-grid { margin-top:3rem; }
+    .ingr-item {
+      background:#FFF; border:3px solid #1A1A1A;
+      box-shadow:6px 6px 0 #1A1A1A;
+      padding:1.5rem 1rem;
+      text-align:center;
+      transition: transform 0.12s;
+    }
+    .ingr-item:hover { transform:scale(1.03); }
+    .ingr-item .emoji { font-size:2.5rem; display:block; margin-bottom:0.4rem; }
+    .ingr-item h4 {
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:700; font-size:0.95rem; text-transform:uppercase;
+    }
+
+    /* ─── TESTIMONIALS ──────────────────────────────────────────── */
+    .testimonials {
+      padding:5rem 1.5rem;
+      background:#FFFBE6;
+    }
+    .testimonials .section-title { color:#FF6B35; }
+    .testimonial-card {
+      background:#FFF; border:3px solid #1A1A1A;
+      box-shadow:8px 8px 0 #1A1A1A;
+      padding:2rem;
+    }
+    .testimonial-card .stars { color:#FFD600; font-size:1.4rem; margin-bottom:0.6rem; }
+    .testimonial-card blockquote {
+      font-size:1.05rem; font-weight:500; margin-bottom:1rem;
+    }
+    .testimonial-card cite {
+      font-style:normal; font-weight:700;
+      display:flex; align-items:center; gap:0.5rem;
+    }
+    .testimonial-card cite::before {
+      content:""; display:inline-block; width:2rem; height:2rem;
+      border-radius:50%; background:#FFD600; border:2px solid #1A1A1A;
+    }
+
+    /* ─── PRICING ───────────────────────────────────────────────── */
+    .pricing {
+      padding:5rem 1.5rem;
+      background:#FF006E;
+      border-top:4px solid #1A1A1A;
+      border-bottom:4px solid #1A1A1A;
+    }
+    .pricing .section-title { color:#FFF; }
+    .pricing .section-sub { color:rgba(255,255,255,0.8); }
+    .pricing-grid { margin-top:3rem; }
+    .pricing-card {
+      background:#FFF; border:3px solid #1A1A1A;
+      box-shadow:8px 8px 0 #1A1A1A;
+      padding:2.5rem 2rem;
+      text-align:center;
+    }
+    .pricing-card.featured {
+      background:#FFD600;
+      transform:scale(1.05);
+      box-shadow:12px 12px 0 #1A1A1A;
+    }
+    .pricing-card h3 {
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:800; font-size:1.5rem; text-transform:uppercase;
+      margin-bottom:0.5rem;
+    }
+    .pricing-card .price {
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:900; font-size:3rem; line-height:1;
+      margin:1rem 0;
+    }
+    .pricing-card ul { list-style:none; margin:1.5rem 0; text-align:left; }
+    .pricing-card li { padding:0.4rem 0; font-weight:500; display:flex; align-items:center; gap:0.5rem; }
+    .pricing-card li::before { content:"✓"; font-weight:900; color:#00C853; }
+
+    @media (max-width:768px) {
+      .pricing-card.featured { transform:none; }
+    }
+
+    /* ─── CTA SECTION ───────────────────────────────────────────── */
+    .cta-section {
+      padding:5rem 1.5rem;
+      background:#1A1A1A;
+      text-align:center;
+    }
+    .cta-section h2 {
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:900;
+      font-size:clamp(2.5rem,6vw,5rem);
+      text-transform:uppercase;
+      color:#FFF;
+      line-height:1;
+    }
+    .cta-section h2 .hl { color:#FFD600; }
+    .cta-section p { color:rgba(255,255,255,0.7); font-size:1.15rem; margin:1.5rem auto 2rem; max-width:500px; }
+    .cta-section .brutal-btn { font-size:1.3rem; padding:1.2rem 3rem; }
+
+    /* ─── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      background:#1A1A1A;
+      border-top:3px solid #FFD600;
+      padding:2.5rem 1.5rem;
+      color:rgba(255,255,255,0.6);
+      font-size:0.9rem;
+    }
+    footer .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    footer strong { color:#FFD600; font-family:'Bricolage Grotesque',sans-serif; }
+
+    /* ─── ANIMATIONS ────────────────────────────────────────────── */
+    .fade-up {
+      opacity:0; transform:translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity:1; transform:translateY(0); }
+
+    /* ─── RESPONSIVE TWEAKS ─────────────────────────────────────── */
+    @media (max-width:480px) {
+      .hero { padding:2.5rem 1rem 3rem; }
+      .hero__product-card { padding:1rem 0.8rem; }
+      .hero__product-card .emoji-big { font-size:2.5rem; }
+      .top-bar__nav a { font-size:0.75rem; padding:0.2rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ TOP BAR ══════════════════════════════════════════════════ -->
+<header class="top-bar">
+  <a href="#" class="top-bar__logo">
+    🫓 चटपटा <span>KING</span>
+  </a>
+  <nav class="top-bar__nav">
+    <a href="#flavours">Flavours</a>
+    <a href="#howto">How To</a>
+    <a href="#ingredients">Ingredients</a>
+    <a href="#reviews">Love</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#order" class="brutal-btn brutal-btn--white" style="padding:0.3rem 1rem;font-size:0.75rem;box-shadow:3px 3px 0 #1A1A1A;">ORDER NOW</a>
+  </nav>
+</header>
+
+<!-- ═══ HERO ════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero__inner">
+    <div>
+      <div class="hero__badge">🔥 BRAND NEW FORMULA</div>
+      <h1>
+        The<br />
+        <span class="highlight">Pani Puri</span><br />
+        Revolution
+      </h1>
+      <p>
+        🇮🇳 India's boldest <strong>Pani Puri Masala</strong> — an explosive blend
+        of 13 hand-ground spices that turns every golgappa into a party.
+      </p>
+      <div class="hero__ctas">
+        <a href="#pricing" class="brutal-btn brutal-btn--blue">🛒 Buy Now — ₹99</a>
+        <a href="#flavours" class="brutal-btn brutal-btn--white">👇 Explore</a>
+      </div>
+    </div>
+    <div class="hero__visual">
+      <div class="hero__card-grid">
+
+        <!-- V1 — Classic White -->
+        <div class="hero__product-card hero__product-card--v1">
+          <span class="badge-top" style="background:#0044FF;color:#FFF;">⭐ BESTSELLER</span>
+          <span class="emoji-big">🫓</span>
+          <h3>Original<br />Tangy</h3>
+          <p class="tagline">The one that started it all</p>
+          <div class="price-tag">₹99</div>
+        </div>
+
+        <!-- V2 — Yellow Hot -->
+        <div class="hero__product-card hero__product-card--v2">
+          <span class="badge-top" style="background:#FF006E;color:#FFF;">🔥 EXTRA SPICY</span>
+          <span class="emoji-big">🌶️</span>
+          <h3>Fiery<br />Red</h3>
+          <p class="tagline">Double chilli — dare to try?</p>
+          <div class="price-tag" style="background:#1A1A1A;">₹119</div>
+        </div>
+
+        <!-- V3 — Green Minty -->
+        <div class="hero__product-card hero__product-card--v3">
+          <span class="badge-top" style="background:#00C853;color:#FFF;">🌿 HERBAL</span>
+          <span class="emoji-big">🌿</span>
+          <h3>Minty<br />Fresh</h3>
+          <p class="tagline">Cool mint &amp; coriander blend</p>
+          <div class="price-tag" style="background:#00C853;">₹109</div>
+        </div>
+
+        <!-- V4 — Pink Party -->
+        <div class="hero__product-card hero__product-card--v4">
+          <span class="badge-top" style="background:#FF6B35;color:#FFF;">🎉 PARTY PACK</span>
+          <span class="emoji-big">🎉</span>
+          <h3>Family<br />Jumbo</h3>
+          <p class="tagline">500g — feeds the whole gang</p>
+          <div class="price-tag">₹249</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SCROLLING STRIP ═════════════════════════════════════════ -->
+<div class="strip">
+  <div class="strip__inner">
+    <span>🇮🇳 100% DESI MASALA</span>
+    <span>💥 SOUR KICK</span>
+    <span>🧪 NO PRESERVATIVES</span>
+    <span>🏆 BESTSELLER 2025</span>
+    <span>🚚 FREE SHIPPING</span>
+    <span>🇮🇳 100% DESI MASALA</span>
+    <span>💥 SOUR KICK</span>
+    <span>🧪 NO PRESERVATIVES</span>
+    <span>🏆 BESTSELLER 2025</span>
+    <span>🚚 FREE SHIPPING</span>
+  </div>
+</div>
+
+<!-- ═══ FLAVOUR PROFILE ═════════════════════════════════════════ -->
+<section class="flavour" id="flavours">
+  <div class="container">
+    <span class="brutal-badge" style="background:#FF006E;color:#FFF;">⚡ FLAVOUR PROFILE</span>
+    <h2 class="section-title" style="margin-top:0.5rem;">
+      One Mix.<br />Infinite Chaos.
+    </h2>
+    <p class="section-sub">
+      Every grain is engineered for the perfect golgappa experience — from the first
+      crunch to the last drop of spicy pani.
+    </p>
+    <div class="grid-4 flavour-grid">
+      <div class="flavour-card">
+        <span class="icon">🌶️</span>
+        <h3>Explosive Heat</h3>
+        <p>Kashmiri red chillies + black pepper — hits fast, fades slow.</p>
+      </div>
+      <div class="flavour-card">
+        <span class="icon">🍋</span>
+        <h3>Citrus Punch</h3>
+        <p>Dried raw mango &amp; lemon zest for that lip-smacking tang.</p>
+      </div>
+      <div class="flavour-card">
+        <span class="icon">🌿</span>
+        <h3>Herbal Depth</h3>
+        <p>Cumin, coriander &amp; mint — the trinity of Indian chaat.</p>
+      </div>
+      <div class="flavour-card">
+        <span class="icon">🫚</span>
+        <h3>Warm Finish</h3>
+        <p>Ginger &amp; asafoetida leave a gentle warmth on the tongue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW TO ══════════════════════════════════════════════════ -->
+<section class="howto" id="howto">
+  <div class="container">
+    <span class="brutal-badge" style="background:#1A1A1A;color:#FFF;">👨‍🍳 HOW TO USE</span>
+    <h2 class="section-title" style="margin-top:0.5rem;">
+      4 Steps to<br />Golgappa Heaven
+    </h2>
+    <div class="grid-4 howto-steps">
+      <div class="step-card fade-up">
+        <div class="step-card__num">1</div>
+        <h3>Mix the Masala</h3>
+        <p>Add 1 tbsp of <strong>चटपटा KING</strong> to 500ml chilled water. Stir until the water turns a fiery orange-red.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-card__num">2a</div>
+        <h3>Classic Stuff</h3>
+        <p>Fill a crisp golgappa with boiled potato &amp; chickpeas, dunk in spiced water for 2 seconds — the OG way.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-card__num">2b</div>
+        <h3>Bomb Style</h3>
+        <p>Skip the potato! Fill with sprouted moong, pomegranate &amp; a dash of sweet chutney for a crunchy, tangy twist.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-card__num">3</div>
+        <h3>Pop &amp; Repeat</h3>
+        <p>Pop the whole thing in your mouth. Feel the crunch, the tang, the heat. Repeat until the bowl is empty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INGREDIENTS ═════════════════════════════════════════════ -->
+<section class="ingredients" id="ingredients">
+  <div class="container">
+    <span class="brutal-badge" style="background:#FFD600;color:#1A1A1A;">🧾 13 INGREDIENTS</span>
+    <h2 class="section-title" style="margin-top:0.5rem;">
+      What's Inside<br />the Magic
+    </h2>
+    <p class="section-sub">
+      No hidden numbers. No artificial flavouring. Just real spices your grandmother
+      would recognise.
+    </p>
+    <div class="grid-4 ingr-grid">
+      <div class="ingr-item"><span class="emoji">🌶️</span><h4>Kashmiri Red Chilli</h4></div>
+      <div class="ingr-item"><span class="emoji">🍋</span><h4>Dried Mango Powder</h4></div>
+      <div class="ingr-item"><span class="emoji">🌿</span><h4>Roasted Cumin</h4></div>
+      <div class="ingr-item"><span class="emoji">🫘</span><h4>Black Salt</h4></div>
+      <div class="ingr-item"><span class="emoji">🧂</span><h4>Sendha Namak</h4></div>
+      <div class="ingr-item"><span class="emoji">🌱</span><h4>Green Cardamom</h4></div>
+      <div class="ingr-item"><span class="emoji">🫚</span><h4>Dry Ginger</h4></div>
+      <div class="ingr-item"><span class="emoji">🌾</span><h4>Asafoetida (Hing)</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ════════════════════════════════════════════ -->
+<section class="testimonials" id="reviews">
+  <div class="container">
+    <span class="brutal-badge" style="background:#FF6B35;color:#FFF;">⭐ CUSTOMER LOVE</span>
+    <h2 class="section-title" style="margin-top:0.5rem;">
+      12,000+ Happy<br />Golgappa Souls
+    </h2>
+    <div class="grid-3" style="margin-top:3rem;">
+      <div class="testimonial-card fade-up">
+        <div class="stars">★★★★★</div>
+        <blockquote>"My kids finished an entire plate in 4 minutes. The tang is unreal."</blockquote>
+        <cite>Priya S., Pune</cite>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I've tried 20+ masalas. This one actually tastes like the one from Bombay's Chowpatty."</blockquote>
+        <cite>Rahul M., Mumbai</cite>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Finally a masala that doesn't use artificial colour. My gut says thank you."</blockquote>
+        <cite>Anjali K., Bangalore</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═════════════════════════════════════════════════ -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <span class="brutal-badge" style="background:#FFF;color:#1A1A1A;">💳 PICK YOUR PACK</span>
+    <h2 class="section-title" style="margin-top:0.5rem;">
+      From ₹49 to<br />Party Mode
+    </h2>
+    <p class="section-sub">
+      Start with a trial pack. Or go full desi with the family combo.
+    </p>
+    <div class="grid-3 pricing-grid">
+      <div class="pricing-card fade-up">
+        <h3>🌱 Taster</h3>
+        <div class="price">₹49</div>
+        <ul>
+          <li>50g Pouch</li>
+          <li>Makes ~20 golgappas</li>
+          <li>Free recipe card</li>
+          <li>📦 Standard delivery</li>
+        </ul>
+        <a href="#" class="brutal-btn brutal-btn--white">Add to Cart</a>
+      </div>
+      <div class="pricing-card featured fade-up">
+        <h3>🔥 Bestseller</h3>
+        <div class="price">₹99</div>
+        <ul>
+          <li>150g Jar (Metal Lid)</li>
+          <li>Makes ~60 golgappas</li>
+          <li>Free recipe card</li>
+          <li>🚚 Free shipping</li>
+          <li>🎁 Bonus: Chutney mix</li>
+        </ul>
+        <a href="#" class="brutal-btn brutal-btn--blue">👉 Most Popular</a>
+      </div>
+      <div class="pricing-card fade-up">
+        <h3>🎉 Party Pack</h3>
+        <div class="price">₹249</div>
+        <ul>
+          <li>500g Bulk Pouch</li>
+          <li>Makes ~200 golgappas</li>
+          <li>Free recipe card × 3</li>
+          <li>🚚 Free shipping</li>
+          <li>🎁 Bonus: Chutney + Spoon</li>
+          <li>💬 WhatsApp support</li>
+        </ul>
+        <a href="#" class="brutal-btn brutal-btn--orange">Go Party!</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══════════════════════════════════════════════ -->
+<section class="cta-section" id="order">
+  <h2>
+    Ready to<br />
+    <span class="hl">Crunch &amp; Pop?</span>
+  </h2>
+  <p>
+    Join 12,000+ families who've made चटपटा KING their go-to pani puri masala.
+    First order? Use code <strong style="color:#FFD600;">CHATPATA10</strong> for 10% off.
+  </p>
+  <a href="#pricing" class="brutal-btn brutal-btn--yellow">🛒 Order Your Pack Now</a>
+  <div style="margin-top:1.5rem;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;color:rgba(255,255,255,0.4);font-size:0.85rem;">
+    <span>🇮🇳 Made in India</span>
+    <span>🧪 FSSAI Approved</span>
+    <span>📦 7-Day Return</span>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div>
+      <strong>🫓 चटपटा KING</strong> — Pani Puri Masala<br />
+      © 2025 All rights reserved.
+    </div>
+    <div>
+      <span style="display:flex;gap:1.5rem;">
+        <a href="#" style="color:rgba(255,255,255,0.6);text-decoration:none;">Instagram</a>
+        <a href="#" style="color:rgba(255,255,255,0.6);text-decoration:none;">YouTube</a>
+        <a href="#" style="color:rgba(255,255,255,0.6);text-decoration:none;">WhatsApp</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ INTERSECTION OBSERVER FOR SCROLL ANIMATIONS ════════════ -->
+<script>
+  (function() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  })();
+</script>
+</body>
+</html>

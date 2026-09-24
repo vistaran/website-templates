@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #2D5A27;
+    --color-primary-dark: #1F3F1B;
+    --color-primary-light: #3D7835;
+    --color-secondary: #55AD4B;
+    --color-secondary-light: #EBF7E9;
+    --color-neutral: #4A4238;
+    --color-neutral-light: #6C6255;
+    --color-background: #F9FBFA;
+    --color-action: #D4AF37;
+    --font-heading: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-neutral);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Custom interactive before-after slider styling */
+.slider-handle {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 4px 14px rgba(0, 0, 0, 0.3);
+}

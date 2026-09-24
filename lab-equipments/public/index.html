@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioLab Tech - Advanced Laboratory Solutions</title>
+    <meta name="description"
+        content="Leading provider of diagnostic instruments, biotechnology solutions, and laboratory equipment for modern research facilities and medical laboratories.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        // Default theme = DARK
+        if (!localStorage.theme) {
+            localStorage.theme = 'dark';
+        }
+        // Apply stored or default theme
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Playfair Display', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Keyframe Animations */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
+            }
+        }
+
+        @keyframes ctaPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+            }
+
+            50% {
+                box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
+            }
+        }
+
+        .font-heading {
+            font-family: 'Sora', sans-serif;
+        }
+
+        /* Gradient Headings with Shimmer */
+        .gradient-heading {
+            background: linear-gradient(90deg,
+                    #3b82f6 0%,
+                    #8b5cf6 25%,
+                    #ec4899 50%,
+                    #8b5cf6 75%,
+                    #3b82f6 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Utility Classes */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .animate-slideInLeft {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .animate-slideInRight {
+            animation: slideInRight 1s ease-out forwards;
+        }
+
+        .animate-pulseGlow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .animate-ctaPulse {
+            animation: ctaPulse 2s ease-in-out infinite;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .delay-600 {
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+
+        .delay-800 {
+            animation-delay: 0.8s;
+            opacity: 0;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark .glass-effect {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .blob {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            opacity: 0.15;
+            filter: blur(40px);
+        }
+
+        /* Scroll Reveal */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modal Backdrop */
+        .modal-backdrop {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #2563eb, #7c3aed);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300 font-sans">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg transition-all duration-300"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3 animate-slideInLeft">
+                    <div
+                        class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-bold gradient-heading font-heading">BioLab Tech</span>
+                </div>
+
+                <div class="hidden md:flex space-x-8 animate-fadeInUp">
+                    <a href="#solutions"
+                        class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Solutions</a>
+                    <a href="#products"
+                        class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Products</a>
+                    <a href="#how-it-works"
+                        class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">How
+                        It Works</a>
+                    <a href="#pricing"
+                        class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Pricing</a>
+                    <a href="#contact"
+                        class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-4 animate-slideInRight">
+                    <button onclick="toggleTheme()"
+                        class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+                        aria-label="Toggle theme">
+                        <svg id="theme-icon" class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+                    <button
+                        class="hidden md:block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                        Get Started
+                    </button>
+                    <button onclick="toggleMobileMenu()"
+                        class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+                        aria-label="Toggle menu">
+                        <svg id="menu-icon" class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden py-4 animate-fadeInUp">
+                <a href="#solutions"
+                    class="block py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Solutions</a>
+                <a href="#products"
+                    class="block py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Products</a>
+                <a href="#how-it-works"
+                    class="block py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">How
+                    It Works</a>
+                <a href="#pricing"
+                    class="block py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Pricing</a>
+                <a href="#contact"
+                    class="block py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a>
+                <button
+                    class="w-full mt-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2.5 rounded-lg font-semibold">Get
+                    Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-32 pb-20 overflow-hidden">
+        <div class="absolute top-20 left-10 w-72 h-72 blob animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 blob animate-float" style="animation-delay: 1s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-block animate-fadeInUp">
+                        <span
+                            class="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-4 py-2 rounded-full text-sm font-semibold">
+                            🔬 Advanced Laboratory Solutions
+                        </span>
+                    </div>
+                    <h1
+                        class="text-5xl md:text-6xl font-bold leading-tight animate-fadeInUp delay-200 text-gray-900 dark:text-white font-heading">
+                        Innovating the Future of <span class="gradient-heading">Biotechnology</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-400 animate-fadeInUp delay-400">
+                        Cutting-edge diagnostic instruments, laboratory equipment, and biotechnology solutions for
+                        modern research facilities and medical laboratories.
+                    </p>
+                    <div class="flex flex-wrap gap-4 animate-fadeInUp delay-600">
+                        <button
+                            class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 animate-ctaPulse group relative overflow-hidden">
+                            <span class="relative z-10">Explore Solutions</span>
+                            <svg class="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                            <span
+                                class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                        </button>
+                        <button
+                            class="glass-effect text-gray-700 dark:text-gray-300 px-8 py-4 rounded-lg font-semibold hover:bg-white/20 dark:hover:bg-black/40 transition-all duration-300">
+                            Watch Demo
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-8 animate-fadeInUp delay-800">
+                        <div>
+                            <p class="text-3xl font-bold text-gray-900 dark:text-white">500+</p>
+                            <p class="text-gray-600 dark:text-gray-400">Labs Equipped</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-gray-900 dark:text-white">98%</p>
+                            <p class="text-gray-600 dark:text-gray-400">Satisfaction Rate</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-gray-900 dark:text-white">24/7</p>
+                            <p class="text-gray-600 dark:text-gray-400">Support</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative animate-fadeInUp delay-400">
+                    <div class="relative z-10">
+                        <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=600&fit=crop"
+                            alt="Laboratory Equipment" class="rounded-2xl shadow-2xl hover-lift" loading="eager">
+                    </div>
+                    <div
+                        class="absolute -top-4 -right-4 w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl -z-10 animate-pulseGlow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="solutions" class="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4  gradient-heading font-heading">
+                    Comprehensive Laboratory Solutions
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    From diagnostic instruments to biotechnology consumables, we provide everything your laboratory
+                    needs
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div
+                    class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-700 dark:to-gray-900 p-8 rounded-2xl hover-lift scroll-reveal">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Diagnostic Instruments</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">State-of-the-art analyzers, spectrophotometers, and
+                        diagnostic equipment for precise laboratory analysis.</p>
+                    <a href="#"
+                        class="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center space-x-2">
+                        <span>Learn More</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div
+                    class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-700 dark:to-gray-900 p-8 rounded-2xl hover-lift scroll-reveal">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Biotechnology Solutions</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Advanced molecular biology equipment, PCR systems,
+                        and gene sequencing technologies for cutting-edge research.</p>
+                    <a href="#"
+                        class="text-purple-600 dark:text-purple-400 font-semibold hover:underline flex items-center space-x-2">
+                        <span>Learn More</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div
+                    class="bg-gradient-to-br from-green-50 to-teal-50 dark:from-gray-700 dark:to-gray-900 p-8 rounded-2xl hover-lift scroll-reveal">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-green-500 to-teal-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Chemicals & Consumables</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">High-purity reagents, chemicals, and laboratory
+                        consumables with guaranteed quality and reliability.</p>
+                    <a href="#"
+                        class="text-green-600 dark:text-green-400 font-semibold hover:underline flex items-center space-x-2">
+                        <span>Learn More</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4  gradient-heading font-heading">
+                    How It Works
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Three simple steps to transform your laboratory
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center scroll-reveal">
+                    <div class="relative inline-block mb-6">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl hover-lift">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                            1</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 gradient-heading">Consultation</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Discuss your laboratory needs with our expert team to
+                        identify the perfect equipment solutions</p>
+                </div>
+
+                <div class="text-center scroll-reveal">
+                    <div class="relative inline-block mb-6">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl hover-lift">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">
+                            2</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 gradient-heading">Installation</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Professional setup and calibration by certified
+                        technicians, ensuring optimal performance</p>
+                </div>
+
+                <div class="text-center scroll-reveal">
+                    <div class="relative inline-block mb-6">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl hover-lift">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">
+                            3</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 gradient-heading">Support</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Ongoing training, maintenance, and 24/7 technical
+                        support for uninterrupted laboratory operations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Showcase -->
+    <section id="products" class="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4  gradient-heading font-heading">
+                    Featured Products
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">
+                    Industry-leading equipment trusted by laboratories worldwide
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-2xl overflow-hidden hover-lift scroll-reveal cursor-pointer"
+                    onclick="openProductModal(0)">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=600&fit=crop"
+                            alt="Digital Microscope"
+                            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                            loading="lazy">
+                        <div
+                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 gradient-heading">Digital
+                            Microscope</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">High-resolution imaging system</p>
+                        <div class="flex items-center justify-between">
+                            <span
+                                class="font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">$12,999</span>
+                            <button class="text-blue-600 dark:text-blue-400 font-semibold hover:underline">View
+                                Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-2xl overflow-hidden hover-lift scroll-reveal cursor-pointer"
+                    onclick="openProductModal(1)">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&h=600&fit=crop"
+                            alt="PCR Thermal Cycler"
+                            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                            loading="lazy">
+                        <div
+                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 gradient-heading">PCR Thermal
+                            Cycler</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Advanced amplification system</p>
+                        <div class="flex items-center justify-between">
+                            <span
+                                class="font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">$15,499</span>
+                            <button class="text-blue-600 dark:text-blue-400 font-semibold hover:underline">View
+                                Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-2xl overflow-hidden hover-lift scroll-reveal cursor-pointer"
+                    onclick="openProductModal(2)">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&h=600&fit=crop"
+                            alt="Lab Centrifuge"
+                            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                            loading="lazy">
+                        <div
+                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 gradient-heading">Lab Centrifuge
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">High-speed separation</p>
+                        <div class="flex items-center justify-between">
+                            <span
+                                class="font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">$8,999</span>
+                            <button class="text-blue-600 dark:text-blue-400 font-semibold hover:underline">View
+                                Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-2xl overflow-hidden hover-lift scroll-reveal cursor-pointer"
+                    onclick="openProductModal(3)">
+                    <div class="relative overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1583911860205-72f8ac8ddcbe?w=800&h=600&fit=crop"
+                            alt="Biochemistry Analyzer"
+                            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                            loading="lazy">
+                        <div
+                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 gradient-heading">Biochemistry
+                            Analyzer</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Automated testing system</p>
+                        <div class="flex items-center justify-between">
+                            <span
+                                class="font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">$24,999</span>
+                            <button class="text-blue-600 dark:text-blue-400 font-semibold hover:underline">View
+                                Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm modal-backdrop"
+        onclick="closeProductModal()">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto relative"
+                onclick="event.stopPropagation()">
+                <button onclick="closeProductModal()"
+                    class="absolute top-4 right-4 p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors z-10"
+                    aria-label="Close modal">
+                    <svg class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <div id="modal-content" class="grid md:grid-cols-2 gap-8 p-8">
+                    <!-- Content will be dynamically inserted -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold pb-4  gradient-heading font-heading">
+                    Trusted by Leading Researchers
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Hear from scientists and lab managers who've transformed their research with our solutions
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div
+                    class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-900 p-8 rounded-2xl hover-lift scroll-reveal relative">
+                    <div class="absolute top-4 right-8 text-6xl text-blue-500/20 dark:text-blue-400/20 font-serif">"
+                    </div>
+                    <div class="flex space-x-1 mb-4">
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 italic relative z-10">BioLab Tech transformed our
+                        research capabilities. Their diagnostic instruments are incredibly precise and their support
+                        team is outstanding.</p>
+                    <div class="flex items-center space-x-4 relative z-10">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop"
+                            alt="Dr. Sarah Chen" class="w-12 h-12 rounded-full object-cover" loading="lazy">
+                        <div>
+                            <p class="font-bold text-gray-900 dark:text-white">Dr. Sarah Chen</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Research Director, Stanford Medical
+                                Center</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-900 p-8 rounded-2xl hover-lift scroll-reveal relative">
+                    <div class="absolute top-4 right-8 text-6xl text-blue-500/20 dark:text-blue-400/20 font-serif">"
+                    </div>
+                    <div class="flex space-x-1 mb-4">
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 italic relative z-10">The PCR systems we purchased
+                        have significantly accelerated our research. The quality and reliability are unmatched in the
+                        industry.</p>
+                    <div class="flex items-center space-x-4 relative z-10">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
+                            alt="Prof. Michael Rodriguez" class="w-12 h-12 rounded-full object-cover" loading="lazy">
+                        <div>
+                            <p class="font-bold text-gray-900 dark:text-white">Prof. Michael Rodriguez</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Lab Manager, MIT Biotechnology Lab</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-900 p-8 rounded-2xl hover-lift scroll-reveal relative">
+                    <div class="absolute top-4 right-8 text-6xl text-blue-500/20 dark:text-blue-400/20 font-serif">"
+                    </div>
+                    <div class="flex space-x-1 mb-4">
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 italic relative z-10">Working with BioLab Tech has
+                        been a game-changer. From consultation to installation, every step was professional and
+                        efficient.</p>
+                    <div class="flex items-center space-x-4 relative z-10">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+                            alt="Dr. Emily Watson" class="w-12 h-12 rounded-full object-cover" loading="lazy">
+                        <div>
+                            <p class="font-bold text-gray-900 dark:text-white">Dr. Emily Watson</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Chief Scientist, Global Diagnostics Inc.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold pb-5 gradient-heading font-heading">
+                    Flexible Pricing Plans
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8">
+                    Choose the perfect plan for your laboratory's needs
+                </p>
+
+                <!-- Toggle Switch -->
+                <div class="inline-flex items-center space-x-4 bg-gray-100 dark:bg-gray-900 p-2 rounded-full shadow-lg">
+                    <button onclick="setPricingMonthly()" id="monthly-btn"
+                        class="px-6 py-2 rounded-full font-semibold transition-all bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                        Monthly
+                    </button>
+                    <button onclick="setPricingYearly()" id="yearly-btn"
+                        class="px-6 py-2 rounded-full font-semibold transition-all text-gray-600 dark:text-gray-400 relative">
+                        Yearly
+                        <span
+                            class="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-0.5 rounded-full">Save
+                            17%</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 hover-lift scroll-reveal shadow-lg flex flex-col">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 gradient-heading">Starter Lab</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Perfect for small research labs</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold text-gray-900 dark:text-white pricing-amount" data-monthly="499"
+                            data-yearly="4990">$499</span>
+                        <span class="text-gray-600 dark:text-gray-400 ml-2 pricing-period">/month</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Basic diagnostic equipment</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Standard reagents package</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Email support</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Quarterly maintenance</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Equipment training</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="mt-auto w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+
+                <div
+                    class="bg-white dark:bg-gray-900 rounded-2xl p-8 hover-lift scroll-reveal shadow-2xl ring-2 ring-purple-500 relative scale-105 flex flex-col">
+                    <div
+                        class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-1 rounded-full text-sm font-semibold">
+                        Most Popular
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 gradient-heading">Professional Lab</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Most popular for growing facilities</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold text-gray-900 dark:text-white pricing-amount" data-monthly="999"
+                            data-yearly="9990">$999</span>
+                        <span class="text-gray-600 dark:text-gray-400 ml-2 pricing-period">/month</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Advanced diagnostic instruments</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Premium reagents & consumables</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">24/7 priority support</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Monthly maintenance</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">On-site training & setup</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Custom equipment configuration</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="mt-auto w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-xl transition-all">
+                        Get Started
+                    </button>
+                </div>
+
+                <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 hover-lift scroll-reveal shadow-lg flex flex-col">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 gradient-heading">Enterprise Lab</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">For large-scale research institutions</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold text-gray-900 dark:text-white pricing-amount"
+                            data-monthly="2499" data-yearly="24990">$2,499</span>
+                        <span class="text-gray-600 dark:text-gray-400 ml-2 pricing-period">/month</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Full laboratory equipment suite</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Unlimited reagents & supplies</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Dedicated account manager</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Weekly maintenance visits</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Advanced training programs</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Equipment customization</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Research collaboration support</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span class="text-gray-600 dark:text-gray-400">Priority equipment upgrades</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="mt-auto w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+
+            <p class="text-center text-gray-600 dark:text-gray-400 mt-12 scroll-reveal">
+                All plans include a 30-day money-back guarantee. Need a custom plan?
+                <a href="#contact" class="text-blue-600 dark:text-blue-400 font-semibold hover:underline">Contact us</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold pb-4  gradient-heading font-heading">
+                    Frequently Asked Questions
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">
+                    Everything you need to know about our laboratory solutions
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden scroll-reveal">
+                    <button onclick="toggleFAQ(0)"
+                        class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                        aria-expanded="true">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white pr-8 ">What types of
+                            laboratories do you serve?</h3>
+                        <svg class="faq-icon w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 transition-transform duration-300 rotate-180"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content px-6 pb-5 max-h-96 transition-all duration-300">
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">We serve a wide range of
+                            laboratories including research institutions, medical diagnostic labs, biotechnology
+                            companies, pharmaceutical facilities, and educational institutions. Our equipment is
+                            designed to meet the diverse needs of both small research labs and large-scale industrial
+                            facilities.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden scroll-reveal">
+                    <button onclick="toggleFAQ(1)"
+                        class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                        aria-expanded="false">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white pr-8 ">Do you provide
+                            installation and training services?</h3>
+                        <svg class="faq-icon w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed pb-5">Yes! All our equipment packages
+                            include professional installation and comprehensive training. Our expert technicians will
+                            set up your equipment, calibrate it to your specifications, and train your staff on proper
+                            operation and maintenance procedures.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden scroll-reveal">
+                    <button onclick="toggleFAQ(2)"
+                        class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                        aria-expanded="false">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white pr-8 ">What warranty
+                            and support options are available?</h3>
+                        <svg class="faq-icon w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed pb-5">All equipment comes with a
+                            standard 2-year warranty covering parts and labor. We also offer extended warranty options
+                            and maintenance contracts. Our 24/7 support team is always available to assist with
+                            technical issues, and we maintain a comprehensive spare parts inventory for quick
+                            replacements.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden scroll-reveal">
+                    <button onclick="toggleFAQ(3)"
+                        class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                        aria-expanded="false">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white pr-8 ">Can I
+                            customize equipment to meet specific research requirements?</h3>
+                        <svg class="faq-icon w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed pb-5">Absolutely! We work closely
+                            with researchers to understand their unique requirements and can customize equipment
+                            configurations, software integrations, and workflow solutions. Our engineering team
+                            specializes in creating tailored solutions for specialized research applications.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden scroll-reveal">
+                    <button onclick="toggleFAQ(4)"
+                        class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                        aria-expanded="false">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white pr-8 ">What are the
+                            delivery and lead times?</h3>
+                        <svg class="faq-icon w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed pb-5">Standard equipment typically
+                            ships within 2-4 weeks. Custom configurations may require 6-8 weeks. We offer expedited
+                            shipping options for urgent requirements. International deliveries are handled by our
+                            experienced logistics partners with full customs support.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden scroll-reveal">
+                    <button onclick="toggleFAQ(5)"
+                        class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                        aria-expanded="false">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white pr-8 ">Do you offer
+                            financing options?</h3>
+                        <svg class="faq-icon w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content px-6 pb-0 max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed pb-5">Yes, we offer flexible
+                            financing solutions including equipment leasing, rent-to-own programs, and payment plans.
+                            Our financing partners can work with institutions of all sizes to create payment structures
+                            that fit your budget and procurement requirements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center scroll-reveal">
+                <p class="text-gray-600 dark:text-gray-400 mb-4">
+                    Still have questions? Our team is here to help.
+                </p>
+                <a href="#contact" class="text-blue-600 dark:text-blue-400 font-semibold hover:underline text-lg">
+                    Contact Support →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact"
+        class="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-600 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-full h-full"
+                style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;">
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 font-heading">
+                    Ready to Transform Your Laboratory?
+                </h2>
+                <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                    Join hundreds of research facilities and medical laboratories that trust BioLab Tech for their
+                    equipment needs
+                </p>
+
+                <!-- Lead Capture Form -->
+                <form onsubmit="handleFormSubmit(event)" class="max-w-md mx-auto mb-8">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" placeholder="Enter your email" required
+                            class="flex-1 px-4 py-3 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 text-white placeholder:text-white/70 focus:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50">
+                        <button type="submit"
+                            class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all animate-ctaPulse">
+                            Get Started
+                        </button>
+                    </div>
+                </form>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button
+                        class="glass-effect text-white border border-white/30 hover:bg-white/20 font-semibold px-8 py-3 rounded-lg transition-all">
+                        Schedule Consultation
+                    </button>
+                    <button
+                        class="glass-effect text-white border border-white/30 hover:bg-white/20 font-semibold px-8 py-3 rounded-lg transition-all">
+                        Download Catalog
+                    </button>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="mt-12 flex flex-wrap justify-center items-center gap-8 text-white/80">
+                    <div class="relative  flex items-center space-x-2">
+                        <!-- <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                        </svg> -->
+                        <span class="relative flex size-3">
+                            <span
+                                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
+                            <span class="relative inline-flex size-3 rounded-full bg-purple-500"></span>
+                        </span>
+                        <span class="">No credit card required</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="relative flex size-3">
+                            <span
+                                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
+                            <span class="relative inline-flex size-3 rounded-full bg-purple-500"></span>
+                        </span>
+                        <span>30-day money-back guarantee</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="relative flex size-3">
+                            <span
+                                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
+                            <span class="relative inline-flex size-3 rounded-full bg-purple-500"></span>
+                        </span>
+                        <span>24/7 support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-black text-gray-300 py-12 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-5 gap-8">
+                <!-- Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold text-white gradient-heading font-heading">BioLab Tech</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Leading provider of laboratory equipment and biotechnology solutions
+                        for modern research facilities.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" aria-label="Facebook"
+                            class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gradient-to-br hover:from-blue-600 hover:to-purple-600 transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter"
+                            class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gradient-to-br hover:from-blue-600 hover:to-purple-600 transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn"
+                            class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gradient-to-br hover:from-blue-600 hover:to-purple-600 transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="YouTube"
+                            class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gradient-to-br hover:from-blue-600 hover:to-purple-600 transition-all duration-300 hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Links Columns -->
+                <div>
+                    <h4 class="text-white font-bold mb-4 gradient-heading">Products</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Diagnostic Instruments</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Biotechnology</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Chemicals</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Consumables</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4 gradient-heading">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">News</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4 gradient-heading">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Documentation</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Support Center</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Training</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <p class="text-gray-400 text-center md:text-left">&copy; 2024 BioLab Tech. All rights reserved.</p>
+                    <div class="flex space-x-6 text-sm">
+                        <a href="#" class="hover:text-blue-400 transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-blue-400 transition-colors">Terms of Service</a>
+                        <a href="#" class="hover:text-blue-400 transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Product Data
+        const products = [
+            {
+                name: 'Digital Microscope',
+                price: '$12,999',
+                image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=600&fit=crop',
+                description: 'Advanced digital microscopy with 4K imaging, automated focus, and AI-powered analysis capabilities.'
+            },
+            {
+                name: 'PCR Thermal Cycler',
+                price: '$15,499',
+                image: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&h=600&fit=crop',
+                description: 'State-of-the-art PCR system with gradient functionality, fast ramping, and precise temperature control.'
+            },
+            {
+                name: 'Lab Centrifuge',
+                price: '$8,999',
+                image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&h=600&fit=crop',
+                description: 'Professional centrifuge with variable speed control, safety features, and multiple rotor options.'
+            },
+            {
+                name: 'Biochemistry Analyzer',
+                price: '$24,999',
+                image: 'https://images.unsplash.com/photo-1583911860205-72f8ac8ddcbe?w=800&h=600&fit=crop',
+                description: 'Fully automated analyzer for clinical chemistry with high throughput and exceptional accuracy.'
+            }
+        ];
+
+        // Theme Toggle
+        function toggleTheme() {
+            const root = document.documentElement;
+            const isDark = root.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+            document.getElementById('theme-icon').innerHTML = isDark
+                ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>'
+                : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>';
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            const icon = document.getElementById('theme-icon');
+            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+            } else {
+                menu.classList.add('hidden');
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    const menu = document.getElementById('mobile-menu');
+                    if (!menu.classList.contains('hidden')) {
+                        toggleMobileMenu();
+                    }
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.pageYOffset > 100) {
+                navbar.classList.add('shadow-xl');
+            } else {
+                navbar.classList.remove('shadow-xl');
+            }
+        });
+
+        // Scroll Reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Product Modal
+        function openProductModal(index) {
+            const product = products[index];
+            const modal = document.getElementById('product-modal');
+            const content = document.getElementById('modal-content');
+
+            content.innerHTML = `
+                <div>
+                    <img src="${product.image}" alt="${product.name}" class="w-full rounded-xl shadow-xl">
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold gradient-heading ">${product.name}</h3>
+                    <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">${product.price}</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg">${product.description}</p>
+                    <div class="space-y-4">
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-xl transition-all">
+                            Request Quote
+                        </button>
+                        <button class="w-full border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            Download Specs
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('product-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Pricing Toggle
+        let isYearly = false;
+
+        function setPricingMonthly() {
+            isYearly = false;
+            updatePricing();
+            document.getElementById('monthly-btn').className = 'px-6 py-2 rounded-full font-semibold transition-all bg-gradient-to-r from-blue-600 to-purple-600 text-white';
+            document.getElementById('yearly-btn').className = 'px-6 py-2 rounded-full font-semibold transition-all text-gray-600 dark:text-gray-400 relative';
+        }
+
+        function setPricingYearly() {
+            isYearly = true;
+            updatePricing();
+            document.getElementById('monthly-btn').className = 'px-6 py-2 rounded-full font-semibold transition-all text-gray-600 dark:text-gray-400';
+            document.getElementById('yearly-btn').className = 'px-6 py-2 rounded-full font-semibold transition-all bg-gradient-to-r from-blue-600 to-purple-600 text-white relative';
+        }
+
+        function updatePricing() {
+            document.querySelectorAll('.pricing-amount').forEach(el => {
+                const monthly = el.dataset.monthly;
+                const yearly = el.dataset.yearly;
+                el.textContent = '$' + (isYearly ? yearly : monthly);
+            });
+
+            document.querySelectorAll('.pricing-period').forEach(el => {
+                el.textContent = isYearly ? '/year' : '/month';
+            });
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(index) {
+            const buttons = document.querySelectorAll('.bg-white.dark\\:bg-gray-800 button');
+            const contents = document.querySelectorAll('.faq-content');
+            const icons = document.querySelectorAll('.faq-icon');
+
+            const button = buttons[index];
+            const content = contents[index];
+            const icon = icons[index];
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+            // Close all FAQs
+            buttons.forEach(btn => btn.setAttribute('aria-expanded', 'false'));
+            contents.forEach(cnt => {
+                cnt.style.maxHeight = '0';
+                cnt.style.paddingBottom = '0';
+            });
+            icons.forEach(icn => icn.classList.remove('rotate-180'));
+
+            // Open clicked FAQ if it was closed
+            if (!isExpanded) {
+                button.setAttribute('aria-expanded', 'true');
+                content.style.maxHeight = '400px';
+                content.style.paddingBottom = '';
+                icon.classList.add('rotate-180');
+            }
+        }
+
+        // Form Submit
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            alert('Thank you! We\'ll be in touch soon.');
+            e.target.reset();
+        }
+
+        // Initialize first FAQ as open
+        window.addEventListener('load', () => {
+            const firstContent = document.querySelector('.faq-content');
+            if (firstContent) {
+                firstContent.style.maxHeight = '400px';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Loco Coco – The Ultimate Bundle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./assets/logo.png" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@300,400,500,700,800,900&display=swap">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        :root {
+            --cocoa: #3b2314;
+            --cocoa-light: #5a3320;
+            --pink-primary: #ec4899;
+            --pink-hover: #db2777;
+            --cream: #fff9f5;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+
+            background-color: var(--cream);
+            color: var(--cocoa);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-display {
+            font-family: "Cabinet Grotesk", system-ui, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", sans-serif;
+            font-weight: bolder !important;
+        }
+
+        .bg-noise {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .ambient-glow {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            top: 0;
+            left: 0;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(254, 205, 211, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(233, 213, 255, 0.4) 0%, transparent 40%);
+        }
+
+        /* Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.7s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Thumbnail active border */
+        .thumb-active {
+            border-color: #ec4899 !important;
+            opacity: 1 !important;
+        }
+
+        /* Sticky buy box on desktop */
+        @media (min-width: 1024px) {
+            .buy-box-sticky {
+                position: sticky;
+                top: 6.5rem;
+            }
+        }
+
+        /* Pulse CTA */
+        @keyframes pulse-soft {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.35);
+            }
+
+            70% {
+                box-shadow: 0 0 0 12px rgba(236, 72, 153, 0);
+            }
+        }
+
+        .btn-pulse {
+            animation: pulse-soft 2.2s infinite;
+        }
+
+        /* Mobile sticky bar */
+        .sticky-bar {
+            box-shadow: 0 -10px 35px rgba(15, 23, 42, 0.18);
+        }
+    </style>
+</head>
+
+<body class="relative overflow-x-hidden">
+
+    <div class="bg-noise"></div>
+    <div class="ambient-glow"></div>
+
+    <!-- TOP BAR (same as home) -->
+    <div class="bg-[#3b2314] text-[#fff9f5] text-xs font-medium py-2 relative z-50">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+            <p class="hidden md:block opacity-80">FREE Discreet UK Shipping on orders over £30</p>
+            <div class="flex items-center justify-center w-full md:w-auto gap-2">
+                <span class="animate-pulse text-pink-300">●</span>
+                <span>Fall Sale: <strong>Buy 2, Get 15% OFF</strong></span>
+                <span class="hidden md:inline text-pink-300 mx-2">|</span>
+                <span class="hidden md:inline opacity-80">Use code: LOCOLOVE</span>
+            </div>
+            <div class="hidden md:flex gap-4 opacity-80">
+                <a href="#" class="hover:text-white transition">Track Order</a>
+                <a href="#" class="hover:text-white transition">Help</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header
+        class="sticky top-0 z-40 w-full transition-all duration-300 border-b border-white/50 bg-white/70 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
+            <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-800">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <a href="#" class="flex items-center gap-2 group">
+                <div
+                    class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-tr from-pink-200 to-purple-200 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <span class="text-xs md:text-sm">
+                        <img src="./assets/logo.png" alt="Loco Coco logo"
+                            class="h-6 w-6 md:h-7 md:w-7 object-contain" />
+                    </span>
+                </div>
+                <span class="font-display font-bold text-xl md:text-2xl tracking-tight text-[var(--cocoa)]">
+                    Loco Coco
+                </span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-[var(--cocoa)]">
+                <a href="/#products" class="hover:text-pink-600 transition-colors">Shop All</a>
+                <a href="/#how-it-works" class="hover:text-pink-600 transition-colors">The Experience</a>
+                <a href="/#reviews" class="hover:text-pink-600 transition-colors">Reviews</a>
+                <a href="/#faq" class="hover:text-pink-600 transition-colors">FAQ</a>
+            </nav>
+
+            <div class="flex items-center gap-3 md:gap-5">
+                <button class="relative p-2 text-[var(--cocoa)] hover:text-pink-600 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span
+                        class="absolute top-0 right-0 h-4 w-4 bg-pink-500 rounded-full text-[10px] text-white flex items-center justify-center border border-white">2</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu"
+            class="hidden absolute top-full left-0 w-full bg-white border-b border-pink-100 shadow-xl p-4 flex-col gap-4 md:hidden">
+            <a href="/#products" class="text-lg font-medium py-2 border-b border-gray-100">Shop All</a>
+            <a href="/#how-it-works" class="text-lg font-medium py-2 border-b border-gray-100">The Experience</a>
+            <a href="/#reviews" class="text-lg font-medium py-2 border-b border-gray-100">Reviews</a>
+            <a href="/#faq" class="text-lg font-medium py-2">FAQ</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- BREADCRUMBS -->
+        <section class="max-w-7xl mx-auto px-4 md:px-6 pt-6 text-xs text-gray-500">
+            <nav class="flex items-center gap-1">
+                <a href="/" class="hover:text-pink-600">Home</a>
+                <span>/</span>
+                <a href="/#products" class="hover:text-pink-600">Shop</a>
+                <span>/</span>
+                <span class="text-gray-700 font-medium">The Ultimate Bundle</span>
+            </nav>
+        </section>
+
+        <!-- PRODUCT HERO -->
+        <section class="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-5">
+            <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+                <!-- LEFT: Gallery -->
+                <!-- LEFT: Gallery -->
+                <div class="reveal active lg:self-start">
+                    <div
+                        class="relative bg-white/70 backdrop-blur border border-pink-100 rounded-3xl p-4 md:p-5 shadow-xl">
+
+                        <!-- main image with fixed heights instead of aspect ratio -->
+                        <div class="relative rounded-2xl overflow-hidden bg-gray-100 border border-pink-100
+                   h-[260px] md:h-[340px] lg:h-[400px] max-h-[420px]">
+                            <img id="mainImage" src="./assets/prod-1-img-7.jpg" alt="The Ultimate Bundle"
+                                class="w-full h-full object-cover transition duration-500">
+                            <div
+                                class="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-[var(--cocoa)]">
+                                Couples Favourite 🥂
+                            </div>
+                            <div
+                                class="absolute bottom-3 right-3 bg-pink-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                                Save 30%
+                            </div>
+                        </div>
+
+                        <!-- Thumbnails -->
+                        <div class="mt-4 grid grid-cols-4 gap-3">
+                            <button
+                                class="thumb-active border border-pink-300 rounded-xl overflow-hidden bg-gray-100 opacity-100"
+                                data-src="./assets/prod-1-img-7.jpg">
+                                <img src="./assets/prod-1-img-7.jpg" class="w-full h-full object-cover" alt="Bundle">
+                            </button>
+                            <button
+                                class="border border-gray-200 rounded-xl overflow-hidden bg-gray-100 opacity-70 hover:opacity-100 transition"
+                                data-src="./assets/prod-1-img-2.webp">
+                                <img src="./assets/prod-1-img-2.webp" class="w-full h-full object-cover"
+                                    alt="Card Game">
+                            </button>
+                            <button
+                                class="border border-gray-200 rounded-xl overflow-hidden bg-gray-100 opacity-70 hover:opacity-100 transition"
+                                data-src="./assets/prod-1-img-1.webp">
+                                <img src="./assets/prod-1-img-1.webp" class="w-full h-full object-cover"
+                                    alt="Chocolate Bar">
+                            </button>
+                            <button
+                                class="border border-gray-200 rounded-xl overflow-hidden bg-gray-100 opacity-70 hover:opacity-100 transition"
+                                data-src="./assets/prod-1-img-6.webp">
+                                <img src="./assets/prod-1-img-6.webp" class="w-full h-full object-cover"
+                                    alt="Chocolate Closeup">
+                            </button>
+                        </div>
+
+                        <!-- Small info strip -->
+                        <div
+                            class="mt-4 flex flex-wrap items-center justify-between gap-3 text-[11px] text-gray-500 border-t border-pink-100 pt-3">
+                            <div class="flex items-center gap-1">
+                                <span class="text-yellow-400">★★★★★</span>
+                                <span>4.8 (327 reviews)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                <span>In stock • Ships in 2–3 days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- RIGHT: Buy box -->
+                <div class="buy-box-sticky reveal active">
+                    <h1 class="font-display text-3xl md:text-4xl lg:text-5xl text-[var(--cocoa)] mb-2">
+                        The Ultimate Date Night Bundle
+                    </h1>
+
+                    <div class="flex flex-wrap items-center gap-3 text-sm text-slate-700">
+                        <div class="flex items-center gap-1">
+                            <span class="text-pink-500 text-lg">★★★★★</span>
+                            <span class="font-semibold">4.8</span>
+                            <span class="text-xs text-slate-500">(216 reviews)</span>
+                        </div>
+                        <span class="hidden sm:inline w-px h-4 bg-slate-300"></span>
+                        <a href="#reviews"
+                            class="text-[12px] underline underline-offset-2 decoration-[color:var(--rose)] hover:text-[color:var(--cocoa)]">
+                            Read what couples are saying
+                        </a>
+                    </div>
+
+                    <!-- Options -->
+                    <!-- Options: Packs + Purchase Type -->
+                    <div class="mt-2 mb-6 space-y-5">
+
+                        <!-- PACK OPTIONS -->
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-sm font-semibold text-[var(--cocoa)]">
+                                    Don’t miss out – limited availability
+                                </span>
+                                <span
+                                    class="hidden md:inline text-[10px] font-semibold uppercase tracking-[0.18em] text-pink-600">
+                                    Choose your pack
+                                </span>
+                            </div>
+
+                            <div
+                                class="bg-pink-50 border border-pink-200 rounded-2xl p-3 md:p-4 flex flex-col gap-3 text-center text-[var(--cocoa)]">
+                                <div class="grid grid-cols-3 gap-3">
+
+                                    <!-- 1 PACK -->
+                                    <button
+                                        class="pack-option flex flex-col items-center justify-between rounded-2xl border-2 border-pink-400 bg-white px-3 py-4 md:px-4 md:py-5 gap-2 hover:shadow-md transition"
+                                        data-pack="1">
+
+                                        <!-- SVG / Illustration -->
+                                        <div class="flex-1 flex items-center justify-center">
+                                            <svg width="45" height="45" viewBox="0 0 60 60" class="text-pink-400">
+                                                <rect x="10" y="10" width="40" height="40" rx="8" fill="#fce8ef"
+                                                    stroke="#ec407a" stroke-width="2" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="text-xs md:text-sm font-bold uppercase tracking-[0.16em]">1 Bundle
+                                        </div>
+                                        <div class="text-[10px] text-gray-500">Try it once</div>
+                                    </button>
+
+
+                                    <!-- 2 PACKS -->
+                                    <button
+                                        class="pack-option flex flex-col items-center justify-between rounded-2xl border border-pink-200 bg-white px-3 py-4 md:px-4 md:py-5 gap-2 relative hover:shadow-md transition"
+                                        data-pack="2">
+
+                                        <span
+                                            class="absolute -top-3 left-1/2 -translate-x-1/2 bg-pink-500 text-white text-[9px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-[0.16em]">
+                                            Most Popular
+                                        </span>
+
+                                        <!-- SVG / Illustration -->
+                                        <div class="flex-1 flex items-center justify-center pt-1">
+                                            <svg width="55" height="45" viewBox="0 0 80 60" class="text-pink-400">
+                                                <rect x="5" y="15" width="32" height="32" rx="7" fill="#fce8ef"
+                                                    stroke="#ec407a" stroke-width="2" />
+                                                <rect x="40" y="10" width="32" height="32" rx="7" fill="#f8c3d7"
+                                                    stroke="#ec407a" stroke-width="2" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="text-xs md:text-sm font-bold uppercase tracking-[0.16em]">2 Bundles
+                                        </div>
+                                        <div
+                                            class="text-[10px] font-semibold text-pink-600 bg-pink-50 border border-pink-200 rounded-full px-2 py-0.5">
+                                            Save 10%
+                                        </div>
+                                    </button>
+
+
+                                    <!-- 3 PACKS -->
+                                    <button
+                                        class="pack-option flex flex-col items-center justify-between rounded-2xl border border-pink-200 bg-white px-3 py-4 md:px-4 md:py-5 gap-2 relative hover:shadow-md transition"
+                                        data-pack="3">
+
+                                        <span
+                                            class="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-[9px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-[0.16em]">
+                                            Best Value
+                                        </span>
+
+                                        <!-- SVG / Illustration -->
+                                        <div class="flex-1 flex items-center justify-center pt-1">
+                                            <svg width="65" height="50" viewBox="0 0 100 60">
+                                                <rect x="10" y="18" width="28" height="28" rx="6" fill="#fce8ef"
+                                                    stroke="#d81b60" stroke-width="2" />
+                                                <rect x="36" y="12" width="28" height="28" rx="6" fill="#f8bfd2"
+                                                    stroke="#d81b60" stroke-width="2" />
+                                                <rect x="62" y="18" width="28" height="28" rx="6" fill="#f597ba"
+                                                    stroke="#d81b60" stroke-width="2" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="text-xs md:text-sm font-bold uppercase tracking-[0.16em]">3 Bundles
+                                        </div>
+                                        <div
+                                            class="text-[10px] font-semibold text-pink-600 bg-pink-50 border border-pink-200 rounded-full px-2 py-0.5">
+                                            Save 15%
+                                        </div>
+                                    </button>
+
+                                </div>
+
+
+                                <p class="text-[10px] text-gray-500 mt-1">
+                                    Most couples go for <span class="font-semibold text-pink-600">2 or 3 bundles</span>
+                                    to stock up.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- PURCHASE TYPE -->
+                        <div class="space-y-4.5 text-sm">
+                            <!-- One-time -->
+                            <button
+                                class="purchase-option w-full flex items-center justify-between gap-3 rounded-2xl border-2 border-pink-500 bg-white px-4 py-3">
+                                <div class="flex items-center gap-3">
+                                    <span
+                                        class="radio-one-time inline-flex h-4 w-4 rounded-full border-2 border-pink-500 items-center justify-center">
+                                        <span class="h-2 w-2 rounded-full bg-pink-500"></span>
+                                    </span>
+                                    <div class="text-left">
+                                        <p class="font-semibold text-[var(--cocoa)]">One time purchase</p>
+                                        <p class="text-[11px] text-gray-500">No commitment, just one unforgettable
+                                            night.</p>
+                                    </div>
+                                </div>
+                                <div class="text-right text-xs md:text-sm">
+                                    <div id="oneTimePriceDisplay" class="font-semibold text-[var(--cocoa)]">£35.00</div>
+                                </div>
+                            </button>
+
+                            <!-- Subscribe -->
+                            <button
+                                class="purchase-option w-full flex items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-white px-4 py-3"
+                                data-plan="subscribe">
+                                <div class="flex items-center gap-3">
+                                    <span
+                                        class="radio-sub inline-flex h-4 w-4 rounded-full border-2 border-gray-300 items-center justify-center">
+                                    </span>
+                                    <div class="text-left">
+                                        <p class="font-semibold text-[var(--cocoa)]">Subscribe &amp; save 10%</p>
+                                        <p class="text-[11px] text-gray-500">Pause or cancel anytime. Perfect for
+                                            monthly rituals.</p>
+                                        <span
+                                            class="inline-flex mt-1 text-[10px] font-semibold text-white bg-black rounded-full px-2 py-0.5">
+                                            SAVE 10%
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="text-right text-xs md:text-sm">
+                                    <div id="subPriceDisplay" class="font-semibold text-[var(--cocoa)]">£31.50</div>
+                                    <div id="subCompareDisplay" class="text-[11px] text-gray-400 line-through">£35.00
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <!-- CTA -->
+                    <div class="space-y-3 mb-6">
+                        <button
+                            class="btn-pulse w-full flex items-center justify-center gap-2 px-6 py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 hover:-translate-y-0.5 transition-all">
+                            Add to Cart – <span id="totalPrice">£35.00</span>
+                        </button>
+                        <p class="text-xs text-gray-500 text-center">
+                            30-day "no awkwardness" guarantee • Free UK shipping over £30
+                        </p>
+                    </div>
+
+                    <!-- short bullets -->
+                    <ul class="space-y-1.5 text-sm text-slate-700 my-3">
+                        <li>• 150-card game + 2 boxes of botanical dark chocolate</li>
+                        <li>• Designed to spark deep talks, flirty banter & spicy dares</li>
+                        <li>• Vegan, gluten-free, made in the UK</li>
+                    </ul>
+
+
+                    <!-- Trust badges -->
+                    <div class="grid grid-cols-2 gap-3 text-xs text-gray-600 mb-8">
+                        <div class="flex items-center gap-2 bg-white/80 border border-gray-100 rounded-xl px-3 py-3">
+                            <span>🔒</span>
+                            <span>Secure checkout with major cards & Apple Pay</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/80 border border-gray-100 rounded-xl px-3 py-3">
+                            <span>💌</span>
+                            <span>Optional handwritten love note at checkout</span>
+                        </div>
+                    </div>
+
+                    <!-- Accordion: What's inside / ingredients -->
+                    <div class="space-y-3 text-sm">
+                        <details
+                            class="group bg-white rounded-xl border border-pink-100 open:border-pink-300 transition">
+                            <summary
+                                class="flex justify-between items-center cursor-pointer list-none px-4 py-3 font-semibold">
+                                <span>What's inside the box?</span>
+                                <span class="transition group-open:rotate-180">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </span>
+                            </summary>
+                            <div class="px-4 pb-4 text-gray-600 space-y-2">
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>1 × Couples card game with 150+ prompts (Talk, Flirt, Dare).</li>
+                                    <li>2 × Boxes of aphrodisiac dark chocolate.</li>
+                                    <li>Ritual card with step-by-step instructions.</li>
+                                    <li>Optional gift note & discreet tissue wrapping.</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details
+                            class="group bg-white rounded-xl border border-pink-100 open:border-pink-300 transition">
+                            <summary
+                                class="flex justify-between items-center cursor-pointer list-none px-4 py-3 font-semibold">
+                                <span>Ingredients & dietary info</span>
+                                <span class="transition group-open:rotate-180">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </span>
+                            </summary>
+                            <div class="px-4 pb-4 text-gray-600 text-xs leading-relaxed space-y-2">
+                                <p><strong>Chocolate:</strong> 65% cocoa dark chocolate, organic cane sugar, cocoa
+                                    butter, vanilla extract.</p>
+                                <p><strong>Botanicals blend:</strong> Maca root, Damiana leaf, Ashwagandha, Epimedium.
+                                </p>
+                                <p><strong>Allergens:</strong> May contain traces of nuts & dairy. Vegan friendly | No
+                                    artificial flavours.</p>
+                            </div>
+                        </details>
+
+                        <details
+                            class="group bg-white rounded-xl border border-pink-100 open:border-pink-300 transition">
+                            <summary
+                                class="flex justify-between items-center cursor-pointer list-none px-4 py-3 font-semibold">
+                                <span>Perfect for…</span>
+                                <span class="transition group-open:rotate-180">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </span>
+                            </summary>
+                            <div class="px-4 pb-4 text-gray-600 space-y-1">
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>Date nights when you don’t want to leave the sofa.</li>
+                                    <li>Anniversaries, Valentine’s, or birthdays.</li>
+                                    <li>Gifting to engaged or newlywed couples.</li>
+                                    <li>Parents finally getting a night without the kids.</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: Why couples love this bundle -->
+        <section class="py-16 md:py-20 bg-gradient-to-b from-pink-50/70 via-white to-pink-50/40">
+            <div class="max-w-7xl mx-auto px-4 md:px-6">
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div class="reveal active">
+                        <h2 class="text-3xl md:text-4xl font-display font-bold text-[var(--cocoa)] mb-4">
+                            Why this bundle works (when others feel cringe)
+                        </h2>
+                        <p class="text-gray-600 mb-6">
+                            We worked with relationship therapists, chocolatiers and real couples to create something
+                            that feels playful, not forced.
+                        </p>
+
+                        <div class="space-y-5 text-sm text-gray-700">
+                            <div class="flex gap-3">
+                                <span class="mt-1">🧠</span>
+                                <div>
+                                    <h3 class="font-semibold text-[var(--cocoa)]">Questions that actually go somewhere
+                                    </h3>
+                                    <p>Our “Talk” prompts are designed to deepen emotional intimacy without feeling like
+                                        a work exercise.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <span class="mt-1">🌶️</span>
+                                <div>
+                                    <h3 class="font-semibold text-[var(--cocoa)]">Spicy, not sleazy</h3>
+                                    <p>“Flirt” and “Dare” cards build slowly, so you can stop wherever feels good for
+                                        you both.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <span class="mt-1">🍫</span>
+                                <div>
+                                    <h3 class="font-semibold text-[var(--cocoa)]">Chocolate that does more than sit on
+                                        the table</h3>
+                                    <p>The botanicals + quality cocoa support relaxation, blood flow and mood. You’ll
+                                        notice the difference.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal active">
+                        <div
+                            class="bg-white/80 backdrop-blur border border-pink-100 rounded-3xl p-6 md:p-8 shadow-xl space-y-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-xs font-semibold text-pink-600 tracking-[0.18em] uppercase">Real
+                                        couples</p>
+                                    <p class="font-display text-xl font-bold text-[var(--cocoa)]">“We forgot about our
+                                        phones for 3 hours.”</p>
+                                </div>
+                                <div class="flex -space-x-2">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-pink-400 text-white text-xs flex items-center justify-center">
+                                        A
+                                    </div>
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-purple-400 text-white text-xs flex items-center justify-center">
+                                        M
+                                    </div>
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-orange-400 text-white text-xs flex items-center justify-center">
+                                        +
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-gray-600">
+                                “We’ve tried other couple games but they always felt a bit cheesy or intense. This one
+                                just felt… fun. We started with ‘Talk’ cards over dinner and somehow ended at ‘Dare’
+                                cards at 1am.”
+                            </p>
+
+                            <div class="grid grid-cols-3 gap-3 text-center text-xs text-gray-600 pt-2">
+                                <div class="bg-pink-50 rounded-2xl px-3 py-3">
+                                    <div class="font-display text-xl font-bold text-[var(--cocoa)]">92%</div>
+                                    <div>Felt more connected</div>
+                                </div>
+                                <div class="bg-pink-50 rounded-2xl px-3 py-3">
+                                    <div class="font-display text-xl font-bold text-[var(--cocoa)]">2.4×</div>
+                                    <div>More date nights</div>
+                                </div>
+                                <div class="bg-pink-50 rounded-2xl px-3 py-3">
+                                    <div class="font-display text-xl font-bold text-[var(--cocoa)]">4.8★</div>
+                                    <div>Average rating</div>
+                                </div>
+                            </div>
+
+                            <button
+                                class="w-full mt-2 py-3 rounded-full border border-[var(--cocoa)] text-[var(--cocoa)] font-semibold text-sm hover:bg-[var(--cocoa)] hover:text-white transition">
+                                Add this bundle to my cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MINI REVIEWS GRID -->
+        <section class="py-16 px-4 md:px-6 max-w-7xl mx-auto">
+            <div class="flex items-baseline justify-between mb-6">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-display font-bold text-[var(--cocoa)]">What couples are saying
+                    </h2>
+                    <p class="text-sm text-gray-600 mt-1">Pulled from 300+ verified reviews.</p>
+                </div>
+                <button class="hidden md:inline-flex text-xs font-semibold text-pink-600 hover:text-pink-700 underline">
+                    Read all reviews
+                </button>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-5 text-sm">
+                <div class="bg-white border border-pink-100 rounded-2xl p-5 shadow-sm">
+                    <div class="flex text-yellow-400 text-xs mb-2">★★★★★</div>
+                    <p class="italic text-gray-700 mb-4">“We were both nervous it’d feel awkward, but the questions were
+                        actually really thoughtful. Ended up laughing, crying, then… you know.”</p>
+                    <p class="text-xs text-gray-500">— Emily & Josh, together 7 years</p>
+                </div>
+                <div class="bg-white border border-pink-100 rounded-2xl p-5 shadow-sm">
+                    <div class="flex text-yellow-400 text-xs mb-2">★★★★★</div>
+                    <p class="italic text-gray-700 mb-4">“The chocolate is insanely good. We’d buy it even without the
+                        game tbh. But together, it’s kind of magic.”</p>
+                    <p class="text-xs text-gray-500">— Priya & Tom, parents of 2</p>
+                </div>
+                <div class="bg-white border border-pink-100 rounded-2xl p-5 shadow-sm">
+                    <div class="flex text-yellow-400 text-xs mb-2">★★★★☆</div>
+                    <p class="italic text-gray-700 mb-4">“We started with the ‘Talk’ deck and didn’t realise how much we
+                        needed it. Next time we’re going straight to ‘Flirt’.”</p>
+                    <p class="text-xs text-gray-500">— Lana & Chris, long-distance</p>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-center md:hidden">
+                <button class="text-xs font-semibold text-pink-600 hover:text-pink-700 underline">Read all
+                    reviews</button>
+            </div>
+        </section>
+
+        <!-- YOU MAY ALSO LIKE -->
+        <section class="py-16 bg-white/70 border-y border-pink-100">
+            <div class="max-w-7xl mx-auto px-4 md:px-6">
+                <div class="flex items-baseline justify-between mb-6">
+                    <h2 class="text-xl md:text-2xl font-display font-bold text-[var(--cocoa)]">
+                        Make it a whole weekend
+                    </h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div
+                        class="group bg-white rounded-2xl border border-pink-100 p-4 hover:-translate-y-1 hover:shadow-lg transition">
+                        <div class="aspect-[4/5] rounded-xl overflow-hidden bg-gray-100 mb-3">
+                            <img src="./assets/prod-1-img-1.webp"
+                                class="w-full h-full object-cover group-hover:scale-105 transition" alt="Game Only">
+                        </div>
+                        <h3 class="font-semibold text-[var(--cocoa)] mb-1">Couples Card Game</h3>
+                        <p class="text-xs text-gray-500 mb-2">Already stocked on chocolate? Grab the deck on its own.
+                        </p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="font-semibold">£25.00</span>
+                            <button class="text-xs font-semibold text-pink-600 hover:text-pink-700">View product
+                                →</button>
+                        </div>
+                    </div>
+                    <div
+                        class="group bg-white rounded-2xl border border-pink-100 p-4 hover:-translate-y-1 hover:shadow-lg transition">
+                        <div class="aspect-[4/5] rounded-xl overflow-hidden bg-gray-100 mb-3">
+                            <img src="./assets/prod-1-img-6.webp"
+                                class="w-full h-full object-cover group-hover:scale-105 transition"
+                                alt="Extra Chocolate">
+                        </div>
+                        <h3 class="font-semibold text-[var(--cocoa)] mb-1">Extra Love Chocolate (2-Pack)</h3>
+                        <p class="text-xs text-gray-500 mb-2">For when one bar isn’t even close to enough.</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="font-semibold">£29.90</span>
+                            <button class="text-xs font-semibold text-pink-600 hover:text-pink-700">View product
+                                →</button>
+                        </div>
+                    </div>
+                    <div
+                        class="group bg-white rounded-2xl border border-pink-100 p-4 hover:-translate-y-1 hover:shadow-lg transition">
+                        <div class="aspect-[4/5] rounded-xl overflow-hidden bg-gray-100 mb-3">
+                            <img src="./assets/prod-1-img-1.webp"
+                                class="w-full h-full object-cover group-hover:scale-105 transition" alt="Gift Bundle">
+                        </div>
+                        <h3 class="font-semibold text-[var(--cocoa)] mb-1">Gift-Ready Duo</h3>
+                        <p class="text-xs text-gray-500 mb-2">Wrapped, ribboned and ready to hand over.</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="font-semibold">£39.00</span>
+                            <button class="text-xs font-semibold text-pink-600 hover:text-pink-700">View product
+                                →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER (same style as home) -->
+        <footer class="bg-white border-t border-pink-100 pt-16 pb-8">
+            <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-2 md:col-span-1">
+                    <span class="font-display font-bold text-xl text-[var(--cocoa)] block mb-4">Loco Coco</span>
+                    <p class="text-sm text-gray-500 mb-4">Making love playful again.</p>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-200 transition">IG</a>
+                        <a href="#"
+                            class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-200 transition">TT</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-[var(--cocoa)]">Shop</h4>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><a href="/#products" class="hover:text-pink-600">Bundles</a></li>
+                        <li><a href="/#products" class="hover:text-pink-600">Game Only</a></li>
+                        <li><a href="/#products" class="hover:text-pink-600">Chocolate Only</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-[var(--cocoa)]">Support</h4>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-pink-600">Track Order</a></li>
+                        <li><a href="/#faq" class="hover:text-pink-600">FAQ</a></li>
+                        <li><a href="#" class="hover:text-pink-600">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="font-bold mb-4 text-[var(--cocoa)]">Stay in the loop</h4>
+                    <form class="flex gap-2">
+                        <input type="email" placeholder="Email address"
+                            class="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-pink-500">
+                        <button
+                            class="bg-[var(--cocoa)] text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-pink-600 transition">Join</button>
+                    </form>
+                </div>
+            </div>
+            <div
+                class="max-w-7xl mx-auto px-4 border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+                <p>&copy; 2024 Loco Coco UK. All rights reserved.</p>
+                <div class="flex gap-4 mt-2 md:mt-0">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- MOBILE STICKY CTA -->
+        <div
+            class="md:hidden fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur sticky-bar border-t border-pink-100 p-4 z-50 flex items-center justify-between">
+            <div>
+                <p class="text-xs text-gray-500">The Ultimate Bundle</p>
+                <p class="font-bold text-[var(--cocoa)] text-sm">£35.00 <span
+                        class="text-xs line-through text-gray-400">£50.00</span></p>
+            </div>
+            <button
+                class="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-5 py-3 rounded-full font-bold text-xs shadow-md">
+                Add to Cart
+            </button>
+        </div>
+
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+        }
+
+        // Reveal on scroll
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // Gallery thumbnails
+        const mainImg = document.getElementById('mainImage');
+        const thumbs = document.querySelectorAll('[data-src]');
+        thumbs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const src = btn.getAttribute('data-src');
+                if (src && mainImg) {
+                    mainImg.src = src;
+                    thumbs.forEach(t => t.classList.remove('thumb-active'));
+                    btn.classList.add('thumb-active');
+                }
+            });
+        });
+
+        // Quantity + total
+        let qty = 1;
+        const pricePerUnit = 35.00;
+        const qtyMinus = document.getElementById('qtyMinus');
+        const qtyPlus = document.getElementById('qtyPlus');
+        const qtyValue = document.getElementById('qtyValue');
+        const totalPrice = document.getElementById('totalPrice');
+
+        function updateQtyDisplay() {
+            if (!qtyValue || !totalPrice) return;
+            qtyValue.textContent = qty.toString();
+            const total = (pricePerUnit * qty).toFixed(2);
+            totalPrice.textContent = `£${total}`;
+        }
+
+        if (qtyMinus && qtyPlus) {
+            qtyMinus.addEventListener('click', () => {
+                if (qty > 1) {
+                    qty--;
+                    updateQtyDisplay();
+                }
+            });
+            qtyPlus.addEventListener('click', () => {
+                qty++;
+                updateQtyDisplay();
+            });
+        }
+    </script>
+</body>
+
+</html>

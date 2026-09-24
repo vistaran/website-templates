@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UrbanNest Studio — Luxury Architecture & Interior Design</title>
+
+    <!-- Editable Brand Name -->
+    <script>
+        const BRAND_NAME = "UrbanNest Studio";
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                        manrope: ['Manrope', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        primary: '#c5a059', // Architectural Gold
+                        brand: {
+                            900: '#1a1a1a', // Rich Black
+                            800: '#2a2a2a',
+                            50: '#fbfaf8', // Stone White
+                        }
+                    },
+                    animation: {
+                        float: 'float 8s ease-in-out infinite',
+                        marquee: 'marquee 25s linear infinite',
+                        pulseGlow: 'pulseGlow 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%,100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-18px)' }
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        },
+                        pulseGlow: {
+                            '0%,100%': { opacity: .6 },
+                            '50%': { opacity: 1 }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            width: 100%;
+            background: #ffffff;
+        }
+
+        .dark body {
+            background: #050816;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .shadow-premium {
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.05), 0 30px 60px -30px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .shadow-premium {
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.3), 0 30px 60px -30px rgba(0, 0, 0, 0.3);
+        }
+
+        .text-reveal {
+            background: linear-gradient(to right, #c5a059 0%, #c5a059 100%);
+            background-size: 0% 100%;
+            background-repeat: no-repeat;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: background-size 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .group:hover .text-reveal {
+            background-size: 100% 100%;
+        }
+
+        .light-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #c5a059, #e2c284, #947c50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-overlay {
+            background:
+                linear-gradient(to bottom, rgba(0, 0, 0, .55), rgba(0, 0, 0, .55)),
+                linear-gradient(to right, rgba(8, 15, 40, .8), rgba(8, 15, 40, .15));
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(100px);
+            opacity: .25;
+            pointer-events: none;
+        }
+
+        .parallax {
+            will-change: transform;
+            transition: transform .08s linear;
+        }
+
+        .project-card img {
+            transition: transform 1.2s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.12);
+        }
+
+        .service-card {
+            transition: all .4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .18);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease;
+        }
+
+        .marquee-track {
+            width: max-content;
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(18px);
+            background: rgba(255, 255, 255, .65);
+        }
+
+        .dark .nav-blur {
+            background: rgba(10, 15, 30, .65);
+        }
+
+        .shadow-premium {
+            box-shadow: 0 10px 80px rgba(0, 0, 0, .05);
+        }
+
+        .glow {
+            box-shadow: 0 0 80px rgba(197, 160, 89, .15);
+        }
+
+        /* Typography Standardization */
+        h2 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            line-height: 1.2;
+        }
+
+        .grid-masonry {
+            column-count: 3;
+            column-gap: 1.5rem;
+        }
+
+        .grid-masonry>div {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+
+        @media(max-width:1024px) {
+            .grid-masonry {
+                column-count: 2;
+            }
+        }
+
+        @media(max-width:768px) {
+            .grid-masonry {
+                column-count: 1;
+            }
+        }
+
+        .dark .service-card {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .dark .project-card {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .dark input,
+        .dark textarea,
+        .dark select {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+            color: white;
+        }
+
+        .dark section {
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-white dark:bg-[#050816] text-slate-900 dark:text-white transition-colors duration-500">
+
+    <!-- Blobs -->
+    <div
+        class="blob bg-blue-500 w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] top-[-100px] left-[-100px] hidden md:block">
+    </div>
+    <div class="blob bg-purple-500 w-[250px] h-[250px] lg:w-[450px] lg:h-[450px] top-[30%] -right-20 hidden md:block">
+    </div>
+
+    <!-- NAVBAR -->
+    <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 transition-transform duration-500">
+        <div class="max-w-7xl mx-auto px-4 py-4 lg:py-8 transition-all duration-500" id="headerWrapper">
+            <div
+                class="nav-blur border border-black/5 dark:border-white/5 rounded-full px-6 lg:px-10 py-4 flex items-center justify-between shadow-premium transition-all duration-700">
+
+                <a href="#"
+                    class="text-lg lg:text-2xl font-black font-outfit tracking-tighter brand-name uppercase whitespace-nowrap"
+                    contenteditable="true"></a>
+
+                <nav
+                    class="hidden lg:flex items-center gap-10 text-[11px] font-black uppercase tracking-[0.2em] text-slate-500 dark:text-white/40">
+                    <a href="#services" class="hover:text-primary transition">Services</a>
+                    <a href="#projects" class="hover:text-primary transition">Projects</a>
+                    <a href="#about" class="hover:text-primary transition">Philosophy</a>
+                    <a href="#team" class="hover:text-primary transition">Minds</a>
+                    <a href="#contact" class="hover:text-primary transition">Inquiry</a>
+                </nav>
+
+                <div class="flex items-center gap-4 lg:gap-8">
+                    <button id="themeToggle"
+                        class="w-9 h-9 lg:w-11 lg:h-11 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center hover:bg-primary/20 transition-all">
+                        <i data-lucide="sun-moon" class="w-4 h-4 text-primary"></i>
+                    </button>
+
+                    <a href="#contact"
+                        class="hidden md:flex px-8 py-3.5 rounded-full bg-brand-900 dark:bg-white text-white dark:text-brand-900 font-black uppercase tracking-widest text-[10px] hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-colors">
+                        Consult
+                    </a>
+
+                    <button id="mobileBtn" class="lg:hidden text-brand-900 dark:text-white">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- MOBILE MENU -->
+            <div id="mobileMenu"
+                class="hidden mt-2 nav-blur rounded-[2rem] p-2 border border-black/5 dark:border-white/5 shadow-2xl">
+                <div class="flex flex-col text-[11px] font-black uppercase tracking-widest text-center">
+                    <a href="#projects" class="py-3 border-b border-black/20 dark:border-white/20"
+                        onclick="mobileMenu.classList.add('hidden')">Projects</a>
+                    <a href="#services" class="py-3 border-b border-black/20 dark:border-white/20"
+                        onclick="mobileMenu.classList.add('hidden')">Expertise</a>
+                    <a href="#about" class="py-3 border-b border-black/20 dark:border-white/20"
+                        onclick="mobileMenu.classList.add('hidden')">Philosophy</a>
+                    <a href="#team" class="py-3 border-b border-black/20 dark:border-white/20"
+                        onclick="mobileMenu.classList.add('hidden')">Minds</a>
+                    <a href="#contact" class="py-3 border-b border-black/20 dark:border-white/20" onclick="mobileMenu.classList.add('hidden')">Inquiry</a>
+                    
+                    <div class="pt-6 pb-4">
+                        <p class="text-[9px] font-black opacity-30 mb-4">Social</p>
+                        <div class="flex justify-center gap-6">
+                            <a href="#" class="text-primary transition-transform hover:scale-110">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                </svg>
+                            </a>
+                            <a href="#" class="text-primary transition-transform hover:scale-110">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                </svg>
+                            </a>
+                            <a href="#" class="text-primary transition-transform hover:scale-110">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="relative min-h-screen flex items-center overflow-hidden bg-brand-900 transition-colors">
+
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=2070&auto=format&fit=crop"
+                class="w-full h-full object-cover parallax opacity-60 grayscale hover:grayscale-0 transition-all duration-1000"
+                data-speed="0.1">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/40 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-40 w-full mt-20">
+
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+                <div>
+                    <div
+                        class="inline-flex items-center gap-4 px-6 py-3 rounded-full glass text-white mb-10 border border-white/5">
+                        <span class="w-1 h-1 rounded-full bg-primary shadow-[0_0_10px_#c5a059] animate-pulse"></span>
+                        <p class="text-[10px] font-black uppercase tracking-[0.4em]">International Design Mastery</p>
+                    </div>
+
+                    <h1 class="text-5xl md:text-8xl leading-[0.9] font-outfit font-black text-white tracking-tighter">
+                        Crafting <br>
+                        <span class="font-serif italic font-normal text-primary">Timeless</span> <br>
+                        Space.
+                    </h1>
+
+                    <p class="mt-12 text-lg text-white/50 max-w-xl leading-relaxed font-medium">
+                        World-class architectural experiences and curated luxury interiors for visionary residential and
+                        commercial projects.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 lg:gap-8 mt-12">
+                        <a href="#projects"
+                            class="px-8 lg:px-10 py-4 lg:py-5 rounded-full bg-primary text-white font-black uppercase tracking-widest text-[10px] lg:text-[11px] hover:scale-110 transition-transform text-center w-full sm:w-auto">
+                            View Archive
+                        </a>
+
+                        <a href="#contact"
+                            class="px-8 lg:px-10 py-4 lg:py-5 rounded-full border border-white/10 text-white font-black uppercase tracking-widest text-[10px] lg:text-[11px] hover:bg-white/5 transition-all text-center w-full sm:w-auto">
+                            Start Consultation
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- FLOATING CARDS -->
+                <div class="relative hidden lg:block">
+
+                    <div
+                        class="absolute top-[-100px] right-0 glass rounded-[3rem] p-10 w-[380px] animate-float border border-white/5">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-6">Residential / 2024
+                        </p>
+                        <h4 class="text-white text-4xl font-black tracking-tighter uppercase mb-8">Oceanfront <br>Villa
+                            Concept</h4>
+                        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1200&auto=format&fit=crop"
+                            class="rounded-[2rem] h-52 w-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                    </div>
+
+                    <!-- <div class="absolute bottom-[-140px] left-0 glass rounded-[3rem] p-10 w-[340px] animate-float border border-white/5"
+                        style="animation-delay:2.5s">
+                        <div class="flex justify-between items-start mb-8">
+                            <div>
+                                <p class="text-white/40 text-[10px] font-black uppercase tracking-widest mb-2">Expertise
+                                </p>
+                                <h4 class="text-white text-5xl font-black tracking-tighter">12+</h4>
+                            </div>
+                            <div class="w-12 h-12 rounded-full border border-primary flex items-center justify-center">
+                                <i data-lucide="sparkles" class="w-5 h-5 text-primary"></i>
+                            </div>
+                        </div>
+                        <p
+                            class="text-white/50 text-sm font-medium leading-relaxed uppercase tracking-widest text-[10px]">
+                            Years of precision architectural engineering.</p>
+                    </div> -->
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUSTED BRANDS -->
+    <section
+        class="py-8 lg:py-8 border-y border-black/5 dark:border-white/5 overflow-hidden bg-brand-50 dark:bg-[#0a0a0b] transition-colors">
+        <div class="overflow-hidden w-full">
+            <div
+                class="flex marquee-track animate-marquee gap-12 lg:gap-24 text-xs font-black uppercase tracking-[0.3em] lg:tracking-[0.5em] opacity-50 dark:opacity-20">
+                <div class="flex gap-12 lg:gap-24">
+                    <span>Asian Paints</span>
+                    <span>Kajaria</span>
+                    <span>Hafele Luxury</span>
+                    <span>Greenply Eco</span>
+                    <span>Hettich Art</span>
+                    <span>Somany Ceramics</span>
+                </div>
+
+                <div class="flex gap-12 lg:gap-24">
+                    <span>Asian Paints</span>
+                    <span>Kajaria</span>
+                    <span>Hafele Luxury</span>
+                    <span>Greenply Eco</span>
+                    <span>Hettich Art</span>
+                    <span>Somany Ceramics</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES / EXPERIENCE SECTION -->
+    <section id="services" class="relative py-20 lg:py-48 overflow-hidden bg-brand-50 dark:bg-[#050816]">
+
+        <!-- Liquid Glow Background -->
+        <div class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
+            <div
+                class="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-blue-500/20 blur-[180px] rounded-full animate-float">
+            </div>
+            <div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-primary/20 blur-[180px] rounded-full animate-float"
+                style="animation-delay: 2s"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <!-- Editorial Heading -->
+            <div class="grid lg:grid-cols-12 gap-10 items-end mb-10 md:mb-32">
+                <div class="lg:col-span-8">
+                    <p
+                        class="uppercase tracking-[0.5em] text-[10px] text-primary font-black mb-8 flex items-center gap-4">
+                        <span class="w-12 h-[1px] bg-primary/30"></span>
+                        SPATIAL DESIGN PHILOSOPHY
+                    </p>
+                    <h2
+                        class="text-[10vw] md:text-8xl font-outfit font-black leading-[0.95] md:leading-[0.85] tracking-tighter uppercase">
+                        Architecture <br>
+                        <span class="font-serif italic font-normal text-primary lowercase tracking-normal">meets</span>
+                        <br>
+                        Pure Emotion.
+                    </h2>
+                </div>
+                <div class="lg:col-span-4 pb-4">
+                    <p
+                        class="text-base md:text-lg text-slate-500 dark:text-white/40 font-medium leading-relaxed border-l-2 border-primary/20 pl-6 md:pl-8">
+                        We don't just design buildings; we curate sensory journeys that redefine luxury living through
+                        light, material, and silence.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Cinematic Layout -->
+            <div class="grid lg:grid-cols-12 gap-12 items-start">
+
+                <!-- STICKY IMAGE PORTAL -->
+                <div class="lg:col-span-6 lg:sticky lg:top-32">
+                    <div class="relative group overflow-hidden rounded-[3rem] shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1600&auto=format&fit=crop"
+                            class="w-full h-[70vh] object-cover transition-transform duration-[3000ms] group-hover:scale-110">
+
+                        <!-- Artistic Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/60 via-transparent to-transparent">
+                        </div>
+
+                        <div class="absolute bottom-8 left-8 right-8">
+                            <div class="glass p-6 lg:p-8 rounded-[2rem] border border-white/10 backdrop-blur-2xl">
+                                <h4 class="text-white text-2xl font-black uppercase tracking-tighter mb-2">The Monolith
+                                    <br>Legacy
+                                </h4>
+                                <p class="text-white/60 text-[11px] font-medium leading-relaxed">
+                                    Winner of the International Architecture Award 2024.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELITE SERVICES COLUMN -->
+                <div class="lg:col-span-6 space-y-6">
+
+                    <!-- SERVICE CARD 01 -->
+                    <div
+                        class="group relative p-8 lg:p-10 rounded-[3rem] bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-primary/40 transition-all duration-700 shadow-premium">
+                        <div class="flex justify-between items-start mb-6">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-blue-500/5 flex items-center justify-center group-hover:bg-blue-500/10 transition-colors">
+                                <i data-lucide="layout" class="w-7 h-7 text-blue-500/60"></i>
+                            </div>
+                            <span
+                                class="text-6xl font-serif italic text-slate-100 dark:text-white/5 group-hover:text-primary/20 transition-colors">01</span>
+                        </div>
+                        <h3 class="text-3xl font-black uppercase tracking-tighter mb-4">Interior <br>Orchestration</h3>
+                        <p class="text-lg text-slate-500 dark:text-white/50 leading-relaxed font-medium mb-8">
+                            Curating sensory environments where material honesty and spatial intelligence converge.
+                        </p>
+                        <ul
+                            class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/30">
+                            <li class="flex items-center gap-3"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-primary"></span> Bespoke Furniture</li>
+                            <li class="flex items-center gap-3"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-primary"></span> Light Psychology</li>
+                        </ul>
+                    </div>
+
+                    <!-- SERVICE CARD 02 -->
+                    <div
+                        class="group relative p-8 lg:p-10 rounded-[3rem] bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-primary/40 transition-all duration-700 shadow-premium">
+                        <div class="flex justify-between items-start mb-6">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-purple-500/5 flex items-center justify-center group-hover:bg-purple-500/10 transition-colors">
+                                <i data-lucide="building-2" class="w-7 h-7 text-purple-500/60"></i>
+                            </div>
+                            <span
+                                class="text-6xl font-serif italic text-slate-100 dark:text-white/5 group-hover:text-primary/20 transition-colors">02</span>
+                        </div>
+                        <h3 class="text-3xl font-black uppercase tracking-tighter mb-4">Structural <br>Poetry</h3>
+                        <p class="text-lg text-slate-500 dark:text-white/50 leading-relaxed font-medium mb-8">
+                            Designing iconic elevations that serve as landmarks for the modern era.
+                        </p>
+                        <ul
+                            class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/30">
+                            <li class="flex items-center gap-3"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-primary"></span> Facade Systems</li>
+                            <li class="flex items-center gap-3"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-primary"></span> Volume Mastery</li>
+                        </ul>
+                    </div>
+
+                    <!-- SERVICE CARD 03 -->
+                    <div
+                        class="group relative p-8 lg:p-10 rounded-[3rem] bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-primary/40 transition-all duration-700 shadow-premium">
+                        <div class="flex justify-between items-start mb-6">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-yellow-500/5 flex items-center justify-center group-hover:bg-yellow-500/10 transition-colors">
+                                <i data-lucide="cpu" class="w-7 h-7 text-yellow-500/60"></i>
+                            </div>
+                            <span
+                                class="text-6xl font-serif italic text-slate-100 dark:text-white/5 group-hover:text-primary/20 transition-colors">03</span>
+                        </div>
+                        <h3 class="text-3xl font-black uppercase tracking-tighter mb-4">Cognitive <br>Living</h3>
+                        <p class="text-lg text-slate-500 dark:text-white/50 leading-relaxed font-medium mb-8">
+                            Integrating invisible technology that anticipates human needs without distraction.
+                        </p>
+                        <ul
+                            class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/30">
+                            <li class="flex items-center gap-3"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-primary"></span> Smart Ecosystems</li>
+                            <li class="flex items-center gap-3"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-primary"></span> Bio-Lighting</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </div>
+
+    </div>
+    </section>
+
+
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-20 lg:py-28 bg-white dark:bg-[#050816] transition-colors">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-24">
+                <h2 class="font-outfit font-black tracking-tighter">
+                    Selected <br><span class="font-serif italic font-normal text-primary">Archive.</span>
+                </h2>
+
+                <div class="flex flex-wrap gap-6 lg:gap-10 text-[10px] font-black uppercase tracking-[0.3em]">
+                    <span class="text-primary border-b-2 border-primary pb-2 cursor-pointer">All Projects</span>
+                    <span class="opacity-30 hover:opacity-100 cursor-pointer transition-opacity">Residential</span>
+                    <span class="opacity-30 hover:opacity-100 cursor-pointer transition-opacity">Commercial</span>
+                </div>
+            </div>
+
+
+            <div class="grid md:grid-cols-2 gap-12 lg:gap-20">
+
+                <div class="group cursor-pointer" data-aos="fade-up">
+                    <div class="overflow-hidden rounded-[2.5rem]">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop"
+                            class="w-full aspect-[4/5] object-cover group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="mt-10 flex justify-between items-start">
+                        <div>
+                            <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-3">Residential /
+                                2024</p>
+                            <h3 class="text-4xl font-black tracking-tighter uppercase">Oceanfront Villa</h3>
+                        </div>
+                        <span class="text-4xl font-serif italic opacity-10">01</span>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer md:mt-32" data-aos="fade-up" data-aos-delay="200">
+                    <div class="overflow-hidden rounded-[2.5rem]">
+                        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop"
+                            class="w-full aspect-[4/5] object-cover group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="mt-10 flex justify-between items-start">
+                        <div>
+                            <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-3">Culinary /
+                                2023</p>
+                            <h3 class="text-4xl font-black tracking-tighter uppercase">Minimal Kitchen</h3>
+                        </div>
+                        <span class="text-4xl font-serif italic opacity-10">02</span>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer" data-aos="fade-up">
+                    <div class="overflow-hidden rounded-[2.5rem]">
+                        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop"
+                            class="w-full aspect-[4/5] object-cover group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="mt-10 flex justify-between items-start">
+                        <div>
+                            <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-3">Urban / 2024
+                            </p>
+                            <h3 class="text-4xl font-black tracking-tighter uppercase">Skyline Penthouse</h3>
+                        </div>
+                        <span class="text-4xl font-serif italic opacity-10">03</span>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer md:mt-32" data-aos="fade-up" data-aos-delay="200">
+                    <div class="overflow-hidden rounded-[2.5rem]">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop"
+                            class="w-full aspect-[4/5] object-cover group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="mt-10 flex justify-between items-start">
+                        <div>
+                            <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-3">Corporate /
+                                2023</p>
+                            <h3 class="text-4xl font-black tracking-tighter uppercase">Executive Suite</h3>
+                        </div>
+                        <span class="text-4xl font-serif italic opacity-10">04</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT / WHY CHOOSE US -->
+    <section id="about" class="py-20 lg:py-28 bg-brand-50 dark:bg-[#0a0a0b] transition-colors">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+                <div class="relative group">
+                    <div class="absolute -inset-4 bg-primary/10 blur-2xl group-hover:bg-primary/20 transition-all">
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1200&auto=format&fit=crop"
+                        class="rounded-[2.5rem] grayscale hover:grayscale-0 transition-all duration-1000 relative z-10">
+                </div>
+
+                <div>
+                    <p class="uppercase tracking-[0.4em] text-[10px] text-primary font-black mb-6">
+                        OUR PHILOSOPHY
+                    </p>
+
+                    <h2 class="text-4xl md:text-6xl font-outfit font-black leading-[0.9] tracking-tighter">
+                        We build <br><span class="font-serif italic font-normal text-primary">Experiences.</span>
+                    </h2>
+
+                    <p class="mt-8 text-lg text-slate-600 dark:text-white/60 leading-relaxed font-medium">
+                        Our multidisciplinary approach combines architecture, psychology, and artistry to create
+                        emotionally engaging spaces that stand timeless.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-8 mt-12">
+                        <div>
+                            <h3 class="text-5xl font-black tracking-tighter counter" data-target="500">0</h3>
+                            <p class="mt-2 text-[10px] font-black uppercase tracking-widest opacity-40">Projects
+                                Delivered</p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-5xl font-black tracking-tighter counter" data-target="50">0</h3>
+                            <p class="mt-2 text-[10px] font-black uppercase tracking-widest opacity-40">Design Awards
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-5xl font-black tracking-tighter counter" data-target="15">0</h3>
+                            <p class="mt-2 text-[10px] font-black uppercase tracking-widest opacity-40">Years Mastery
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-5xl font-black tracking-tighter counter" data-target="10">0</h3>
+                            <p class="mt-2 text-[10px] font-black uppercase tracking-widest opacity-40">K+ Sq Ft
+                                Designed</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BEFORE AFTER -->
+    <section class="py-20 lg:py-28 bg-white dark:bg-[#050816] transition-colors">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-20">
+                <div class="max-w-3xl">
+                    <p class="uppercase tracking-[0.4em] text-[10px] text-primary font-black mb-6">
+                        TRANSFORMATIONS
+                    </p>
+
+                    <h2 class="text-5xl lg:text-7xl font-outfit font-black leading-[0.9] tracking-tighter">
+                        Before & After <br><span class="font-serif italic font-normal text-primary">Luxury.</span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-10">
+
+                <div class="relative rounded-[2.5rem] overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1200&auto=format&fit=crop"
+                        class="h-[600px] w-full object-cover grayscale transition-all duration-700">
+                    <div
+                        class="absolute top-8 left-8 px-6 py-2 rounded-full glass text-white text-[10px] font-black uppercase tracking-widest">
+                        Original Space
+                    </div>
+                </div>
+
+                <div class="relative rounded-[2.5rem] overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop"
+                        class="h-[600px] w-full object-cover transition-all duration-700">
+                    <div
+                        class="absolute top-8 left-8 px-6 py-2 rounded-full bg-primary text-white text-[10px] font-black uppercase tracking-widest">
+                        UrbanNest Studio Design
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- TESTIMONIALS -->
+    <section class="py-20 lg:py-28 bg-white dark:bg-[#050816] transition-colors">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+            <div class="text-center max-w-4xl mx-auto mb-20">
+                <p class="uppercase tracking-[0.4em] text-[10px] text-primary font-black mb-6">
+                    CLIENT STORIES
+                </p>
+                <h2 class="text-5xl md:text-7xl font-outfit font-black leading-[0.9] tracking-tighter">
+                    Voices Of <br><span class="font-serif italic font-normal text-primary">Excellence.</span>
+                </h2>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-12">
+
+                <div
+                    class="bg-white dark:bg-brand-900/50 p-12 rounded-[2.5rem] border border-black/5 dark:border-white/5 shadow-2xl transition-all hover:-translate-y-2">
+                    <p class="text-6xl text-primary font-serif italic mb-8 opacity-20">“</p>
+                    <p class="text-xl font-serif italic text-slate-900 dark:text-white leading-relaxed mb-10">
+                        The team transformed our vision into a timeless architectural masterpiece. Every detail feels
+                        intentional and premium.
+                    </p>
+                    <div class="flex items-center gap-5">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg"
+                            class="w-12 h-12 rounded-full grayscale">
+                        <div>
+                            <h4 class="text-sm font-black uppercase tracking-widest">Sophia Reynolds</h4>
+                            <p class="text-[10px] font-bold text-primary uppercase tracking-[0.2em] mt-1">Luxury Villa
+                                Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white dark:bg-brand-900/50 p-12 rounded-[2.5rem] border border-black/5 dark:border-white/5 shadow-2xl transition-all hover:-translate-y-2 lg:mt-16">
+                    <p class="text-6xl text-primary font-serif italic mb-8 opacity-20">“</p>
+                    <p class="text-xl font-serif italic text-slate-900 dark:text-white leading-relaxed mb-10">
+                        Their blend of architecture, interior strategy, and execution quality is unmatched in the
+                        industry.
+                    </p>
+                    <div class="flex items-center gap-5">
+                        <img src="https://randomuser.me/api/portraits/men/52.jpg"
+                            class="w-12 h-12 rounded-full grayscale">
+                        <div>
+                            <h4 class="text-sm font-black uppercase tracking-widest">Daniel Carter</h4>
+                            <p class="text-[10px] font-bold text-primary uppercase tracking-[0.2em] mt-1">Commercial
+                                Developer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white dark:bg-brand-900/50 p-12 rounded-[2.5rem] border border-black/5 dark:border-white/5 shadow-2xl transition-all hover:-translate-y-2">
+                    <p class="text-6xl text-primary font-serif italic mb-8 opacity-20">“</p>
+                    <p class="text-xl font-serif italic text-slate-900 dark:text-white leading-relaxed mb-10">
+                        The final space feels cinematic, warm, and incredibly luxurious. It's more than a home; it's a
+                        sanctuary.
+                    </p>
+                    <div class="flex items-center gap-5">
+                        <img src="https://randomuser.me/api/portraits/women/42.jpg"
+                            class="w-12 h-12 rounded-full grayscale">
+                        <div>
+                            <h4 class="text-sm font-black uppercase tracking-widest">Emma Brooks</h4>
+                            <p class="text-[10px] font-bold text-primary uppercase tracking-[0.2em] mt-1">Interior
+                                Client</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- TEAM -->
+    <section id="team" class="py-20 lg:py-28 bg-brand-50 dark:bg-[#0a0a0b] transition-colors">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-20">
+                <div class="max-w-3xl">
+                    <p class="uppercase tracking-[0.4em] text-[10px] text-primary font-black mb-6">
+                        CREATIVE LEADERS
+                    </p>
+                    <h2 class="text-5xl lg:text-7xl font-outfit font-black leading-[0.9] tracking-tighter">
+                        The Minds <br><span class="font-serif italic font-normal text-primary">Behind.</span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <div class="group">
+                    <div class="overflow-hidden rounded-[2.5rem]">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop"
+                            class="h-[450px] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition duration-1000">
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="text-xl font-black uppercase tracking-tighter">Olivia Hart</h4>
+                        <p class="text-[10px] font-bold text-primary uppercase tracking-widest mt-1">Lead Architect</p>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="overflow-hidden rounded-[2.5rem]">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop"
+                            class="h-[450px] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition duration-1000">
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="text-xl font-black uppercase tracking-tighter">James Carter</h4>
+                        <p class="text-[10px] font-bold text-primary uppercase tracking-widest mt-1">Interior Director
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="overflow-hidden rounded-[2.5rem]">
+                        <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop"
+                            class="h-[450px] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition duration-1000">
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="text-xl font-black uppercase tracking-tighter">Sophia Lee</h4>
+                        <p class="text-[10px] font-bold text-primary uppercase tracking-widest mt-1">Landscape
+                            Specialist</p>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="overflow-hidden rounded-[2.5rem]">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop"
+                            class="h-[450px] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition duration-1000">
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="text-xl font-black uppercase tracking-tighter">Nathan Miles</h4>
+                        <p class="text-[10px] font-bold text-primary uppercase tracking-widest mt-1">Construction Lead
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERTISE / SERVICES -->
+    <section id="services" class="py-20 lg:py-28 relative bg-white dark:bg-[#050816] transition-colors overflow-hidden">
+
+        <!-- Subtle Grid Background -->
+        <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] pointer-events-none"
+            style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+            <div class="max-w-3xl mb-20">
+                <p class="uppercase tracking-[0.4em] text-[10px] text-primary font-black mb-6">
+                    OUR CAPABILITIES
+                </p>
+                <h2 class="font-outfit font-black tracking-tighter">
+                    Crafting <br><span class="font-serif italic font-normal text-primary">Cinematic</span> Space.
+                </h2>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+
+                <!-- LEFT: IMAGE PORTAL -->
+                <div class="lg:col-span-7 relative group" data-aos="reveal-right">
+                    <div class="overflow-hidden rounded-[3rem] aspect-[4/5] lg:aspect-auto lg:h-[700px]">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop"
+                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-[2000ms] scale-110 group-hover:scale-100">
+                    </div>
+
+                    <div
+                        class="absolute inset-0 bg-brand-900/20 group-hover:bg-transparent transition-colors duration-1000">
+                    </div>
+
+                    <div class="absolute bottom-10 left-10 right-10 p-10 glass rounded-[2.5rem] border border-white/10">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-4">Core Philosophy
+                        </p>
+                        <h3 class="text-white font-black tracking-tighter uppercase leading-none">Form Follows
+                            <br>Emotion.
+                        </h3>
+                    </div>
+                </div>
+
+                <!-- RIGHT: SERVICES LIST -->
+                <div class="lg:col-span-5 space-y-8">
+
+                    <div
+                        class="group p-10 rounded-[2.5rem] bg-brand-50 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-primary/30 transition-all duration-500">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="font-black uppercase tracking-tighter text-slate-900 dark:text-white">Interior
+                                <br>Curation
+                            </h3>
+                            <span
+                                class="text-5xl font-serif italic text-primary/20 group-hover:text-primary transition-colors">01</span>
+                        </div>
+                        <p class="text-slate-500 dark:text-white/50 font-medium leading-relaxed">
+                            Bespoke interior orchestration blending rare materials, custom furniture, and precision
+                            lighting.
+                        </p>
+                    </div>
+
+                    <div
+                        class="group p-10 rounded-[2.5rem] bg-brand-50 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-primary/30 transition-all duration-500">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="font-black uppercase tracking-tighter text-slate-900 dark:text-white">
+                                Architectural <br>Planning</h3>
+                            <span
+                                class="text-5xl font-serif italic text-primary/20 group-hover:text-primary transition-colors">02</span>
+                        </div>
+                        <p class="text-slate-500 dark:text-white/50 font-medium leading-relaxed">
+                            Master planning and structural choreography for high-end residential and commercial
+                            landmarks.
+                        </p>
+                    </div>
+
+                    <div
+                        class="group p-10 rounded-[2.5rem] bg-brand-50 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-primary/30 transition-all duration-500">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="font-black uppercase tracking-tighter text-slate-900 dark:text-white">Landscape
+                                <br>Design
+                            </h3>
+                            <span
+                                class="text-5xl font-serif italic text-primary/20 group-hover:text-primary transition-colors">03</span>
+                        </div>
+                        <p class="text-slate-500 dark:text-white/50 font-medium leading-relaxed">
+                            Seamless integration of nature and structure, creating immersive outdoor living experiences.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 lg:py-28 bg-white dark:bg-[#050816] transition-colors">
+        <div class="max-w-4xl mx-auto px-6">
+
+            <div class="text-center mb-20">
+                <p class="uppercase tracking-[0.4em] text-[10px] text-primary font-black mb-6">
+                    INQUIRIES
+                </p>
+                <h2 class="text-5xl md:text-7xl font-outfit font-black leading-[0.9] tracking-tighter">
+                    Essential <br><span class="font-serif italic font-normal text-primary">Details.</span>
+                </h2>
+            </div>
+
+            <div class="space-y-6">
+
+                <div class="faq-item border-b border-black/5 dark:border-white/5 pb-6">
+                    <button class="faq-btn w-full flex justify-between items-center text-left py-4">
+                        <span class="text-xl font-black uppercase tracking-tighter">Do you handle turnkey
+                            projects?</span>
+                        <span class="text-primary">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p class="pt-4 text-slate-600 dark:text-white/60 font-medium leading-relaxed">
+                            Yes, we provide end-to-end solutions from architecture and structural engineering to
+                            interior styling and project management.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-black/5 dark:border-white/5 pb-6">
+                    <button class="faq-btn w-full flex justify-between items-center text-left py-4">
+                        <span class="text-xl font-black uppercase tracking-tighter">Global availability?</span>
+                        <span class="text-primary">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p class="pt-4 text-slate-600 dark:text-white/60 font-medium leading-relaxed">
+                            While based locally, our design consultancy serves high-end residential and commercial
+                            projects worldwide.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-black/5 dark:border-white/5 pb-6">
+                    <button class="faq-btn w-full flex justify-between items-center text-left py-4">
+                        <span class="text-xl font-black uppercase tracking-tighter">Material sourcing?</span>
+                        <span class="text-primary">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p class="pt-4 text-slate-600 dark:text-white/60 font-medium leading-relaxed">
+                            We source exclusive stones, timbers, and bespoke furniture from a global network of premium
+                            artisans.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-32">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="grid lg:grid-cols-2 gap-16">
+
+                <div>
+                    <p class="uppercase tracking-[0.3em] text-xs text-primary font-semibold mb-5">
+                        CONSULTATION
+                    </p>
+
+                    <h2 class="text-4xl md:text-6xl font-outfit font-semibold leading-tight">
+                        Let's Design Your Next Luxury Space
+                    </h2>
+
+                    <p class="mt-8 text-lg text-slate-600 dark:text-white/65">
+                        Start your journey with a premium design consultation and discover how we can elevate your
+                        space.
+                    </p>
+
+                    <div class="mt-10 flex flex-wrap gap-5">
+                        <button class="px-7 py-4 rounded-full bg-primary text-white font-semibold">
+                            Download Brochure
+                        </button>
+
+                        <button class="px-7 py-4 rounded-full border border-slate-300 dark:border-white/10">
+                            Explore Portfolio
+                        </button>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white dark:bg-[#0a0a0b] border border-black/5 dark:border-white/10 rounded-[2.5rem] p-10 lg:p-16 shadow-2xl">
+                    <form class="space-y-8">
+
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <label
+                                    class="block mb-3 text-[10px] font-black uppercase tracking-widest opacity-40">Full
+                                    Name</label>
+                                <input type="text"
+                                    class="w-full px-0 py-3 bg-transparent border-b border-black/10 dark:border-white/10 outline-none focus:border-primary transition-colors font-medium">
+                            </div>
+
+                            <div>
+                                <label
+                                    class="block mb-3 text-[10px] font-black uppercase tracking-widest opacity-40">Email
+                                    Address</label>
+                                <input type="email"
+                                    class="w-full px-0 py-3 bg-transparent border-b border-black/10 dark:border-white/10 outline-none focus:border-primary transition-colors font-medium">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label
+                                class="block mb-3 text-[10px] font-black uppercase tracking-widest opacity-40">Project
+                                Type</label>
+                            <select
+                                class="w-full px-0 py-3 bg-transparent border-b border-black/10 dark:border-white/10 outline-none focus:border-primary transition-colors font-medium appearance-none">
+                                <option class="bg-white dark:bg-brand-900">Luxury Villa</option>
+                                <option class="bg-white dark:bg-brand-900">Commercial Space</option>
+                                <option class="bg-white dark:bg-brand-900">Landscape Design</option>
+                                <option class="bg-white dark:bg-brand-900">Interior Curation</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label
+                                class="block mb-3 text-[10px] font-black uppercase tracking-widest opacity-40">Message</label>
+                            <textarea rows="4"
+                                class="w-full px-0 py-3 bg-transparent border-b border-black/10 dark:border-white/10 outline-none focus:border-primary transition-colors font-medium resize-none"></textarea>
+                        </div>
+
+                        <button
+                            class="group relative overflow-hidden px-10 py-5 bg-brand-900 dark:bg-white text-white dark:text-brand-900 font-black uppercase tracking-widest text-[12px] rounded-full transition-all hover:scale-105">
+                            <span class="relative z-10">Start Consultation</span>
+                            <div
+                                class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            </div>
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="py-24 px-6 bg-brand-50 dark:bg-[#0a0a0b] transition-colors overflow-hidden">
+        <div
+            class="max-w-7xl mx-auto relative overflow-hidden rounded-[2.5rem] lg:rounded-[4rem] bg-brand-900 p-10 lg:p-32 text-center">
+
+            <div class="absolute inset-0 opacity-10">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop"
+                    class="w-full h-full object-cover">
+            </div>
+
+            <div class="relative z-10 max-w-4xl mx-auto">
+                <h2 class="text-white font-outfit font-black tracking-tighter mb-10">
+                    Define Your <br><span class="font-serif italic font-normal text-primary">Legacy.</span>
+                </h2>
+
+                <p class="text-lg lg:text-xl text-white/60 max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
+                    Elevate your lifestyle with timeless architecture and curated luxury interiors.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4 lg:gap-8 mt-10">
+                    <a href="#contact"
+                        class="px-8 lg:px-10 py-4 lg:py-5 rounded-full bg-primary text-white font-black uppercase tracking-widest text-[10px] lg:text-[12px] hover:scale-110 transition-transform">
+                        Start Your Project
+                    </a>
+
+                    <a href="#projects"
+                        class="px-8 lg:px-10 py-4 lg:py-5 rounded-full border border-white/20 text-white font-black uppercase tracking-widest text-[10px] lg:text-[12px] hover:bg-white/5 transition-all">
+                        Explore Portfolio
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pt-20 lg:pt-28 pb-12 bg-white dark:bg-[#050816] transition-colors">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="grid lg:grid-cols-12 gap-16">
+
+                <div class="lg:col-span-5">
+                    <h3 class="text-4xl font-black font-outfit tracking-tighter brand-name uppercase mb-10"
+                        contenteditable="true"></h3>
+                    <p class="text-xl font-serif italic text-slate-500 dark:text-white/40 leading-relaxed max-w-sm">
+                        Crafting spaces that define your legacy. Architecture, interior art, and strategic landscape
+                        orchestration.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-2">
+                    <h4 class="text-[10px] font-black uppercase tracking-widest mb-10 opacity-30">Archive</h4>
+                    <div class="space-y-4 text-[12px] font-bold uppercase tracking-widest">
+                        <a href="#services" class="block hover:text-primary transition">Services</a>
+                        <a href="#projects" class="block hover:text-primary transition">Projects</a>
+                        <a href="#about" class="block hover:text-primary transition">Philosophy</a>
+                        <a href="#team" class="block hover:text-primary transition">Minds</a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <h4 class="text-[10px] font-black uppercase tracking-widest mb-10 opacity-30">Connect</h4>
+                    <div class="space-y-4 text-[12px] font-bold uppercase tracking-widest">
+                        <p>hello@urbannest.com</p>
+                        <p>+91 98765 43210</p>
+                        <p>New York • Dubai • London</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2">
+                    <h4 class="text-[10px] font-black uppercase tracking-widest mb-10 opacity-30">Social</h4>
+                    <div class="flex gap-8">
+                        <a href="#" class="text-primary hover:scale-125 hover:text-brand-900 dark:hover:text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-primary hover:scale-125 hover:text-brand-900 dark:hover:text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-primary hover:scale-125 hover:text-brand-900 dark:hover:text-white transition-all duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div
+                class="border-t border-black/5 dark:border-white/5 mt-32 pt-12 flex flex-col md:flex-row justify-between gap-5 text-[10px] font-black uppercase tracking-[0.2em] opacity-40">
+                <p>© 2026 <span class="brand-name" contenteditable="true"></span>. Architecture & Curation.</p>
+                <div class="flex gap-10">
+                    <p>Privacy Policy</p>
+                    <p>Terms of Art</p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // MASTER BRAND SYNC & CROSS-TAB PERSISTENCE
+        const brandElements = document.querySelectorAll('.brand-name');
+        const defaultBrand = typeof BRAND_NAME !== 'undefined' ? BRAND_NAME : "Studio";
+
+        function updateAllBrandNames(newName) {
+            const displayValue = newName.trim() === "" ? "Studio" : newName;
+            brandElements.forEach(el => {
+                if (el.innerText !== displayValue) {
+                    el.innerText = displayValue;
+                }
+            });
+            document.title = `${displayValue} — Elite Architecture & Design`;
+        }
+
+        const initialBrand = localStorage.getItem('studio_brand_name') || defaultBrand;
+        updateAllBrandNames(initialBrand);
+
+        brandElements.forEach(el => {
+            el.setAttribute('contenteditable', 'true');
+            el.style.outline = 'none';
+
+            el.addEventListener('input', (e) => {
+                const newName = e.target.innerText;
+                localStorage.setItem('studio_brand_name', newName);
+                updateAllBrandNames(newName);
+            });
+
+            // Prevent new lines
+            el.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    el.blur();
+                }
+            });
+        });
+
+        // Sync across tabs/variants
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'studio_brand_name') {
+                updateAllBrandNames(e.newValue);
+            }
+        });
+
+        // LUCIDE
+        lucide.createIcons();
+
+        // AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // SWIPER
+        new Swiper('.testimonialSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 3500
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2
+                },
+                1200: {
+                    slidesPerView: 3
+                }
+            }
+        });
+
+        // THEME
+        const html = document.documentElement;
+        const toggle = document.getElementById('themeToggle');
+
+        if (localStorage.theme === 'dark') {
+            html.classList.add('dark');
+        }
+
+        toggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+
+            if (html.classList.contains('dark')) {
+                localStorage.theme = 'dark';
+            } else {
+                localStorage.theme = 'light';
+            }
+        });
+
+        // MOBILE MENU
+        const mobileBtn = document.getElementById('mobileBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // FAQ
+        document.querySelectorAll('.faq-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // COUNTERS
+        const counters = document.querySelectorAll('.counter');
+
+        const animateCounter = (counter) => {
+            const target = +counter.dataset.target;
+            let count = 0;
+
+            const update = () => {
+                count += target / 80;
+
+                if (count < target) {
+                    counter.innerText = Math.floor(count);
+                    requestAnimationFrame(update);
+                } else {
+                    counter.innerText = target + '+';
+                }
+            };
+
+            update();
+        };
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // PARALLAX
+        const parallaxEls = document.querySelectorAll('.parallax');
+
+        // SMART HEADER
+        const header = document.getElementById('mainHeader');
+        const wrapper = document.getElementById('headerWrapper');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            // Add/Remove background & shrink on scroll
+            if (currentScroll > 50) {
+                wrapper.classList.remove('lg:py-8');
+                wrapper.classList.add('lg:py-4');
+            } else {
+                wrapper.classList.remove('lg:py-4');
+                wrapper.classList.add('lg:py-8');
+            }
+
+            // Hide on scroll down, show on scroll up
+            if (currentScroll > lastScroll && currentScroll > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        requestAnimationFrame(parallaxLoop);
+
+    </script>
+
+</body>
+
+</html>

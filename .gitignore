@@ -1,0 +1,34 @@
+# dependencies
+node_modules/
+.npm/
+
+# builds
+.next/
+dist/
+build/
+out/
+
+# vercel
+.vercel/
+.vercel
+
+# env
+.env
+.env.*
+!.env.example
+
+# logs / misc
+*.log
+npm-debug.log*
+yarn-error.log*
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+
+# temp
+__pycache__/
+*.pyc
+.tmp/
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat

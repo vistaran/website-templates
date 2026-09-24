@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Loco Coco – Let's Play</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./assets/logo.png" />
+    <!-- Fonts: Playfair Display (headings) + Poppins (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@300,400,500,700,800,900&display=swap">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        :root {
+            --bg: #fff5f2;
+            --cocoa: #3b2314;
+            --rose: #f45b7a;
+            --soft-rose: #ffe3ea;
+            --lavender: #7e49b0;
+            --ink: #1b1520;
+            --butter: #ffe8b3;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: var(--bg);
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        .font-display {
+            font-family: "Cabinet Grotesk", system-ui, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", sans-serif;
+        }
+
+        .font-title {
+            font-family: "Cabinet Grotesk", system-ui, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", sans-serif;
+        }
+
+        /* Sticker / card elevation */
+        .sticker {
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+            transition:
+                transform 0.2s ease-out,
+                box-shadow 0.2s ease-out;
+            position: relative;
+        }
+
+        .sticker:hover {
+            transform: translateY(-6px) rotate(-0.5deg);
+            box-shadow: 0 22px 45px rgba(0, 0, 0, 0.18);
+            z-index: 20;
+        }
+
+        /* Simple marquee */
+        @keyframes marquee-scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-strip {
+            white-space: nowrap;
+            animation: marquee-scroll 25s linear infinite;
+        }
+
+        /* Floating elements */
+        @keyframes float-slow {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .float-slow {
+            animation: float-slow 5s ease-in-out infinite;
+        }
+
+        @keyframes bob {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-4px) rotate(-2deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .bob {
+            animation: bob 3s ease-in-out infinite;
+        }
+
+        /* Hero background blobby shapes */
+        .hero-blob {
+            position: absolute;
+            border-radius: 999px;
+            filter: blur(40px);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        /* Tiny badge wiggle */
+        @keyframes wiggle {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-2deg);
+            }
+
+            50% {
+                transform: rotate(1deg);
+            }
+
+            75% {
+                transform: rotate(-1deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .wiggle-slow:hover {
+            animation: wiggle 0.5s ease-in-out;
+        }
+
+        /* FAQ details reset */
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details summary {
+            list-style: none;
+        }
+
+        /* Small underline scribble (SVG background) */
+        .scribble-underline {
+            position: relative;
+        }
+
+        /* ================================
+           MOBILE-ONLY TWEAKS (<= 768px)
+           Keeps desktop experience intact
+        ================================= */
+        @media (max-width: 768px) {
+
+            /* Hero visual wrapper height a bit shorter on small screens */
+            .hero-visual {
+                height: 360px;
+            }
+
+            /* Center + slightly scale the main product image stack */
+            .hero-visual-main {
+                left: 50%;
+                top: 50%;
+                width: 14rem;
+                transform: translate(-50%, -55%) rotate(4deg);
+            }
+
+            /* Move the secondary stack slightly below so both are visible */
+            .hero-visual-secondary {
+                left: 50%;
+                top: 72%;
+                width: 12rem;
+                transform: translate(-50%, -50%) rotate(-3deg);
+            }
+
+            /* Make the review card fully visible at bottom center */
+            .hero-review-card {
+                top: auto;
+                bottom: -12px;
+                left: 50%;
+                transform: translateX(-50%);
+                max-width: 90%;
+            }
+
+            /* Keep emojis away from the hard edges */
+            .hero-emoji-left {
+                left: 10px;
+            }
+
+            .hero-emoji-right {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body class="relative overflow-x-hidden">
+
+    <!-- Top bar -->
+    <div
+        class="relative z-50 bg-gradient-to-r from-[var(--rose)] via-[var(--lavender)] to-[var(--cocoa)] text-white text-xs md:text-[13px] font-semibold py-2.5 text-center tracking-wide">
+        <span class="hidden sm:inline">Free UK Shipping • 30-Day “Not Our Vibe” Guarantee • Discreet Packaging</span>
+        <span class="sm:hidden">Free UK Shipping • 30-Day Guarantee</span>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-[var(--bg)]/95 backdrop-blur-xl border-b border-black/5">
+        <div class="max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between gap-4">
+            <button class="md:hidden p-2" id="mobileMenuBtn">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Logo -->
+            <a href="#" class="inline-flex items-center">
+                <div
+                    class="bg-white/95 border border-black/10 px-4 py-2 rounded-2xl font-display font-semibold text-2xl tracking-tight shadow-sm text-[color:var(--cocoa)]">
+                    LOCO<span class="text-[color:var(--rose)]">COCO</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex gap-8 font-medium text-[11px] uppercase tracking-[0.18em]">
+                <a href="#bundle" class="hover:text-[color:var(--rose)] transition">Shop Bundles</a>
+                <a href="#how" class="hover:text-[color:var(--rose)] transition">How It Works</a>
+                <a href="#reviews" class="hover:text-[color:var(--rose)] transition">Reviews</a>
+                <a href="#faq" class="hover:text-[color:var(--rose)] transition">FAQ</a>
+            </nav>
+
+            <!-- Cart -->
+            <a href="#bundle"
+                class="relative bg-white border border-black/10 px-3 py-2 rounded-full hover:bg-[color:var(--cocoa)] hover:text-white transition flex items-center gap-2 shadow-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z">
+                    </path>
+                </svg>
+                <span class="hidden sm:inline text-xs font-semibold tracking-wide">Cart</span>
+                <span
+                    class="absolute -top-2 -right-2 bg-[color:var(--rose)] text-white text-[10px] font-semibold w-5 h-5 flex items-center justify-center rounded-full border border-white/70">
+                    2
+                </span>
+            </a>
+
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-black/5 shadow-lg absolute w-full">
+            <nav class="flex flex-col py-2">
+                <a href="#bundle"
+                    class="px-4 py-3 font-medium text-sm hover:bg-[color:var(--soft-rose)]/30 transition">Shop
+                    Bundles</a>
+                <a href="#how" class="px-4 py-3 font-medium text-sm hover:bg-[color:var(--soft-rose)]/30 transition">How
+                    It
+                    Works</a>
+                <a href="#reviews"
+                    class="px-4 py-3 font-medium text-sm hover:bg-[color:var(--soft-rose)]/30 transition">Reviews</a>
+                <a href="#faq"
+                    class="px-4 py-3 font-medium text-sm hover:bg-[color:var(--soft-rose)]/30 transition">FAQ</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+
+        <!-- HERO -->
+        <section class="pt-12 pb-14 md:pb-20 px-4 relative overflow-hidden">
+            <!-- blobs -->
+            <div class="hero-blob w-72 h-72 bg-[var(--soft-rose)] top-0 -left-12"></div>
+            <div class="hero-blob w-80 h-80 bg-[var(--lavender)]/25 -bottom-24 right-0"></div>
+            <div class="hero-blob w-64 h-64 bg-[var(--butter)]/70 top-1/3 -right-24 hidden md:block"></div>
+
+            <div
+                class="max-w-6xl mx-auto grid md:grid-cols-1 lg:grid-cols-[1.1fr_minmax(0,1fr)] gap-12 items-center relative text-center lg:text-left">
+
+                <!-- Text side -->
+                <div class="relative z-20 text-center lg:text-left space-y-6">
+
+                    <!-- Top chips -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-2 mb-1">
+                        <span
+                            class="inline-flex items-center gap-1 bg-[color:var(--lavender)]/12 text-[color:var(--cocoa)] text-[10px] font-semibold px-3 py-1 rounded-full border border-[color:var(--lavender)]/30">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[color:var(--lavender)] animate-pulse"></span>
+                            Date-night upgrade unlocked
+                        </span>
+                        <span
+                            class="inline-flex items-center gap-1 bg-white text-[color:var(--cocoa)] text-[10px] font-semibold px-3 py-1 rounded-full border border-black/10">
+                            ⚠️ May cause extra cuddles
+                        </span>
+                    </div>
+
+                    <h1
+                        class="font-display font-bold text-4xl md:text-6xl lg:text-7xl leading-[0.9] text-[color:var(--cocoa)]">
+                        Where <span class="text-[color:var(--rose)]">fun</span> meets<br />
+                        <span
+                            class="scribble-underline text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--rose)] via-[color:var(--lavender)] to-[color:var(--cocoa)]">
+                            Chemistry.
+                        </span>
+                    </h1>
+
+                    <p class="text-base md:text-lg font-medium text-slate-700 max-w-md mx-auto lg:mx-0">
+                        The couple's game + aphrodisiac chocolate kit that turns “Netflix &amp; Chill” into
+                        <span class="font-semibold text-[color:var(--cocoa)]/80">“we stayed up until 3am
+                            talking”</span>.
+                    </p>
+
+                    <!-- mini value stack -->
+                    <div
+                        class="grid sm:grid-cols-3 gap-3 max-w-xl mx-auto lg:mx-0 text-[11px] text-[color:var(--cocoa)]/80">
+                        <div class="bg-white/90 border border-black/5 rounded-2xl px-3 py-2.5 flex items-center gap-2">
+                            <span class="text-lg">🌶️</span>
+                            <div>
+                                <p class="font-semibold uppercase tracking-[0.12em]">Spicy not cringe</p>
+                                <p class="text-[11px] text-slate-500">150 prompts &amp; dares</p>
+                            </div>
+                        </div>
+                        <div class="bg-white/90 border border-black/5 rounded-2xl px-3 py-2.5 flex items-center gap-2">
+                            <span class="text-lg">🍫</span>
+                            <div>
+                                <p class="font-semibold uppercase tracking-[0.12em]">Botanical choc</p>
+                                <p class="text-[11px] text-slate-500">Maca, Damiana, Ashwagandha</p>
+                            </div>
+                        </div>
+                        <div class="bg-white/90 border border-black/5 rounded-2xl px-3 py-2.5 flex items-center gap-2">
+                            <span class="text-lg">💬</span>
+                            <div>
+                                <p class="font-semibold uppercase tracking-[0.12em]">Real connection</p>
+                                <p class="text-[11px] text-slate-500">Not another “cringe couple thing”</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+                        <a href="#bundle"
+                            class="bg-[color:var(--cocoa)] text-white px-8 py-3.5 rounded-2xl font-semibold text-sm md:text-base shadow-md hover:shadow-xl hover:-translate-y-0.5 transition inline-flex items-center justify-center gap-2">
+                            Get The Night-In Bundle
+                            <span
+                                class="text-[11px] bg-[color:var(--rose)]/90 px-2 py-0.5 rounded-full border border-white/60">
+                                Save £15
+                            </span>
+                        </a>
+                        <a href="#video"
+                            class="bg-white text-[color:var(--cocoa)] border border-black/10 px-7 py-3.5 rounded-2xl font-semibold text-sm md:text-base shadow-sm hover:bg-slate-50 transition inline-flex items-center justify-center gap-2">
+                            <span
+                                class="w-7 h-7 rounded-full border border-[color:var(--cocoa)] flex items-center justify-center text-[11px]">
+                                ▶
+                            </span>
+                            See It In Action
+                        </a>
+                    </div>
+
+                    <!-- Social proof + guarantee -->
+                    <div
+                        class="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-[11px] text-slate-600 pt-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[color:var(--rose)] text-lg">★★★★★</span>
+                            <span>4.8 / 5 from 500+ couples</span>
+                        </div>
+                        <span class="hidden sm:block w-px h-4 bg-slate-300/70"></span>
+                        <div>🍫 Vegan • 🇬🇧 Made in UK • 📦 Discreet box</div>
+                        <span class="hidden sm:block w-px h-4 bg-slate-300/70"></span>
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="w-4 h-4 rounded-full bg-white border border-black/10 flex items-center justify-center text-[9px]">✓</span>
+                            <span>30-day “Not Our Vibe” guarantee</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual side -->
+                <!-- Visual side (hidden on mobile) -->
+                <div
+                    class="relative h-[420px] md:h-[500px] w-full flex items-center justify-center hero-visual hidden md:flex">
+
+                    <!-- soft glow -->
+                    <div class="absolute inset-0 bg-[color:var(--lavender)]/30 blur-3xl rounded-full scale-90"></div>
+
+                    <!-- badge floating -->
+                    <div
+                        class="sticker float-slow absolute -top-2 right-4 z-30 bg-gradient-to-br from-[color:var(--rose)] to-[color:var(--lavender)] text-white font-bold text-[11px] md:text-xs px-4 py-2 border-2 border-white rounded-2xl flex flex-col items-start gap-0.5 shadow-lg">
+                        <span>🔥 Couples' #1 Choice</span>
+                        <span class="text-[10px] text-white/90 font-semibold">500+ 5★ Reviews</span>
+                    </div>
+
+                    <!-- product stacks -->
+                    <div
+                        class="sticker bob absolute top-1/2 left-24 -translate-x-[70%] -translate-y-1/2 w-60 md:w-72 rotate-[-3deg] hero-visual-secondary">
+                        <img src="./assets/prod-2-img-1.webp"
+                            class="w-full rounded-3xl border-4 border-white shadow-xl object-cover" alt="Game">
+                        <div
+                            class="absolute -bottom-3 left-5 bg-[color:var(--soft-rose)] text-[color:var(--cocoa)] text-[11px] font-semibold px-3 py-1 rounded-full border border-black/10">
+                            150 question &amp; dares
+                        </div>
+                    </div>
+
+                    <div
+                        class="sticker float-slow absolute top-1/2 left-1/2 -translate-x-[0%] -translate-y-[52%] w-60 md:w-72 rotate-[4deg] hero-visual-main">
+                        <img src="./assets/prod-1-img-1.webp"
+                            class="w-full rounded-3xl border-4 border-white shadow-xl object-cover" alt="Chocolate">
+                        <div
+                            class="absolute -bottom-3 right-4 bg-[color:var(--butter)] text-[color:var(--cocoa)] text-[11px] font-semibold px-3 py-1 rounded-full border border-black/10">
+                            Maca • Damiana • Ashwagandha
+                        </div>
+                    </div>
+
+                    <!-- floating emojis -->
+                    <div class="absolute top-6 left-8 text-3xl opacity-80 float-slow hero-emoji-left">❤️</div>
+                    <div class="absolute bottom-8 right-10 text-3xl opacity-80 animate-pulse hero-emoji-right">💋</div>
+
+                    <!-- small social proof card -->
+                    <div
+                        class="sticker wiggle-slow absolute  -top-[100px] -translate-x-1/2 bg-white/95 border border-black/5 rounded-2xl px-4 py-3 flex items-center gap-3 max-w-xs hero-review-card">
+                        <img src="https://i.pravatar.cc/60?img=12"
+                            class="w-9 h-9 rounded-full border border-black/10 object-cover" alt="Reviewer">
+                        <div class="text-[11px] text-slate-700 text-left">
+                            <p class="font-semibold text-[color:var(--cocoa)]">“Best date night we've had in years.”</p>
+                            <p>— Jess &amp; Tom, London</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARQUEE -->
+        <div
+            class="bg-[color:var(--cocoa)] text-[color:var(--soft-rose)] py-3 border-y border-black/20 overflow-hidden">
+            <div class="marquee-strip font-display text-[11px] md:text-sm uppercase tracking-[0.3em] flex gap-8">
+                <span>Better Than Awkward Small Talk</span>
+                <span>•</span>
+                <span>Deliciously Wicked</span>
+                <span>•</span>
+                <span>Free UK Shipping</span>
+                <span>•</span>
+                <span>Spicy But Not Cringe</span>
+                <span>•</span>
+                <span>Botanical Dark Chocolate</span>
+                <span>•</span>
+                <span>Better Than Awkward Small Talk</span>
+                <span>•</span>
+                <span>Deliciously Wicked</span>
+                <span>•</span>
+                <span>Spicy But Not Cringe</span>
+                <span>•</span>
+            </div>
+        </div>
+
+        <!-- BUNDLE SECTION -->
+        <section id="bundle" class="py-20 px-4 bg-white relative z-10">
+            <!-- floating label -->
+            <div
+                class="sticker float-slow hidden md:flex items-center gap-2 bg-[color:var(--soft-rose)] text-[color:var(--cocoa)] text-[11px] font-semibold px-4 py-2 rounded-full border border-black/10 absolute -top-4 left-1/2 -translate-x-1/2 w-fit">
+                🎁 Most couples choose the bundle on their first order
+            </div>
+
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-14">
+                    <h2 class="font-display font-extrabold text-3xl md:text-5xl text-[color:var(--cocoa)] mb-3">
+                        Pick Your Couple's Night In ❤️
+                    </h2>
+                    <p class="text-base md:text-lg font-semibold text-[color:var(--cocoa)]">
+                        Save up to 20% when you bundle. Your future selves say thanks. 💑
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 items-stretch">
+
+                    <!-- Game -->
+                    <div class="sticker relative bg-[color:var(--soft-rose)]/70 border border-black/5 rounded-3xl p-6 flex flex-col"
+                        onclick="event.stopPropagation(); window.location.href='template-3-product.html'">
+                        <div
+                            class="absolute right-3 -top-3 bg-white text-[color:var(--cocoa)] text-[10px] font-semibold px-3 py-1 rounded-full border border-black/10 shadow-sm z-10">
+                            Start here
+                        </div>
+                        <div
+                            class="aspect-square bg-white border border-black/5 rounded-2xl mb-5 overflow-hidden relative">
+                            <img src="./assets/prod-2-img-2.webp" class="w-full h-full object-cover" alt="Game">
+                        </div>
+                        <h3 class="font-display font-semibold text-2xl text-[color:var(--cocoa)] mb-1">The Game</h3>
+                        <p class="text-sm font-medium text-slate-600 mb-3">150 cards to make you blush, think, and
+                            maybe text your therapist “we’re good”.</p>
+                        <ul class="text-[12px] text-slate-700 space-y-1 mb-4">
+                            <li>• 3 levels: Talk, Flirt, Dare</li>
+                            <li>• No cheesy “role play a pizza guy” prompts</li>
+                        </ul>
+                        <div class="mt-auto flex justify-between items-center">
+                            <span class="text-2xl font-semibold text-[color:var(--cocoa)]">£25.00</span>
+                            <button onclick="event.stopPropagation(); window.location.href='template-3-product.html'"
+                                class="bg-white border border-black/10 w-10 h-10 rounded-full flex items-center justify-center text-lg hover:bg-[color:var(--cocoa)] hover:text-white transition">
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Bundle (highlight) -->
+                    <div class="sticker relative bg-[color:var(--rose)] text-white border border-black/10 rounded-3xl p-7 flex flex-col"
+                        onclick="event.stopPropagation(); window.location.href='template-3-product.html'">
+                        <div
+                            class="absolute -top-5 left-1/2 -translate-x-1/2 bg-white text-[color:var(--cocoa)] border border-black/10 px-5 py-1.5 rounded-full font-semibold tracking-[0.16em] text-[10px] uppercase shadow-sm whitespace-nowrap z-10">
+                            Couples’ Favourite 🏆
+                        </div>
+
+                        <!-- progress / urgency bar -->
+                        <div class="mt-2 mb-4">
+                            <div class="flex justify-between text-[11px] text-white/80 mb-1">
+                                <span>Almost gone</span>
+                                <span>14 bundles left</span>
+                            </div>
+                            <div class="w-full h-1.5 rounded-full bg-white/20 overflow-hidden">
+                                <div class="h-full w-[72%] bg-[color:var(--butter)]"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="aspect-square bg-white border border-black/10 rounded-2xl mb-6 overflow-hidden relative">
+                            <img src="./assets/prod-1-img-7.jpg" class="w-full h-full object-cover" alt="Bundle">
+                            <div
+                                class="absolute bottom-0 left-0 bg-[color:var(--cocoa)] text-white font-semibold px-3 py-1 border-t border-r border-black/10 rounded-tr-lg text-[11px]">
+                                SAVE £15
+                            </div>
+                        </div>
+
+                        <h3 class="font-display font-semibold text-3xl mb-1.5">The Full Night In 💑</h3>
+                        <p class="text-sm font-semibold text-white mb-4">
+                            The game + 2 boxes of Love Chocolate. Everything you need for the kind of night you
+                            accidentally tell your friends about. 🔥
+                        </p>
+
+                        <ul class="text-[13px] text-white font-medium space-y-1.5 mb-5">
+                            <li>• 150-card couple's game (3 intensities)</li>
+                            <li>• 2x botanical dark chocolate bars 🍫</li>
+                            <li>• Discreet gift-ready packaging 📦</li>
+                            <li>• Perfect date night for couples ❤️</li>
+                        </ul>
+
+                        <div class="flex items-end gap-3 mb-5">
+                            <span class="text-4xl font-semibold">£35.00</span>
+                            <span
+                                class="text-lg text-white/80 line-through decoration-2 decoration-white/80 mb-1">£50.00</span>
+                        </div>
+
+                        <button onclick="event.stopPropagation(); window.location.href='template-3-product.html'"
+                            class="mt-auto w-full bg-[color:var(--cocoa)] text-white border border-[color:var(--cocoa)] py-3.5 rounded-xl font-semibold text-base md:text-lg hover:bg-white hover:text-[color:var(--cocoa)] transition flex items-center justify-center gap-2">
+                            Add Bundle To Cart 🛒
+                        </button>
+                        <p class="mt-2 text-[11px] text-white/90 text-center">
+                            Arrives in 2–3 working days • Free shipping
+                        </p>
+                    </div>
+
+                    <!-- Chocolate -->
+                    <div onclick="event.stopPropagation(); window.location.href='template-3-product.html'"
+                        class="sticker relative bg-[color:var(--lavender)]/90 text-[color:var(--cocoa)] border border-black/5 rounded-3xl p-6 flex flex-col">
+                        <div
+                            class="absolute left-3 -top-3 bg-[color:var(--butter)] text-[color:var(--cocoa)] text-[10px] font-semibold px-3 py-1 rounded-full border border-black/10 shadow-sm z-10">
+                            Crowd pleaser
+                        </div>
+                        <div
+                            class="aspect-square bg-white border border-black/5 rounded-2xl mb-5 overflow-hidden relative">
+                            <img src="./assets/prod-1-img-6.webp" class="w-full h-full object-cover" alt="Chocolate">
+                        </div>
+                        <h3 class="font-display font-semibold text-2xl mb-1 text-white">Love Choc</h3>
+                        <p class="text-sm font-medium text-[rgba(255,255,255,0.9)] mb-3">
+                            Dark chocolate with Maca &amp; Damiana for nights where “just one square” turns into
+                            “oops…the whole bar”.
+                        </p>
+                        <ul class="text-[12px] text-[rgba(255,255,255,0.9)] space-y-1 mb-4">
+                            <li>• 65% dark chocolate</li>
+                            <li>• Vegan &amp; gluten free</li>
+                        </ul>
+                        <div class="mt-auto flex justify-between items-center">
+                            <span class="text-2xl font-semibold text-white">£19.95</span>
+                            <button onclick="event.stopPropagation(); window.location.href='template-3-product.html'"
+                                class="bg-white text-[color:var(--cocoa)] border border-black/10 w-10 h-10 rounded-full flex items-center justify-center text-lg hover:bg-[color:var(--cocoa)] hover:text-white transition">
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- what you get row -->
+                <div
+                    class="mt-10 bg-[color:var(--soft-rose)]/70 border border-black/10 rounded-3xl px-5 py-4 flex flex-wrap items-center justify-center gap-4 text-[11px] text-[color:var(--cocoa)]/85">
+                    <span class="font-semibold uppercase tracking-[0.18em] text-[color:var(--cocoa)]">You’ll get:</span>
+                    <span>✓ 150-card connection game</span>
+                    <span class="hidden sm:inline w-px h-4 bg-[color:var(--cocoa)]/20"></span>
+                    <span>✓ Botanical dark chocolate</span>
+                    <span class="hidden sm:inline w-px h-4 bg-[color:var(--cocoa)]/20"></span>
+                    <span>✓ Discreet, gift-ready box</span>
+                    <span class="hidden md:inline w-px h-4 bg-[color:var(--cocoa)]/20"></span>
+                    <span>✓ 30-day “Not Our Vibe” guarantee</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- INGREDIENTS / WHAT CREATES THE MAGIC -->
+        <section id="ingredients" class="py-20 px-4 bg-[color:var(--bg)]">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <p class="text-[11px] font-bold tracking-[0.22em] uppercase text-[color:var(--rose)] mb-2">
+                        Inside every square of Love Choc 🍫
+                    </p>
+                    <h2 class="font-title font-bold text-3xl md:text-4xl text-[color:var(--cocoa)] mb-3">
+                        What Creates The Magic
+                    </h2>
+                    <p class="text-sm md:text-base text-slate-700 max-w-2xl mx-auto">
+                        A stack of botanicals traditionally linked with desire, relaxation and feel-good energy.
+                        No weird fillers, just the good stuff.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-stretch">
+
+                    <!-- Epimedium -->
+                    <div
+                        class="sticker bg-white border border-black/5 rounded-3xl p-4 flex flex-col items-center text-center">
+                        <div
+                            class="w-full aspect-[3/4] rounded-2xl bg-[color:var(--soft-rose)]/60 flex items-center justify-center overflow-hidden mb-3">
+                            <img src="./assets/ing-1.webp" alt="Epimedium"
+                                class="h-full object-contain mix-blend-multiply px-3" />
+                        </div>
+                        <p
+                            class="font-title font-bold text-sm md:text-base uppercase tracking-[0.16em] text-[color:var(--rose)]">
+                            Epimedium
+                        </p>
+                        <p class="text-[11px] md:text-xs text-slate-700 mt-2">
+                            Also known as “horny goat weed”, used for centuries as a natural libido booster.
+                        </p>
+                    </div>
+
+                    <!-- Tongkat Ali -->
+                    <div
+                        class="sticker bg-white border border-black/5 rounded-3xl p-4 flex flex-col items-center text-center">
+                        <div
+                            class="w-full aspect-[3/4] rounded-2xl bg-[color:var(--soft-rose)]/60 flex items-center justify-center overflow-hidden mb-3">
+                            <img src="./assets/ing-2.webp" alt="Tongkat Ali"
+                                class="h-full object-contain mix-blend-multiply px-3" />
+                        </div>
+                        <p
+                            class="font-title font-bold text-sm md:text-base uppercase tracking-[0.16em] text-[color:var(--rose)]">
+                            Tongkat Ali
+                        </p>
+                        <p class="text-[11px] md:text-xs text-slate-700 mt-2">
+                            A powerful root traditionally linked with stamina, confidence and steady energy.
+                        </p>
+                    </div>
+
+                    <!-- Nymphaea Carela -->
+                    <div
+                        class="sticker bg-white border border-black/5 rounded-3xl p-4 flex flex-col items-center text-center">
+                        <div
+                            class="w-full aspect-[3/4] rounded-2xl bg-[color:var(--soft-rose)]/60 flex items-center justify-center overflow-hidden mb-3">
+                            <img src="./assets/ing-3.webp" alt="Nymphaea Carela"
+                                class="h-full object-contain mix-blend-multiply px-3" />
+                        </div>
+                        <p
+                            class="font-title font-bold text-sm md:text-base uppercase tracking-[0.16em] text-[color:var(--rose)]">
+                            Nymphaea Carela
+                        </p>
+                        <p class="text-[11px] md:text-xs text-slate-700 mt-2">
+                            A dreamy water lily used to promote relaxation, soft focus and sensual moods.
+                        </p>
+                    </div>
+
+                    <!-- Maca Root -->
+                    <div
+                        class="sticker bg-white border border-black/5 rounded-3xl p-4 flex flex-col items-center text-center">
+                        <div
+                            class="w-full aspect-[3/4] rounded-2xl bg-[color:var(--soft-rose)]/60 flex items-center justify-center overflow-hidden mb-3">
+                            <img src="./assets/ing-4.webp" alt="Maca Root"
+                                class="h-full object-contain mix-blend-multiply px-3" />
+                        </div>
+                        <p
+                            class="font-title font-bold text-sm md:text-base uppercase tracking-[0.16em] text-[color:var(--rose)]">
+                            Maca Root
+                        </p>
+                        <p class="text-[11px] md:text-xs text-slate-700 mt-2">
+                            Peruvian super-root associated with libido, hormone balance and feel-good energy.
+                        </p>
+                    </div>
+                </div>
+
+                <p class="mt-8 text-[10px] md:text-[11px] text-slate-500 text-center max-w-3xl mx-auto">
+                    *These ingredients are part of a balanced lifestyle and are not intended to diagnose, treat, cure
+                    or prevent any disease.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- HOW TO PLAY + PROOF -->
+        <section id="how"
+            class="py-20 px-4 bg-[color:var(--soft-rose)] border-y border-black/10 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10"
+                style="background-image: radial-gradient(#c4a4b5 1px, transparent 1px); background-size: 20px 20px;">
+            </div>
+
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
+                <div class="bg-white border border-black/5 rounded-3xl p-8 shadow-md sticker">
+                    <h3 class="font-display font-semibold text-3xl text-[color:var(--cocoa)] mb-5">How to Play 👇</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <span
+                                class="bg-[color:var(--rose)] text-white font-semibold w-8 h-8 rounded-full border border-black/10 flex items-center justify-center flex-shrink-0 text-sm">1</span>
+                            <p class="font-semibold text-lg text-[color:var(--cocoa)]">
+                                Eat the chocolate.
+                                <span class="font-normal text-slate-600 block text-sm">
+                                    Share a bar, wait ~30 mins for the botanicals to do their thing.
+                                </span>
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span
+                                class="bg-[color:var(--rose)] text-white font-semibold w-8 h-8 rounded-full border border-black/10 flex items-center justify-center flex-shrink-0 text-sm">2</span>
+                            <p class="font-semibold text-lg text-[color:var(--cocoa)]">
+                                Pick your level.
+                                <span class="font-normal text-slate-600 block text-sm">
+                                    Talk (deep), Flirt (fun), Dare (spicy). Start cute, end chaotic.
+                                </span>
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span
+                                class="bg-[color:var(--rose)] text-white font-semibold w-8 h-8 rounded-full border border-black/10 flex items-center justify-center flex-shrink-0 text-sm">3</span>
+                            <p class="font-semibold text-lg text-[color:var(--cocoa)]">
+                                Do what it says.
+                                <span class="font-normal text-slate-600 block text-sm">
+                                    No skipping allowed. Laugh, blush, maybe grab a glass of water.
+                                </span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="text-center lg:text-left relative">
+                    <div
+                        class="inline-block bg-[color:var(--cocoa)] text-white px-4 py-1 font-semibold tracking-[0.2em] mb-4 text-[11px] rounded-full uppercase">
+                        Real Talk
+                    </div>
+                    <h2 class="font-title font-semibold text-3xl md:text-4xl text-[color:var(--cocoa)] mb-3">
+                        "We stayed up until 3am talking."
+                    </h2>
+                    <p class="text-base md:text-lg font-medium text-slate-700 mb-6">
+                        Not our words - what couples keep DM’ing us after their first Night In.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        <div
+                            class="bg-white border-2 border-black/10 p-4 rounded-xl text-center hover:-translate-y-1 transition transform shadow-md">
+                            <div class="text-3xl mb-1">🌿</div>
+                            <div class="font-bold text-[11px] uppercase tracking-[0.16em] text-[color:var(--cocoa)]">
+                                All
+                                Natural</div>
+                            <p class="text-[11px] text-[color:var(--cocoa)] font-semibold mt-1">No weird ingredients.
+                            </p>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-black/10 p-4 rounded-xl text-center hover:-translate-y-1 transition transform shadow-md">
+                            <div class="text-3xl mb-1">📦</div>
+                            <div class="font-bold text-[11px] uppercase tracking-[0.16em] text-[color:var(--cocoa)]">
+                                Discreet
+                            </div>
+                            <p class="text-[11px] text-[color:var(--cocoa)] font-semibold mt-1">Plain packaging, no
+                                blush.</p>
+                        </div>
+                        <div
+                            class="bg-white border-2 border-black/10 p-4 rounded-xl text-center hover:-translate-y-1 transition transform shadow-md">
+                            <div class="text-3xl mb-1">🇬🇧</div>
+                            <div class="font-bold text-[11px] uppercase tracking-[0.16em] text-[color:var(--cocoa)]">
+                                Made in UK
+                            </div>
+                            <p class="text-[11px] text-[color:var(--cocoa)] font-semibold mt-1">For couples' nights in.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- mini guarantee card -->
+                    <div
+                        class="sticker inline-flex items-center gap-3 bg-white/95 border border-black/5 rounded-2xl px-4 py-3 text-[11px] text-slate-700">
+                        <span
+                            class="w-7 h-7 rounded-full border border-[color:var(--cocoa)] flex items-center justify-center text-[13px]">✓</span>
+                        <div class="text-left">
+                            <p class="font-semibold text-[color:var(--cocoa)]">30-Day “Not Our Vibe” Guarantee</p>
+                            <p>Don’t love it? Get your money back. No weird emails required.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- REVIEWS -->
+        <section id="reviews" class="py-20 px-4 bg-[#ffe3fb] border-y border-pink-200/70">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+                    <div>
+                        <p class="text-[11px] font-bold tracking-[0.22em] uppercase text-[color:var(--rose)] mb-2">
+                            Real Couples 💑 Real Stories
+                        </p>
+                        <h2 class="font-title font-bold text-3xl md:text-4xl text-[color:var(--cocoa)]">
+                            500+ 5★ nights in (and counting). ❤️
+                        </h2>
+                    </div>
+                    <div class="text-sm text-[color:var(--cocoa)] font-semibold flex flex-wrap items-center gap-2">
+                        <span class="text-[color:var(--rose)] text-lg">★★★★★</span>
+                        <span class="font-bold">4.8 / 5 average rating</span>
+                        <span class="hidden sm:inline text-slate-400">•</span>
+                        <span>Verified by couples across the UK 🇬🇧</span>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="sticker bg-[color:var(--soft-rose)]/70 border border-black/5 rounded-2xl p-5 text-sm">
+                        <p class="text-[color:var(--cocoa)] font-semibold mb-2">“Actually not cringe.”</p>
+                        <p class="text-slate-700 mb-4">
+                            We’ve tried other couple games that made us want to hide under the sofa. This felt classy,
+                            flirty and…dangerously honest.
+                        </p>
+                        <p class="text-[11px] text-slate-500 uppercase tracking-[0.16em]">ALEX &amp; MAYA • MANCHESTER
+                        </p>
+                    </div>
+                    <div class="sticker bg-white border border-black/5 rounded-2xl p-5 text-sm">
+                        <p class="text-[color:var(--cocoa)] font-semibold mb-2">“Less scrolling, more touching.”</p>
+                        <p class="text-slate-700 mb-4">
+                            We put our phones away, lit a candle and suddenly it was 2am and we’d talked about things
+                            we’d been avoiding for months.
+                        </p>
+                        <p class="text-[11px] text-slate-500 uppercase tracking-[0.16em]">JAMES &amp; PRIYA • LONDON</p>
+                    </div>
+                    <div class="sticker bg-[color:var(--butter)]/80 border border-black/5 rounded-2xl p-5 text-sm">
+                        <p class="text-[color:var(--cocoa)] font-semibold mb-2">“The chocolate?? Insane.”</p>
+                        <p class="text-slate-700 mb-4">
+                            Didn’t expect to love the chocolate so much. Now we hide a bar from the kids and call it our
+                            “meeting”.
+                        </p>
+                        <p class="text-[11px] text-slate-500 uppercase tracking-[0.16em]">LAURA &amp; CHRIS • BRISTOL
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CTA under reviews -->
+                <div class="mt-10 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-sm md:text-base text-slate-700">
+                        Join <span class="font-semibold text-[color:var(--cocoa)]">500+ couples</span> who’ve turned
+                        “We should do something fun” into an actual plan.
+                    </p>
+                    <a href="#bundle"
+                        class="bg-[color:var(--cocoa)] text-white px-7 py-3 rounded-2xl font-semibold text-sm md:text-base shadow-md hover:shadow-lg hover:-translate-y-0.5 transition">
+                        Get Your Night-In Bundle
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="py-20 px-4 bg-[color:var(--bg)]">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-10">
+                    <p class="text-[11px] font-bold tracking-[0.22em] uppercase text-[color:var(--rose)] mb-2">
+                        Questions from couples like you 💑
+                    </p>
+                    <h2 class="font-title font-bold text-3xl md:text-4xl text-[color:var(--cocoa)]">
+                        FAQ (aka things your partner asked too). ❤️
+                    </h2>
+                </div>
+
+                <div class="space-y-4">
+                    <details
+                        class="sticker bg-white border border-black/5 rounded-2xl px-4 py-3 text-sm open:bg-white/95">
+                        <summary class="flex items-center justify-between cursor-pointer">
+                            <span class="font-semibold text-[color:var(--cocoa)]">
+                                Is this game… like… really explicit?
+                            </span>
+                            <span class="text-xl leading-none text-slate-500 ml-3">+</span>
+                        </summary>
+                        <div class="mt-2 text-slate-700">
+                            You choose your level: Talk (deep), Flirt (spicy but PG-13), Dare (okay now it’s getting
+                            steamy). You can stay where you’re comfy or work your way up.
+                        </div>
+                    </details>
+
+                    <details class="sticker bg-white border border-black/5 rounded-2xl px-4 py-3 text-sm">
+                        <summary class="flex items-center justify-between cursor-pointer">
+                            <span class="font-semibold text-[color:var(--cocoa)]">
+                                What if we don’t like it?
+                            </span>
+                            <span class="text-xl leading-none text-slate-500 ml-3">+</span>
+                        </summary>
+                        <div class="mt-2 text-slate-700">
+                            If it doesn’t feel like your vibe within 30 days, email us and we’ll refund you. No awkward
+                            “prove you played” photos required.
+                        </div>
+                    </details>
+
+                    <details class="sticker bg-white border border-black/5 rounded-2xl px-4 py-3 text-sm">
+                        <summary class="flex items-center justify-between cursor-pointer">
+                            <span class="font-semibold text-[color:var(--cocoa)]">
+                                Is the chocolate actually “aphrodisiac”?
+                            </span>
+                            <span class="text-xl leading-none text-slate-500 ml-3">+</span>
+                        </summary>
+                        <div class="mt-2 text-slate-700">
+                            It’s packed with botanicals like Maca, Damiana &amp; Ashwagandha that are traditionally
+                            linked with mood, relaxation and blood flow. Plus, it tastes ridiculously good.
+                        </div>
+                    </details>
+                </div>
+
+                <div class="mt-8 text-center text-sm text-slate-700">
+                    Still unsure? <a href="#" class="underline underline-offset-2 decoration-[color:var(--rose)]">Slide
+                        into our inbox</a> —
+                    we’ll help you decide.
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-[color:var(--cocoa)] text-white pt-16 pb-10 px-4">
+            <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+                <h2
+                    class="font-display font-semibold text-4xl md:text-5xl tracking-tight text-white mb-6 cursor-default">
+                    LOCO COCO
+                </h2>
+
+                <div class="flex flex-wrap justify-center gap-6 mb-8 font-medium text-xs uppercase tracking-[0.18em]">
+                    <a href="#" class="hover:text-[color:var(--rose)] transition">Instagram</a>
+                    <a href="#" class="hover:text-[color:var(--rose)] transition">TikTok</a>
+                    <a href="#" class="hover:text-[color:var(--rose)] transition">Contact Us</a>
+                    <a href="#" class="hover:text-[color:var(--rose)] transition">FAQ</a>
+                </div>
+
+                <p class="text-slate-200 text-xs max-w-md mx-auto mb-6">
+                    © 2024 Loco Coco. Designed for couples who want more than just “another night on the sofa”.
+                </p>
+
+                <div class="flex gap-2 opacity-70">
+                    <div class="w-8 h-5 bg-white/90 rounded"></div>
+                    <div class="w-8 h-5 bg-white/90 rounded"></div>
+                    <div class="w-8 h-5 bg-white/90 rounded"></div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- MOBILE STICKY CTA -->
+        <div class="md:hidden fixed bottom-4 left-4 right-4 z-50">
+            <a href="#bundle"
+                class="flex items-center justify-between bg-[color:var(--cocoa)] text-white px-5 py-3.5 rounded-2xl shadow-xl border border-black/20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/30 overflow-hidden">
+                        <img src="./assets/prod-1-img-7.jpg" class="w-full h-full object-cover" alt="">
+                    </div>
+                    <div class="text-left">
+                        <p class="text-[13px] font-semibold">Get The Night-In Bundle</p>
+                        <p class="text-[11px] text-white/80">Save £15 • Free UK shipping</p>
+                    </div>
+                </div>
+                <span
+                    class="bg-[color:var(--rose)] text-white text-[11px] font-semibold px-2.5 py-1 rounded border border-white/40">
+                    Add
+                </span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- put this just before </body> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('mobileMenu');
+
+            if (!btn || !menu) return;
+
+            // Toggle menu on hamburger click
+            btn.addEventListener('click', function () {
+                menu.classList.toggle('hidden');
+            });
+
+            // Optional: close menu when a link is clicked
+            menu.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    menu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
