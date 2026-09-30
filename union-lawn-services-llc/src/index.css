@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #0F172A; /* Modern Slate 900 */
+    --color-primary-dark: #020617; /* Modern Slate 950 */
+    --color-primary-light: #1E293B; /* Modern Slate 800 */
+    --color-secondary: #10B981; /* Premium Emerald 500 */
+    --color-secondary-light: #F0FDF4; /* Premium Emerald 50 */
+    --color-neutral: #334155; /* Slate 700 */
+    --color-neutral-light: #94A3B8; /* Slate 400 */
+    --color-background: #F8FAFC; /* Clean Slate 50 */
+    --color-action: #34D399; /* Emerald 400 */
+    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-neutral);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+/* Custom interactive before-after slider styling */
+.slider-handle {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
