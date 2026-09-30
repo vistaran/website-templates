@@ -120,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onQuoteClick }) => {
             <button
               type="button"
               onClick={onQuoteClick}
-              className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-[#0F172A] hover:bg-[#1E293B] rounded-xl transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0F172A] curor-pointer"
+              className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-[#0F172A] hover:bg-[#1E293B] rounded-xl transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0F172A] cursor-pointer"
             >
               Book Consultation
             </button>

@@ -120,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onQuoteClick }) => {
             <button
               type="button"
               onClick={onQuoteClick}
-              className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-[#451A03] hover:bg-[#78350F] rounded-sm hover:shadow-none transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#451A03] curor-pointer"
+              className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-[#451A03] hover:bg-[#78350F] rounded-sm hover:shadow-none transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#451A03] cursor-pointer"
             >
               Book Consultation
             </button>
@@ -179,7 +179,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onQuoteClick }) => {
                   setMobileMenuOpen(false);
                   onQuoteClick();
                 }}
-                className="w-full py-3 px-4 rounded-sm bg-[#451A03] text-white font-semibold text-center hover:bg-[#78350F]"
+                className="w-full py-3 px-4 rounded-sm bg-[#451A03] text-white font-semibold text-center hover:bg-[#78350F] cursor-pointer"
               >
                 Book Consultation
               </button>
