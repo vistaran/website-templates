@@ -19,14 +19,14 @@ const DEFAULT_API_BASE = import.meta.env.DEV
 
 type Connection = 'checking' | 'live' | 'offline';
 
-export default function BookingCalendar({ apiBaseUrl = DEFAULT_API_BASE, hideWrapperStyles = false, initialRequirement = '' }: { apiBaseUrl?: string, hideWrapperStyles?: boolean, initialRequirement?: string }) {
+export default function BookingCalendar({ apiBaseUrl = DEFAULT_API_BASE, hideWrapperStyles = false }: { apiBaseUrl?: string, hideWrapperStyles?: boolean }) {
   const [connection, setConnection] = useState<Connection>('checking');
   const [step, setStep] = useState(1);
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [slots, setSlots] = useState<Slot[]>([]);
   const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', requirement: initialRequirement });
+  const [formData, setFormData] = useState({ name: '', email: '', requirement: '' });
   const [meetLink, setMeetLink] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -118,7 +118,7 @@ export default function BookingCalendar({ apiBaseUrl = DEFAULT_API_BASE, hideWra
     return (
       <div className={wrapper}>
         <div className="text-center max-w-md mx-auto">
-          <div className="w-14 h-14 rounded-2xl bg-lime-500 text-slate-950 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-lime-500/30">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-600 to-amber-400 text-white flex items-center justify-center mx-auto mb-5">
             <CalendarClock className="w-7 h-7" />
           </div>
           <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-3 font-heading tracking-tight">
@@ -132,7 +132,7 @@ export default function BookingCalendar({ apiBaseUrl = DEFAULT_API_BASE, hideWra
           <div className="space-y-3">
             <a
               href={`tel:${BUSINESS_INFO.phoneRaw}`}
-              className="flex items-center justify-center gap-2.5 w-full py-3.5 rounded-xl bg-lime-500 hover:bg-lime-600 text-slate-950 font-bold transition-all"
+              className="flex items-center justify-center gap-2.5 w-full py-3.5 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-400 hover:from-amber-500 hover:to-amber-300 text-white font-bold transition-all"
             >
               <Phone className="w-5 h-5" />
               Call {BUSINESS_INFO.phone}
@@ -159,12 +159,12 @@ export default function BookingCalendar({ apiBaseUrl = DEFAULT_API_BASE, hideWra
                 selected={selectedDate}
                 onSelect={setSelectedDate}
                 disabled={(date) => isBefore(date, startOfDay(new Date())) || isSunday(date)}
-                modifiersClassNames={{ selected: 'bg-green-700 text-white rounded-full' }}
+                modifiersClassNames={{ selected: 'bg-amber-600 text-white rounded-full' }}
               />
             </div>
             <style>{`
               .rdp-day_selected, .rdp-day_selected:focus-visible, .rdp-day_selected:hover {
-                background-color: #15803d; /* green-700 */
+                background-color: #d97706; /* amber-600 */
                 color: white;
               }
             `}</style>
@@ -174,7 +174,7 @@ export default function BookingCalendar({ apiBaseUrl = DEFAULT_API_BASE, hideWra
         {/* STEP 2: TIME SLOTS */}
         {step === 2 && (
           <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-            <button onClick={() => setStep(1)} className="flex items-center text-sm text-slate-500 hover:text-green-700 mb-4 font-medium transition-colors">
+            <button onClick={() => setStep(1)} className="flex items-center text-sm text-slate-500 hover:text-amber-600 mb-4 font-medium transition-colors">
               <ArrowLeft className="w-4 h-4 mr-1" /> Back
             </button>
             <h3 className="text-lg font-semibold mb-4 text-slate-800">Available Times</h3>
@@ -191,7 +191,7 @@ export default function BookingCalendar({ apiBaseUrl = DEFAULT_API_BASE, hideWra
                   disabled={!slot.available}
                   onClick={() => { setSelectedSlot(slot); setStep(3); }}
                   className={`py-2.5 px-3 rounded-lg border text-sm font-medium transition-all ${
-                    slot.available ? 'border-slate-200 hover:border-green-600 hover:bg-green-50 text-slate-700' : 'bg-slate-50 text-slate-400 opacity-50 cursor-not-allowed'
+                    slot.available ? 'border-slate-200 hover:border-amber-500 hover:bg-amber-50 text-slate-700' : 'bg-slate-50 text-slate-400 opacity-50 cursor-not-allowed'
                   }`}
                 >
                   {slot.timeLabel}
@@ -204,16 +204,16 @@ export default function BookingCalendar({ apiBaseUrl = DEFAULT_API_BASE, hideWra
         {/* STEP 3: FORM */}
         {step === 3 && (
            <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
-             <button onClick={() => setStep(2)} className="flex items-center text-sm text-slate-500 hover:text-green-700 mb-4 font-medium transition-colors">
+             <button onClick={() => setStep(2)} className="flex items-center text-sm text-slate-500 hover:text-amber-600 mb-4 font-medium transition-colors">
               <ArrowLeft className="w-4 h-4 mr-1" /> Back
             </button>
-             <div className="bg-green-50 p-4 rounded-xl mb-6 flex items-center gap-3 border border-green-100">
+             <div className="bg-amber-50 p-4 rounded-xl mb-6 flex items-center gap-3 border border-amber-100">
                <div className="bg-white p-2 rounded-full shadow-sm">
-                 <Clock className="text-green-700 w-5 h-5" />
+                 <Clock className="text-amber-600 w-5 h-5" />
                </div>
                <div>
-                 <p className="text-xs text-green-600 font-semibold uppercase tracking-wider mb-0.5">Selected Time</p>
-                 <p className="text-sm font-bold text-green-900">
+                 <p className="text-xs text-amber-600 font-semibold uppercase tracking-wider mb-0.5">Selected Time</p>
+                 <p className="text-sm font-bold text-amber-900">
                    {selectedDate && format(selectedDate, 'MMMM do, yyyy')} at {selectedSlot?.timeLabel}
                  </p>
                </div>
@@ -222,22 +222,22 @@ export default function BookingCalendar({ apiBaseUrl = DEFAULT_API_BASE, hideWra
              <form onSubmit={handleSubmit} className="space-y-4">
                <div>
                  <label className="text-sm font-semibold text-slate-700 block mb-1.5">Name</label>
-                 <input required type="text" className="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-slate-900" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="Your full name" />
+                 <input required type="text" className="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-slate-900" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="Your full name" />
                </div>
                <div>
                  <label className="text-sm font-semibold text-slate-700 block mb-1.5">Email</label>
-                 <input required type="email" className="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-slate-900" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="you@example.com" />
+                 <input required type="email" className="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-slate-900" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="you@example.com" />
                </div>
                <div>
                  <label className="text-sm font-semibold text-slate-700 block mb-1.5">Project Details</label>
-                 <textarea required rows={3} className="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-slate-900" value={formData.requirement} onChange={e => setFormData({...formData, requirement: e.target.value})} placeholder="Briefly describe what you're looking for..." />
+                 <textarea required rows={3} className="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-slate-900" value={formData.requirement} onChange={e => setFormData({...formData, requirement: e.target.value})} placeholder="Briefly describe what you're looking for..." />
                </div>
                {error && (
                  <p className="text-sm text-red-700 bg-red-50 border border-red-100 rounded-lg px-3 py-2.5 leading-relaxed">
                    {error}
                  </p>
                )}
-               <button disabled={isLoading} className="w-full bg-lime-500 hover:bg-lime-600 text-slate-950 font-bold py-3.5 rounded-xl transition-all mt-2">
+               <button disabled={isLoading} className="w-full bg-gradient-to-tr from-amber-600 to-amber-400 hover:from-amber-500 hover:to-amber-300 text-white font-bold py-3.5 rounded-xl transition-all mt-2">
                  {isLoading ? 'Confirming...' : 'Confirm Appointment'}
                </button>
              </form>
@@ -247,8 +247,8 @@ export default function BookingCalendar({ apiBaseUrl = DEFAULT_API_BASE, hideWra
         {/* STEP 4: SUCCESS */}
         {step === 4 && (
           <motion.div key="step4" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-center py-8">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-               <CheckCircle className="w-10 h-10 text-green-600" />
+            <div className="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
+               <CheckCircle className="w-10 h-10 text-amber-600" />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-slate-900">Booking Confirmed!</h3>
             <p className="text-slate-600 mb-8 max-w-[250px] mx-auto leading-relaxed">Your consultation is set. A calendar invite has been sent to <strong className="text-slate-800">{formData.email}</strong>.</p>
