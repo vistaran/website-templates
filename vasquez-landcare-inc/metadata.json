@@ -1,0 +1,6 @@
+{
+  "name": "Vasquez Landcare INC",
+  "description": "Professional landscaping and sod installation services in Charlotte, NC. Sod, mulch, lawn maintenance, and yard transformations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
