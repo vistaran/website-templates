@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #0f172a; /* Slate 900 */
+    --color-primary-dark: #020617; /* Slate 950 */
+    --color-primary-light: #1e293b; /* Slate 800 */
+    --color-secondary: #84cc16; /* Lime 500 */
+    --color-secondary-light: #ecfccb; /* Lime 100 */
+    --color-neutral: #0f172a;
+    --color-neutral-light: #64748b; /* Slate 500 */
+    --color-background: #ffffff;
+    --color-action: #eab308;
+    --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  html {
+    /* The hero image is scaled 105% and bleeds past both edges; a
+       body-level overflow-x rule does not clip it at the root, which
+       left a horizontal scroll on phones. `clip` (not `hidden`) so
+       the sticky navbar keeps working. */
+    overflow-x: clip;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-neutral);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  .hover-lift {
+    @apply transition-transform duration-300 ease-out hover:-translate-y-1;
+  }
+  
+  .hover-glow {
+    @apply transition-opacity duration-300 ease-out hover:opacity-90;
+  }
+
+  .btn-vibrant {
+    @apply relative overflow-hidden transition-all duration-300 ease-out hover:scale-105 active:scale-95;
+  }
+  
+  .btn-primary {
+    @apply bg-lime-500 hover:bg-lime-600 text-slate-950 font-bold transition-all duration-300 border border-lime-500;
+  }
+}
+
+/* Custom interactive before-after slider styling */
+.slider-handle {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 4px 14px rgba(0, 0, 0, 0.3);
+}
