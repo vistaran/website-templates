@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #183D22;
+    --color-primary-dark: #0D2614;
+    --color-primary-light: #3D7835;
+    --color-secondary: #6B9E4B;
+    --color-secondary-light: #F2FAF0;
+    --color-neutral: #333333;
+    --color-neutral-light: #6C6255;
+    --color-background: #FAFAFA;
+    --color-action: #E6A817;
+    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  html {
+    /* The hero background image is scaled 105%, so it bleeds ~9px past each
+       edge. `overflow-x: hidden` on body alone does not clip that at the root,
+       which left a ~20px horizontal scroll on 375px phones. `clip` rather than
+       `hidden` so the sticky navbar keeps working. */
+    overflow-x: clip;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-neutral);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Custom interactive before-after slider styling */
+.slider-handle {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 4px 14px rgba(0, 0, 0, 0.3);
+}
