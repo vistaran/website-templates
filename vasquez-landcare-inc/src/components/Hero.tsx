@@ -65,7 +65,7 @@ export const Hero: React.FC<HeroProps> = ({ onQuoteClick, onServicesClick }) => 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-[#FAFAFA]/90 leading-relaxed max-w-2xl mb-8 font-light"
+            className="text-lg sm:text-xl text-white leading-relaxed max-w-2xl mb-8 font-medium drop-shadow-md"
           >
             Professional sod installation, mulch, and lawn maintenance for a yard you'll love coming home to.
             Specializing in lush, weed-free sod laid with precision craftsmanship across Charlotte and Mecklenburg County.
