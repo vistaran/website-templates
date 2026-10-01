@@ -17,7 +17,7 @@ no longer exist; nothing pushes to them.)
 | Kind | Folders |
 |------|---------|
 | **Business templates** | `interior-design-website`, `js-dye-chem`, `lab-equipments`, `new-grass-life-llc`, `new-sonal-travels`, `pani-puri-masala` |
-| **Client sites** | `aguilars-hardscape-and-concrete`, `cab-lawn-care`, `carolina-lawn-enhancement`, `j-n-son-landscaping-concord-nc-lawn-n-hardscaping`, `jp-lawn-and-landscaping`, `landscaping-and-tree-service-solutions`, `mnj-tree-services`, `union-lawn-services-llc`, `vasquez-landcare-inc` |
+| **Client sites** | `aguilars-hardscape-and-concrete`, `cab-lawn-care`, `carolina-lawn-enhancement`, `g-and-t-lawn-care`, `j-n-son-landscaping-concord-nc-lawn-n-hardscaping`, `jp-lawn-and-landscaping`, `landscaping-and-tree-service-solutions`, `mnj-tree-services`, `union-lawn-services-llc`, `vasquez-landcare-inc` |
 
 Each folder is self-contained: its own `package.json`, build config, `vercel.json`,
 `.npmrc` and `.gitignore`. **No folder references another folder, and no config contains an
@@ -55,6 +55,7 @@ production.
 | 13 | [carolina-lawn-enhancement](./carolina-lawn-enhancement) | **https://carolina-lawn-enhancement-pi.vercel.app** | Vite · React 19 · TS · Tailwind v4 | Single-page |
 | 14 | [j-n-son-landscaping-concord-nc-lawn-n-hardscaping](./j-n-son-landscaping-concord-nc-lawn-n-hardscaping) | **https://j-n-son-landscaping-concord-nc-lawn.vercel.app** | Vite · React 19 · TS · Tailwind v4 | Single-page |
 | 15 | [jp-lawn-and-landscaping](./jp-lawn-and-landscaping) | **https://jp-lawn-and-landscaping.vercel.app** | Vite · React 19 · TS · Tailwind v4 · booking API | Single-page |
+| 16 | [g-and-t-lawn-care](./g-and-t-lawn-care) | **https://g-and-t-lawn-care.vercel.app** | Vite · React 19 · TS · Tailwind v4 · booking API | Single-page |
 
 All demos are hosted on Vercel and served over HTTPS from Vistaran Tech's team scope
 (`jay-shahs-projects-ecf58304`).
@@ -184,6 +185,20 @@ These were originally dev-only Vite middleware in `vite.config.ts`, so the route
 - **Folder:** `jp-lawn-and-landscaping/`
 - **Demo:** https://jp-lawn-and-landscaping.vercel.app
 
+### 16. g-and-t-lawn-care
+> Client site — G & T Lawn Care (mowing, edging, mulch & property cleanups, Gastonia NC).
+
+Vite + React 19 + TS + Tailwind v4. Carries the full serverless `api/` Google Calendar
+booking layer and renders the booking widget — live slots when the project has booking
+credentials, otherwise a Call / Email panel. The quote form hands the enquiry to the
+crew's inbox via a prefilled `mailto`.
+
+- **Folder:** `g-and-t-lawn-care/`
+- **Demo:** https://g-and-t-lawn-care.vercel.app
+- **Phone:** +1 (716) 462-3657 — area code 716 is Buffalo, NY while the business is in
+  Gastonia NC. `phone` and `phoneRaw` agree, so every `tel:` link dials what is shown;
+  confirm the number before a custom domain.
+
 ### Client-site architectures
 
 Two patterns, chosen per project:
@@ -230,6 +245,7 @@ website-templates/
 ├── aguilars-hardscape-and-concrete/       # client site — Vite + booking API
 ├── cab-lawn-care/                         # client site — Vite + booking API
 ├── carolina-lawn-enhancement/             # client site — Vite, client-side booking
+├── g-and-t-lawn-care/                     # client site — Vite + api/ booking functions
 ├── j-n-son-landscaping-concord-nc-lawn-n-hardscaping/  # client site — Vite, client-side booking
 ├── jp-lawn-and-landscaping/               # client site — Vite + api/ booking functions
 ├── landscaping-and-tree-service-solutions/# client site — Vite + booking API
