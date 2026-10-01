@@ -39,7 +39,27 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
     setIsSubmitting(true);
     setError(null);
 
-    // Simulate instant quote request handling
+    // Hand the enquiry to the crew's inbox. This previously only flipped a local
+    // "submitted" flag, so the visitor saw a success message while the request
+    // reached nobody.
+    const lines = [
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      email.trim() ? `Email: ${email}` : '',
+      `Service needed: ${service}`,
+      address.trim() ? `Property address: ${address}` : '',
+      notes.trim() ? `Details: ${notes}` : '',
+      '',
+      'Sent from the G & T Lawn Care website quote form.',
+    ].filter(Boolean).join('\n');
+
+    const mailto =
+      `mailto:${BUSINESS_INFO.email}` +
+      `?subject=${encodeURIComponent(`Free lawn quote request — ${name}`)}` +
+      `&body=${encodeURIComponent(lines)}`;
+
+    window.location.href = mailto;
+
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);

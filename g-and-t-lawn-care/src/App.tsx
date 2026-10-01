@@ -5,6 +5,7 @@ import { Services } from './components/Services';
 import { TransformationGallery } from './components/TransformationGallery';
 import { Reviews } from './components/Reviews';
 import { BusinessHoursAndArea } from './components/BusinessHoursAndArea';
+import BookingCalendar from './components/BookingCalendar';
 import { QuoteFormSection } from './components/QuoteFormSection';
 import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
@@ -68,6 +69,11 @@ export default function App() {
 
         {/* Operating Hours, Gastonia Map & Service Radius */}
         <BusinessHoursAndArea />
+
+        {/* Appointment Scheduling — live Google Calendar slots when the project
+            has booking credentials, otherwise a Call / Email panel so the
+            visitor always has a way to reach the crew. */}
+        <BookingCalendar />
 
         {/* Lead Generation Form */}
         <QuoteFormSection

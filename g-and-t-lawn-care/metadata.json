@@ -1,6 +1,6 @@
 {
-  "name": "Landscaping and tree service solutions",
-  "description": "Professional landscaping and sod installation services in Charlotte, NC. Sod, mulch, lawn maintenance, and yard transformations.",
+  "name": "G and T Lawn Care",
+  "description": "Lawn care, mowing, edging, mulch and property cleanups in Gastonia, NC and Gaston County. Vite + React single-page site with a serverless Google Calendar booking API.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

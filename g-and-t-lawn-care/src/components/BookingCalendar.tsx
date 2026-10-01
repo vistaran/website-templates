@@ -137,6 +137,13 @@ export default function BookingCalendar({ apiBaseUrl = DEFAULT_API_BASE, hideWra
               <Phone className="w-5 h-5" />
               Call {BUSINESS_INFO.phone}
             </a>
+            <a
+              href={`mailto:${BUSINESS_INFO.email}?subject=${encodeURIComponent('Free lawn care estimate request')}`}
+              className="flex items-center justify-center gap-2.5 w-full py-3.5 rounded-xl bg-white border border-slate-300 hover:border-lime-500 hover:text-lime-700 text-slate-700 font-bold transition-all"
+            >
+              <Mail className="w-5 h-5" />
+              Email us
+            </a>
           </div>
 
           <p className="text-xs text-slate-500 mt-5">{BUSINESS_INFO.hours.display}</p>

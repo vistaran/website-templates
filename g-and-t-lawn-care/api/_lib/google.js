@@ -22,7 +22,7 @@ export const CONFIG = {
   durationMinutes: Number(process.env.BOOKING_SLOT_MINUTES) || 30,
   startHour: Number(process.env.BOOKING_START_HOUR) || 8, // 8 AM
   endHour: Number(process.env.BOOKING_END_HOUR) || 17, // 5 PM
-  // This business is in Charlotte, NC — do NOT default to the scaffold's
-  // Asia/Kolkata, which silently shifted every slot label by 9.5 hours.
+  // This business is in Gastonia, NC (Eastern time) — do NOT default to the
+  // scaffold's Asia/Kolkata, which silently shifted every slot label by 9.5 hours.
   timeZone: process.env.BUSINESS_TIMEZONE || process.env.TIMEZONE || 'America/New_York',
 };
