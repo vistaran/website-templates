@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Custom high-end landscaping brand colors */
+  --color-brand-moss: #122815;       /* Primary Deep Moss/Forest Green */
+  --color-brand-leaf: #235128;       /* Medium Rich Foliage Green */
+  --color-brand-cream: #fbfbf7;      /* Clean Warm Organic Cream Background */
+  --color-brand-clay: #b0823d;       /* Warm Clay/Bronze Accent */
+  --color-brand-sage: #eaece4;       /* Structural Sage Divider & Surface */
+  --color-brand-soil: #281d11;       /* Rich Deep Soil Black/Brown */
+}
+
+/* Custom scrollbar and accessibility adjustments */
+body {
+  background-color: var(--color-brand-cream);
+  color: var(--color-brand-soil);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: #235128;
+  color: #fbfbf7;
+}

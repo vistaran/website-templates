@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="sodSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#93c5fd" />
+      <stop offset="60%" stop-color="#dbeafe" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+    <linearGradient id="tilledSoil" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#573a27" />
+      <stop offset="50%" stop-color="#3d281a" />
+      <stop offset="100%" stop-color="#24170f" />
+    </linearGradient>
+    <linearGradient id="freshSod" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="40%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+    <linearGradient id="sodRollCore" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14532d" />
+      <stop offset="100%" stop-color="#271b12" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="220" fill="url(#sodSky)" />
+  <circle cx="680" cy="80" r="45" fill="#fef08a" opacity="0.9" />
+
+  <!-- Background Neighborhood Treeline & Fencing -->
+  <path d="M 0,180 Q 200,140 400,165 Q 600,135 800,170 L 800,220 L 0,220 Z" fill="#14532d" opacity="0.85" />
+  
+  <!-- Cedar Privacy Fence in Background -->
+  <rect x="0" y="190" width="800" height="40" fill="#9a3412" opacity="0.75" />
+  <g stroke="#7c2d12" stroke-width="2">
+    <line x1="100" y1="190" x2="100" y2="230" />
+    <line x1="200" y1="190" x2="200" y2="230" />
+    <line x1="300" y1="190" x2="300" y2="230" />
+    <line x1="400" y1="190" x2="400" y2="230" />
+    <line x1="500" y1="190" x2="500" y2="230" />
+    <line x1="600" y1="190" x2="600" y2="230" />
+    <line x1="700" y1="190" x2="700" y2="230" />
+  </g>
+
+  <!-- Tilled Rich Dark Soil Base (Prepared ground) -->
+  <polygon points="0,220 800,220 800,600 0,600" fill="url(#tilledSoil)" />
+  
+  <!-- Soil texture strokes -->
+  <g stroke="#24170f" stroke-width="3" stroke-linecap="round" opacity="0.6">
+    <line x1="500" y1="300" x2="560" y2="302" />
+    <line x1="620" y1="340" x2="700" y2="343" />
+    <line x1="480" y1="420" x2="550" y2="423" />
+    <line x1="590" y1="470" x2="680" y2="473" />
+    <line x1="450" y1="520" x2="530" y2="523" />
+    <line x1="620" y1="550" x2="720" y2="553" />
+  </g>
+
+  <!-- Newly Laid Carpet of Sod (Left to center) -->
+  <polygon points="0,220 460,220 400,600 0,600" fill="url(#freshSod)" />
+
+  <!-- Staggered Brick-Bond Sod Seam Lines -->
+  <g stroke="#14532d" stroke-width="2.5" opacity="0.6">
+    <!-- Horizontal seams -->
+    <line x1="0" y1="280" x2="450" y2="280" />
+    <line x1="0" y1="350" x2="435" y2="350" />
+    <line x1="0" y1="430" x2="420" y2="430" />
+    <line x1="0" y1="510" x2="410" y2="510" />
+
+    <!-- Staggered vertical end joints -->
+    <line x1="120" y1="220" x2="120" y2="280" />
+    <line x1="300" y1="220" x2="300" y2="280" />
+    <line x1="200" y1="280" x2="200" y2="350" />
+    <line x1="380" y1="280" x2="380" y2="350" />
+    <line x1="100" y1="350" x2="100" y2="430" />
+    <line x1="280" y1="350" x2="280" y2="430" />
+    <line x1="190" y1="430" x2="190" y2="510" />
+    <line x1="360" y1="430" x2="360" y2="510" />
+    <line x1="110" y1="510" x2="110" y2="600" />
+    <line x1="290" y1="510" x2="290" y2="600" />
+  </g>
+
+  <!-- Unrolling Sod Ribbon in Progress -->
+  <path d="M 380,480 C 460,470 520,490 560,540 L 520,580 C 480,540 430,520 370,530 Z" fill="#22c55e" stroke="#15803d" stroke-width="2" />
+  
+  <!-- Staged Fresh Sod Rolls on Pallet / Ground -->
+  <!-- Sod Roll 1 -->
+  <g transform="translate(560, 360)">
+    <ellipse cx="60" cy="30" rx="35" ry="25" fill="#15803d" />
+    <path d="M 25,30 L 140,0 L 140,40 L 25,55 Z" fill="#22c55e" />
+    <ellipse cx="140" cy="20" rx="30" ry="20" fill="url(#sodRollCore)" />
+    <!-- Root mesh spiral -->
+    <path d="M 140,15 A 10,6 0 1,0 140,25 A 6,4 0 1,0 140,18" stroke="#78350f" stroke-width="2" fill="none" />
+  </g>
+
+  <!-- Sod Roll 2 (Stacked behind) -->
+  <g transform="translate(620, 290)">
+    <ellipse cx="45" cy="25" rx="30" ry="20" fill="#166534" />
+    <path d="M 15,25 L 110,0 L 110,35 L 15,48 Z" fill="#15803d" />
+    <ellipse cx="110" cy="18" rx="25" ry="16" fill="url(#sodRollCore)" />
+  </g>
+
+  <!-- Professional Landscape Lawn Roller (Tool) -->
+  <g transform="translate(680, 480)">
+    <rect x="-35" y="-15" width="70" height="30" rx="6" fill="#475569" stroke="#1e293b" stroke-width="2" />
+    <circle cx="0" cy="0" r="6" fill="#cbd5e1" />
+    <line x1="0" y1="0" x2="-45" y2="-75" stroke="#ef4444" stroke-width="4" stroke-linecap="round" />
+    <line x1="-55" y1="-75" x2="-35" y2="-75" stroke="#1e293b" stroke-width="5" stroke-linecap="round" />
+  </g>
+
+  <!-- Badge Overlay -->
+  <g transform="translate(30, 490)">
+    <rect width="280" height="75" rx="12" fill="#0c2317" fill-opacity="0.92" stroke="#fbbf24" stroke-width="1.5" />
+    <circle cx="36" cy="37" r="18" fill="#fbbf24" />
+    <rect x="27" y="29" width="18" height="16" rx="3" fill="#0c2317" />
+    <line x1="27" y1="36" x2="45" y2="36" stroke="#fbbf24" stroke-width="1.5" />
+    <text x="65" y="32" font-family="Plus Jakarta Sans, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Farm-Fresh Cut Sodding</text>
+    <text x="65" y="52" font-family="Plus Jakarta Sans, sans-serif" font-size="11" fill="#cbd5e1">Tall Fescue · Bermuda · Zoysia</text>
+  </g>
+</svg>

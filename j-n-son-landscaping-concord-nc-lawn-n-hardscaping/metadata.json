@@ -1,0 +1,6 @@
+{
+  "name": "J & Son Landscaping | Concord NC Lawn & Hardscaping",
+  "description": "Professional lawn maintenance, custom brick patios, retaining walls, tree work, and sod installation in Concord, NC and the Charlotte Metro area.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

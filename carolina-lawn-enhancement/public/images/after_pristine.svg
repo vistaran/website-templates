@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="afterSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="60%" stop-color="#bae6fd" />
+      <stop offset="100%" stop-color="#f0f9ff" />
+    </linearGradient>
+    <linearGradient id="pristineLawn" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e" />
+      <stop offset="50%" stop-color="#16a34a" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+    <linearGradient id="stripingDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#15803d" />
+      <stop offset="100%" stop-color="#166534" />
+    </linearGradient>
+    <linearGradient id="stripingLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#22c55e" />
+    </linearGradient>
+    <linearGradient id="mulchBed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#271811" />
+      <stop offset="100%" stop-color="#1c100a" />
+    </linearGradient>
+  </defs>
+
+  <!-- Clear Sunny Carolina Sky -->
+  <rect width="800" height="230" fill="url(#afterSky)" />
+  <circle cx="700" cy="80" r="100" fill="#fef08a" opacity="0.8" />
+
+  <!-- Background Thriving Trees -->
+  <path d="M 0,200 Q 150,150 300,185 Q 450,140 600,175 Q 720,155 800,195 L 800,230 L 0,230 Z" fill="#166534" opacity="0.9" />
+
+  <!-- Suburban Brick Estate House in Background -->
+  <rect x="220" y="140" width="360" height="120" fill="#991b1b" opacity="0.85" />
+  <polygon points="400,90 200,150 600,150" fill="#334155" />
+  <rect x="260" y="170" width="40" height="50" fill="#f8fafc" />
+  <rect x="500" y="170" width="40" height="50" fill="#f8fafc" />
+  <rect x="375" y="180" width="50" height="80" fill="#ffffff" />
+
+  <!-- Lush Emerald Restored Turf Base -->
+  <polygon points="0,230 800,230 800,600 0,600" fill="url(#pristineLawn)" />
+
+  <!-- Vibrant Diagonal Mower Stripes Across Entire Lawn -->
+  <g opacity="0.75">
+    <polygon points="-80,600 120,230 200,230 0,600" fill="url(#stripingLight)" />
+    <polygon points="20,600 220,230 300,230 100,600" fill="url(#stripingDark)" />
+    <polygon points="120,600 320,230 400,230 200,600" fill="url(#stripingLight)" />
+    <polygon points="220,600 420,230 500,230 300,600" fill="url(#stripingDark)" />
+    <polygon points="320,600 520,230 600,230 400,600" fill="url(#stripingLight)" />
+    <polygon points="420,600 620,230 700,230 500,600" fill="url(#stripingDark)" />
+    <polygon points="520,600 720,230 800,230 600,600" fill="url(#stripingLight)" />
+    <polygon points="620,600 820,230 900,230 700,600" fill="url(#stripingDark)" />
+  </g>
+
+  <!-- Curving Sculpted Deep Mulch Landscape Bed on Right -->
+  <path d="M 800,280 Q 580,320 540,420 Q 510,510 650,600 L 800,600 Z" fill="url(#mulchBed)" />
+  <!-- Crisp trench edge line -->
+  <path d="M 800,280 Q 580,320 540,420 Q 510,510 650,600" stroke="#052e16" stroke-width="4" fill="none" />
+
+  <!-- Flourishing Shrubs & Perennials in the New Bed -->
+  <!-- Hydrangea Bloom Cluster -->
+  <g transform="translate(620, 360)">
+    <circle cx="20" cy="20" r="28" fill="#60a5fa" />
+    <circle cx="38" cy="12" r="24" fill="#93c5fd" />
+    <circle cx="10" cy="35" r="22" fill="#3b82f6" />
+    <circle cx="35" cy="35" r="26" fill="#bfdbfe" />
+  </g>
+
+  <!-- Manicured Spherical Boxwood -->
+  <g transform="translate(560, 440)">
+    <circle cx="30" cy="30" r="38" fill="#15803d" />
+    <circle cx="24" cy="24" r="30" fill="#22c55e" opacity="0.6" />
+  </g>
+
+  <!-- Red Flowering Perennial Bush -->
+  <g transform="translate(680, 480)">
+    <circle cx="35" cy="35" r="42" fill="#166534" />
+    <circle cx="20" cy="20" r="10" fill="#ef4444" />
+    <circle cx="45" cy="15" r="12" fill="#f87171" />
+    <circle cx="55" cy="38" r="11" fill="#ef4444" />
+    <circle cx="25" cy="45" r="10" fill="#f87171" />
+  </g>
+
+  <!-- Clean Paver Walkway Border on Left Edge -->
+  <polygon points="0,520 220,600 0,600" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2" />
+  <!-- Razor sharp spade cut edging line -->
+  <line x1="0" y1="518" x2="220" y2="598" stroke="#052e16" stroke-width="4" />
+
+  <!-- Stamp Tag -->
+  <g transform="translate(30, 30)">
+    <rect width="210" height="42" rx="8" fill="#0c2317" fill-opacity="0.9" stroke="#22c55e" stroke-width="1.5" />
+    <circle cx="22" cy="21" r="9" fill="#22c55e" />
+    <path d="M 17,21 L 20,24 L 27,17" stroke="#0c2317" stroke-width="2" fill="none" />
+    <text x="38" y="26" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">AFTER ENHANCEMENT</text>
+  </g>
+</svg>

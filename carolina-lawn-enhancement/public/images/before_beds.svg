@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <rect width="800" height="600" fill="#44403c" />
+  <!-- Overgrown dead shrubs & weed infested bed -->
+  <polygon points="0,0 800,0 800,260 0,260" fill="#78716c" opacity="0.6" />
+  <path d="M 0,260 Q 400,230 800,280 L 800,600 L 0,600 Z" fill="#292524" />
+  <!-- Bleached, gray decaying mulch with weeds -->
+  <ellipse cx="200" cy="400" rx="160" ry="70" fill="#57534e" />
+  <ellipse cx="560" cy="440" rx="180" ry="80" fill="#57534e" />
+  <g stroke="#a16207" stroke-width="3">
+    <line x1="180" y1="360" x2="170" y2="300" />
+    <line x1="220" y1="380" x2="235" y2="310" />
+    <line x1="520" y1="410" x2="510" y2="340" />
+    <line x1="580" y1="420" x2="600" y2="330" />
+  </g>
+  <!-- Overgrown unpruned shrubs -->
+  <path d="M 120,400 C 60,300 240,250 260,380 Z" fill="#3f4835" />
+  <path d="M 450,420 C 400,280 620,220 680,410 Z" fill="#36402c" />
+  <g transform="translate(30, 30)">
+    <rect width="180" height="42" rx="8" fill="#18181b" fill-opacity="0.9" stroke="#ef4444" stroke-width="1.5" />
+    <circle cx="22" cy="21" r="9" fill="#ef4444" />
+    <text x="18" y="25" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">!</text>
+    <text x="38" y="26" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">BEFORE OVERGROWTH</text>
+  </g>
+</svg>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="afterBedSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa" />
+      <stop offset="100%" stop-color="#dbeafe" />
+    </linearGradient>
+    <linearGradient id="richPineStraw" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="60%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="240" fill="url(#afterBedSky)" />
+  <polygon points="0,210 800,190 800,600 0,600" fill="#15803d" />
+
+  <!-- Crisp Spade Cut Landscape Bed with Fresh NC Longleaf Pine Straw -->
+  <path d="M 0,280 Q 400,240 800,270 L 800,600 L 0,600 Z" fill="url(#richPineStraw)" />
+  <!-- Deep crisp trench bevel -->
+  <path d="M 0,280 Q 400,240 800,270" stroke="#052e16" stroke-width="6" fill="none" />
+
+  <!-- Natural River Stone Dry Creek Bed Border Line -->
+  <g fill="#a8a29e" stroke="#78716c" stroke-width="1.5">
+    <ellipse cx="60" cy="290" rx="16" ry="10" />
+    <ellipse cx="110" cy="285" rx="18" ry="11" />
+    <ellipse cx="160" cy="280" rx="15" ry="9" />
+    <ellipse cx="210" cy="275" rx="17" ry="10" />
+    <ellipse cx="260" cy="270" rx="19" ry="12" />
+    <ellipse cx="310" cy="265" rx="16" ry="10" />
+    <ellipse cx="360" cy="262" rx="18" ry="11" />
+    <ellipse cx="410" cy="260" rx="15" ry="9" />
+    <ellipse cx="460" cy="260" rx="19" ry="12" />
+    <ellipse cx="510" cy="262" rx="17" ry="10" />
+    <ellipse cx="560" cy="265" rx="16" ry="10" />
+    <ellipse cx="610" cy="270" rx="18" ry="11" />
+    <ellipse cx="660" cy="275" rx="15" ry="9" />
+    <ellipse cx="710" cy="280" rx="19" ry="12" />
+    <ellipse cx="760" cy="285" rx="16" ry="10" />
+  </g>
+
+  <!-- Tailored Blooming Plants in Fresh Bed -->
+  <!-- Crape Myrtle Tree -->
+  <g transform="translate(180, 260)">
+    <path d="M 0,160 Q -15,80 10,0" stroke="#451a03" stroke-width="9" fill="none" />
+    <circle cx="10" cy="-20" r="50" fill="#ec4899" opacity="0.9" />
+    <circle cx="-25" cy="5" r="42" fill="#f472b6" opacity="0.85" />
+    <circle cx="40" cy="0" r="40" fill="#db2777" opacity="0.9" />
+  </g>
+
+  <!-- English Boxwood Spheres -->
+  <g transform="translate(380, 420)">
+    <circle cx="0" cy="0" r="45" fill="#15803d" />
+    <circle cx="-10" cy="-10" r="35" fill="#22c55e" opacity="0.5" />
+  </g>
+  <g transform="translate(560, 400)">
+    <circle cx="0" cy="0" r="50" fill="#166534" />
+    <circle cx="-10" cy="-12" r="38" fill="#15803d" opacity="0.7" />
+  </g>
+
+  <!-- Stamp Tag -->
+  <g transform="translate(30, 30)">
+    <rect width="210" height="42" rx="8" fill="#0c2317" fill-opacity="0.9" stroke="#22c55e" stroke-width="1.5" />
+    <circle cx="22" cy="21" r="9" fill="#22c55e" />
+    <path d="M 17,21 L 20,24 L 27,17" stroke="#0c2317" stroke-width="2" fill="none" />
+    <text x="38" y="26" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">AFTER ENHANCEMENT</text>
+  </g>
+</svg>

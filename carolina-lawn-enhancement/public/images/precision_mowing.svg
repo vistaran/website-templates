@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7eb7e8" />
+      <stop offset="60%" stop-color="#bde0fe" />
+      <stop offset="100%" stop-color="#d8ebfd" />
+    </linearGradient>
+    <linearGradient id="sunGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#fbbf24" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="stripeLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b8c56" />
+      <stop offset="100%" stop-color="#2d7344" />
+    </linearGradient>
+    <linearGradient id="stripeDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e5433" />
+      <stop offset="100%" stop-color="#143e25" />
+    </linearGradient>
+    <linearGradient id="curbGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e2e8f0" />
+      <stop offset="60%" stop-color="#cbd5e1" />
+      <stop offset="100%" stop-color="#94a3b8" />
+    </linearGradient>
+    <linearGradient id="mulchGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2a1810" />
+      <stop offset="100%" stop-color="#3d2317" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="260" fill="url(#skyGrad)" />
+  <circle cx="680" cy="90" r="140" fill="url(#sunGlow)" />
+
+  <!-- Background Carolina Estate Trees & Home -->
+  <path d="M 0,220 Q 120,180 250,210 Q 380,170 520,205 Q 680,185 800,210 L 800,260 L 0,260 Z" fill="#1b4329" opacity="0.85" />
+  <path d="M 180,160 L 260,110 L 340,160 L 340,240 L 180,240 Z" fill="#8c3b2b" opacity="0.9" />
+  <polygon points="260,95 165,160 355,160" fill="#334155" />
+  <rect x="220" y="175" width="30" height="40" fill="#f8fafc" />
+  <rect x="270" y="175" width="30" height="40" fill="#f8fafc" />
+
+  <!-- Background Shrubbery -->
+  <circle cx="120" cy="245" r="35" fill="#166534" />
+  <circle cx="160" cy="240" r="45" fill="#15803d" />
+  <circle cx="370" cy="245" r="40" fill="#14532d" />
+  <circle cx="430" cy="240" r="50" fill="#166534" />
+  <circle cx="490" cy="245" r="38" fill="#15803d" />
+  <circle cx="700" cy="235" r="55" fill="#14532d" />
+  <circle cx="760" cy="240" r="45" fill="#166534" />
+
+  <!-- Main Lawn Surface with Diamond Stripes -->
+  <g transform="translate(0, 240)">
+    <!-- Base turf -->
+    <polygon points="0,20 800,0 800,360 0,360" fill="#1e5433" />
+
+    <!-- Alternating Diagonal Stripes -->
+    <polygon points="-50,360 120,0 200,0 30,360" fill="url(#stripeLight)" />
+    <polygon points="50,360 220,0 300,0 130,360" fill="url(#stripeDark)" />
+    <polygon points="150,360 320,0 400,0 230,360" fill="url(#stripeLight)" />
+    <polygon points="250,360 420,0 500,0 330,360" fill="url(#stripeDark)" />
+    <polygon points="350,360 520,0 600,0 430,360" fill="url(#stripeLight)" />
+    <polygon points="450,360 620,0 700,0 530,360" fill="url(#stripeDark)" />
+    <polygon points="550,360 720,0 800,0 630,360" fill="url(#stripeLight)" />
+    <polygon points="650,360 820,0 900,0 730,360" fill="url(#stripeDark)" />
+
+    <!-- Opposing Cross Diagonal Stripes for Diamond Turf Pattern -->
+    <g opacity="0.35">
+      <polygon points="850,360 680,0 600,0 770,360" fill="#4ade80" />
+      <polygon points="650,360 480,0 400,0 570,360" fill="#4ade80" />
+      <polygon points="450,360 280,0 200,0 370,360" fill="#4ade80" />
+      <polygon points="250,360 80,0 0,0 170,360" fill="#4ade80" />
+    </g>
+
+    <!-- Razor-Sharp Sidewalk Edging & Curb -->
+    <path d="M 0,320 L 800,290 L 800,360 L 0,360 Z" fill="url(#curbGrad)" />
+    <!-- Trench cut shadow line -->
+    <line x1="0" y1="318" x2="800" y2="288" stroke="#052e16" stroke-width="4" />
+    <!-- Concrete expansion joint -->
+    <line x1="280" y1="310" x2="280" y2="360" stroke="#94a3b8" stroke-width="2" />
+    <line x1="560" y1="299" x2="560" y2="360" stroke="#94a3b8" stroke-width="2" />
+  </g>
+
+  <!-- Left Sculpted Mulch Bed & Ornamental Boxwoods -->
+  <path d="M 0,260 Q 140,270 180,340 Q 200,420 120,490 Q 50,530 0,540 Z" fill="url(#mulchGrad)" />
+  <path d="M 0,260 Q 140,270 180,340 Q 200,420 120,490 Q 50,530 0,540" stroke="#1c1917" stroke-width="4" fill="none" />
+  
+  <!-- Manicured Boxwood Spheres in Bed -->
+  <circle cx="50" cy="330" r="32" fill="#15803d" />
+  <circle cx="45" cy="320" r="28" fill="#22c55e" opacity="0.6" />
+  
+  <circle cx="110" cy="380" r="38" fill="#166534" />
+  <circle cx="102" cy="370" r="32" fill="#22c55e" opacity="0.6" />
+  
+  <circle cx="60" cy="460" r="35" fill="#15803d" />
+  <circle cx="52" cy="450" r="30" fill="#4ade80" opacity="0.5" />
+
+  <!-- Badge Overlay -->
+  <g transform="translate(480, 480)">
+    <rect width="280" height="75" rx="12" fill="#0c2317" fill-opacity="0.9" stroke="#fbbf24" stroke-width="1.5" />
+    <circle cx="36" cy="37" r="18" fill="#fbbf24" />
+    <path d="M 28,37 L 34,43 L 45,30" stroke="#0c2317" stroke-width="3" fill="none" stroke-linecap="round" />
+    <text x="65" y="32" font-family="Plus Jakarta Sans, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Carolina Diamond Striping</text>
+    <text x="65" y="52" font-family="Plus Jakarta Sans, sans-serif" font-size="11" fill="#cbd5e1">Calibrated seasonal cut & razor edge</text>
+  </g>
+</svg>

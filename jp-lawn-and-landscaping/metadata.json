@@ -1,0 +1,6 @@
+{
+  "name": "JP Lawn and Landscaping",
+  "description": "Professional lawn care, landscaping design, paver patios, sod installation, and tree services in Kannapolis, NC and surrounding areas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
