@@ -16,8 +16,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, onOpenCalculator })
         <div className="flex items-center justify-between h-20">
           
           {/* Zone 1: Brand Wordmark */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <a href="#" className="flex items-center gap-2 sm:gap-2.5 group">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <a href="#" className="flex items-center gap-2 sm:gap-2.5 group min-w-0">
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#0f291e] flex items-center justify-center text-amber-400 font-display font-bold text-lg sm:text-xl shadow-xs group-hover:bg-[#184632] transition-colors shrink-0">
                 CL
               </div>

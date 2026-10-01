@@ -10,13 +10,14 @@ Vercel demo. Nothing is shared between projects — copy a folder, customise it,
 
 ## Repository structure
 
-This repository is the **source of truth** for every site below. It holds two kinds of
-project side by side:
+This repository is the **source of truth** for every site below — all of them live only
+here. (The per-project `vistaran/<name>` mirrors described in older revisions of this file
+no longer exist; nothing pushes to them.)
 
-| Kind | Folders | Also mirrored to a standalone repo? |
-|------|---------|-------------------------------------|
-| **Business templates** | `interior-design-website`, `js-dye-chem`, `lab-equipments`, `new-grass-life-llc`, `new-sonal-travels`, `pani-puri-masala` | No — this repo is their only home |
-| **Client sites** | `aguilars-hardscape-and-concrete`, `cab-lawn-care`, `landscaping-and-tree-service-solutions`, `mnj-tree-services`, `union-lawn-services-llc`, `vasquez-landcare-inc` | Yes — a private `vistaran/<name>` mirror |
+| Kind | Folders |
+|------|---------|
+| **Business templates** | `interior-design-website`, `js-dye-chem`, `lab-equipments`, `new-grass-life-llc`, `new-sonal-travels`, `pani-puri-masala` |
+| **Client sites** | `aguilars-hardscape-and-concrete`, `cab-lawn-care`, `carolina-lawn-enhancement`, `j-n-son-landscaping-concord-nc-lawn-n-hardscaping`, `jp-lawn-and-landscaping`, `landscaping-and-tree-service-solutions`, `mnj-tree-services`, `union-lawn-services-llc`, `vasquez-landcare-inc` |
 
 Each folder is self-contained: its own `package.json`, build config, `vercel.json`,
 `.npmrc` and `.gitignore`. **No folder references another folder, and no config contains an
@@ -51,6 +52,9 @@ production.
 | 10 | [mnj-tree-services](./mnj-tree-services) | **https://mnj-tree-services-snowy.vercel.app** | Vite · React 19 · TS · Tailwind v4 · booking API | Single-page |
 | 11 | [union-lawn-services-llc](./union-lawn-services-llc) | **https://union-lawn-services-llc.vercel.app** | Vite · React 19 · TS · Tailwind v4 · booking API | Single-page |
 | 12 | [vasquez-landcare-inc](./vasquez-landcare-inc) | **https://vasquez-landcare-inc.vercel.app** | Vite · React 19 · TS · Tailwind v4 · booking API | Single-page |
+| 13 | [carolina-lawn-enhancement](./carolina-lawn-enhancement) | **https://carolina-lawn-enhancement-pi.vercel.app** | Vite · React 19 · TS · Tailwind v4 | Single-page |
+| 14 | [j-n-son-landscaping-concord-nc-lawn-n-hardscaping](./j-n-son-landscaping-concord-nc-lawn-n-hardscaping) | **https://j-n-son-landscaping-concord-nc-lawn.vercel.app** | Vite · React 19 · TS · Tailwind v4 | Single-page |
+| 15 | [jp-lawn-and-landscaping](./jp-lawn-and-landscaping) | **https://jp-lawn-and-landscaping.vercel.app** | Vite · React 19 · TS · Tailwind v4 · booking API | Single-page |
 
 All demos are hosted on Vercel and served over HTTPS from Vistaran Tech's team scope
 (`jay-shahs-projects-ecf58304`).
@@ -141,8 +145,51 @@ Static `index.html` — the fastest possible load with no build step.
 ### 12. vasquez-landcare-inc
 > Client site — Vasquez Landcare Inc (landcare & landscaping).
 
-**All six client sites share one architecture** — a single-page marketing site plus a
-serverless `api/` layer that offers appointment booking backed by Google Calendar:
+### 13. carolina-lawn-enhancement
+> Client site — Carolina Lawn Enhancement (landscaping, lawn maintenance & sod, Charlotte NC). Est. 1988.
+
+Vite + React 19 + TS + Tailwind v4. Booking is **entirely client-side**: the appointment is
+saved to `localStorage` and the visitor is handed a prefilled Google Calendar link plus an
+`.ics` download — no server, no API key, nothing to configure. Also ships a sod & yard cost
+calculator and a before/after transformation gallery.
+
+- **Folder:** `carolina-lawn-enhancement/`
+- **Demo:** https://carolina-lawn-enhancement-pi.vercel.app
+
+### 14. j-n-son-landscaping-concord-nc-lawn-n-hardscaping
+> Client site — J & Son Landscaping (lawn care, brick patios, retaining walls & tree work, Concord NC).
+
+Vite + React 19 + TS + Tailwind v4. Before/after slider, project gallery, service-area
+checker and sod calculator. `ImageFallback` guarantees no broken images. Enquiries hand off
+to call / WhatsApp / mailto — no backend.
+
+- **Folder:** `j-n-son-landscaping-concord-nc-lawn-n-hardscaping/`
+- **Demo:** https://j-n-son-landscaping-concord-nc-lawn.vercel.app
+
+### 15. jp-lawn-and-landscaping
+> Client site — JP Lawn and Landscaping (lawn care, landscaping, paver patios & sod, Kannapolis NC).
+
+Vite + React 19 + TS + Tailwind v4. Booking works client-side (`localStorage` + Google
+Calendar / Outlook / `.ics` links) and *optionally* POSTs to a same-origin serverless
+endpoint, wrapped in a `try/catch` so the UI never depends on it:
+
+- `api/appointments/status.js` — health/contact probe.
+- `api/appointments/slots.js` — the four bookable time windows.
+- `api/appointments/book.js` — accepts a booking; `400` on a payload missing `date`/`slot`,
+  `405` on non-POST.
+
+These were originally dev-only Vite middleware in `vite.config.ts`, so the routes worked in
+`npm run dev` and 404'd in production; they are now real functions.
+
+- **Folder:** `jp-lawn-and-landscaping/`
+- **Demo:** https://jp-lawn-and-landscaping.vercel.app
+
+### Client-site architectures
+
+Two patterns, chosen per project:
+
+**1. Google Calendar backed (six original client sites)** — a single-page marketing site plus
+a serverless `api/` layer:
 
 - `api/appointments/status.js` — reports whether live booking is configured.
 - `api/appointments/slots.js` — free/bookable slots for a date, computed in the
@@ -158,10 +205,15 @@ environment variables, never in the repo.
 - **Folders:** `aguilars-hardscape-and-concrete/`, `cab-lawn-care/`,
   `landscaping-and-tree-service-solutions/`, `mnj-tree-services/`,
   `union-lawn-services-llc/`, `vasquez-landcare-inc/`
-- **Mirrors:** `vistaran/<name>` on GitHub (private)
 - **Booking env vars:** `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`,
   `GOOGLE_CALENDAR_ID`, `BUSINESS_TIMEZONE` (optional: `BOOKING_SLOT_MINUTES`,
   `BOOKING_START_HOUR`, `BOOKING_END_HOUR`). See each project's `.env.example`.
+
+**2. Fully client-side (the three newest client sites)** — `carolina-lawn-enhancement`,
+`j-n-son-landscaping-concord-nc-lawn-n-hardscaping` and `jp-lawn-and-landscaping` need **no
+environment variables and no backend**. The appointment is stored in the browser and the
+visitor is given a Google Calendar / Outlook / `.ics` handoff, so these deploy as pure
+static builds and cannot break when a credential expires.
 
 ---
 
@@ -177,6 +229,9 @@ website-templates/
 ├── pani-puri-masala/                      # static single-page
 ├── aguilars-hardscape-and-concrete/       # client site — Vite + booking API
 ├── cab-lawn-care/                         # client site — Vite + booking API
+├── carolina-lawn-enhancement/             # client site — Vite, client-side booking
+├── j-n-son-landscaping-concord-nc-lawn-n-hardscaping/  # client site — Vite, client-side booking
+├── jp-lawn-and-landscaping/               # client site — Vite + api/ booking functions
 ├── landscaping-and-tree-service-solutions/# client site — Vite + booking API
 ├── mnj-tree-services/                     # client site — Vite + booking API
 ├── union-lawn-services-llc/               # client site — Vite + booking API
@@ -205,9 +260,14 @@ Push-to-deploy is therefore handled by a small poller that runs every 5 minutes:
 
 - **Script:** `website_autodeploy.py` (Hermes cron job `18bed2ac9be9`)
 - It watches **this monorepo's `main`**. When the SHA moves it diffs the changed paths,
-  and redeploys every client-site folder that was touched.
-- It also watches each `vistaran/<name>` mirror, so pushes made straight to those repos
-  still deploy.
+  and redeploys every client-site folder that was touched. The watched folders are:
+  `cab-lawn-care`, `landscaping-and-tree-service-solutions`, `mnj-tree-services`,
+  `vasquez-landcare-inc`, `aguilars-hardscape-and-concrete`, `union-lawn-services-llc`,
+  `carolina-lawn-enhancement`, `j-n-son-landscaping-concord-nc-lawn-n-hardscaping`,
+  `jp-lawn-and-landscaping`.
+- It does **not** watch the `vistaran/<name>` mirrors — they no longer exist. Deploys build
+  from the local folders in this repo, so honouring a mirror-only push would quietly ship
+  this repo's code under that push, which is worse than not deploying.
 - Vercel builds remotely, so nothing is built locally.
 - A remote SHA is recorded only after the deploy is accepted, so a failure is retried on
   the next tick rather than being silently swallowed.
@@ -244,7 +304,7 @@ npm run dev          # http://localhost:3000
 npm run build        # production build check
 ```
 
-**Vite projects** (`new-grass-life-llc` and all six client sites):
+**Vite projects** (`new-grass-life-llc` and all nine client sites):
 
 ```bash
 cd new-grass-life-llc
@@ -296,6 +356,15 @@ git push origin main
 ## Conventions
 
 - **Mobile-first** responsive layouts — checked at 375 / 768 / 1024 / 1440 px.
+- **Never give both sides of a header `shrink-0`.** A long brand wordmark in a `shrink-0`
+  flex zone plus a `shrink-0` action cluster cannot yield, so the right-hand buttons push
+  past the viewport. Symptom: `document.documentElement.scrollWidth > clientWidth` at 375px
+  (carolina-lawn-enhancement overflowed by 16px this way). Keep the brand zone `min-w-0`
+  with `truncate` on the name and let the actions stay `shrink-0`.
+- **Check `scrollWidth === clientWidth` at 375px, not just a screenshot.** Chrome enforces a
+  500px minimum window width, so `--window-size=375` in headless renders a 375px *crop* of a
+  500px layout and looks broken when it isn't. Measure with CDP
+  `Emulation.setDeviceMetricsOverride` or Chrome DevTools device mode.
 - **SEO by default** — descriptive `<title>`, meta description, Open Graph tags, semantic headings.
 - **No placeholder content** shipped: real business name, contact details and imagery.
 - Icons from **Lucide** (never emoji), motion kept subtle and 150–400 ms.
