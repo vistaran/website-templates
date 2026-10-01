@@ -76,3 +76,12 @@ Needs client input before launch:
 
 1. Contact details were another company's. The source ZIP reused `info@mjtreeservice.com` and the matching Facebook/Instagram handles (M&J Tree Service). They now hold neutral placeholders (`info@example.com`, empty socials - the footer hides the icon row) so no visitor is misdirected. Supply the real ones and wire them in.
 2. The phone number `+1 (743) 217-6176` has a **743** area code, which is north-east Ohio, not Charlotte NC. Confirm it is correct.
+
+---
+
+## Where this project lives
+
+This folder is part of the [`website-templates`](https://github.com/vistaran/website-templates)
+monorepo, alongside Vistaran Tech's other sites. Pushing to that repository's `main`
+branch mirrors the change to production automatically - see the monorepo README for how
+the auto-deploy works.
