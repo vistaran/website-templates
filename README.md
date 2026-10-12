@@ -17,7 +17,7 @@ no longer exist; nothing pushes to them.)
 | Kind | Folders |
 |------|---------|
 | **Business templates** | `interior-design-website`, `js-dye-chem`, `lab-equipments`, `new-grass-life-llc`, `new-sonal-travels`, `pani-puri-masala` |
-| **Client sites** | `aguilars-hardscape-and-concrete`, `cab-lawn-care`, `carolina-lawn-enhancement`, `g-and-t-lawn-care`, `j-n-son-landscaping-concord-nc-lawn-n-hardscaping`, `jp-lawn-and-landscaping`, `landscaping-and-tree-service-solutions`, `mnj-tree-services`, `union-lawn-services-llc`, `vasquez-landcare-inc` |
+| **Client sites** | `aguilars-hardscape-and-concrete`, `cab-lawn-care`, `carolina-lawn-enhancement`, `g-and-t-lawn-care`, `j-n-son-landscaping-concord-nc-lawn-n-hardscaping`, `jp-lawn-and-landscaping`, `landscaping-and-tree-service-solutions`, `mecha-civil-designs`, `mnj-tree-services`, `union-lawn-services-llc`, `vasquez-landcare-inc` |
 
 Each folder is self-contained: its own `package.json`, build config, `vercel.json`,
 `.npmrc` and `.gitignore`. **No folder references another folder, and no config contains an
@@ -56,6 +56,7 @@ production.
 | 14 | [j-n-son-landscaping-concord-nc-lawn-n-hardscaping](./j-n-son-landscaping-concord-nc-lawn-n-hardscaping) | **https://j-n-son-landscaping-concord-nc-lawn.vercel.app** | Vite · React 19 · TS · Tailwind v4 | Single-page |
 | 15 | [jp-lawn-and-landscaping](./jp-lawn-and-landscaping) | **https://jp-lawn-and-landscaping.vercel.app** | Vite · React 19 · TS · Tailwind v4 · booking API | Single-page |
 | 16 | [g-and-t-lawn-care](./g-and-t-lawn-care) | **https://g-and-t-lawn-care.vercel.app** | Vite · React 19 · TS · Tailwind v4 · booking API | Single-page |
+| 17 | [mecha-civil-designs](./mecha-civil-designs) | **https://mecha-civil-designs.vercel.app** | Vite · React 19 · TS · Tailwind v4 | Single-page |
 
 All demos are hosted on Vercel and served over HTTPS from Vistaran Tech's team scope
 (`jay-shahs-projects-ecf58304`).
@@ -198,6 +199,37 @@ crew's inbox via a prefilled `mailto`.
 - **Phone:** +1 (716) 462-3657 — area code 716 is Buffalo, NY while the business is in
   Gastonia NC. `phone` and `phoneRaw` agree, so every `tel:` link dials what is shown;
   confirm the number before a custom domain.
+
+### 17. mecha-civil-designs
+> Client site — Mecha Civil Designs (interior design & civil execution studio, Chandkheda, Ahmedabad).
+
+Vite + React 19 + TS + Tailwind v4. Arrived as a Google AI Studio ZIP that **could not build**:
+`index.html` loaded two entry files that do not exist in the archive, `package.json` carried **no
+dependencies at all**, and `vite.config.ts` had `plugins: []`. Restored the entry (`src/main.tsx`),
+the real dependency set and the React + Tailwind v4 plugins, then fixed three genuine defects:
+
+- **The intended fonts never rendered.** Tailwind v4's default `--font-serif` captured all 51
+  `font-serif` usages (`ui-serif` → Georgia/Times), outranking the `@layer base` heading rule, and
+  the Google fonts sat `unloaded`. Declaring `--font-serif` / `--font-sans` in `@theme` loads
+  Cormorant Garamond + Plus Jakarta Sans.
+- **The mobile header overflowed.** The brand zone was `shrink-0` *and* `whitespace-nowrap` while
+  the action cluster was also `shrink-0`, so content measured 423px inside a 370px header — the
+  hamburger toggle sat entirely off-screen at 375px, and `html{overflow-x:hidden}` hid the
+  evidence (`scrollWidth === clientWidth` still held). Brand is now `min-w-0` + `truncate`, the
+  long subtitle is hidden below `sm`, and the CTA reads "Book" on mobile.
+- **Leads silently vanished.** The confirmation step said *"Appointment Reserved — Thank You"*
+  while nothing left the browser (`localStorage` only). It now reads *"Final Step — Send Your
+  Request"* and the WhatsApp button hands the studio the **full** request (ref, contact, scope,
+  budget, slot, address, notes) via `wa.me`. There is no backend; the WhatsApp send is the sink.
+
+`tel:` links in three components used `replace(/\\s+/g, '')` — a literal double backslash that
+matched nothing — now `/\s+/`.
+
+- **Folder:** `mecha-civil-designs/`
+- **Demo:** https://mecha-civil-designs.vercel.app
+- **Contact:** +91 97259 35504 · connect@mechacivildesigns.com
+- **Open item:** the hero advertises a **"4.9★ Google"** rating — confirm with the client that this
+  is a real rating before a custom domain goes live.
 
 ### Client-site architectures
 
