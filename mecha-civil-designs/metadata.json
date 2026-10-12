@@ -1,0 +1,6 @@
+{
+  "name": "Mecha Civil Designs",
+  "description": "Premier interior designing and architectural civil execution firm in Ahmedabad. Featuring a professional portfolio gallery, spatial cost estimator, and client consultation booking system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
