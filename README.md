@@ -17,7 +17,7 @@ no longer exist; nothing pushes to them.)
 | Kind | Folders |
 |------|---------|
 | **Business templates** | `interior-design-website`, `js-dye-chem`, `lab-equipments`, `new-grass-life-llc`, `new-sonal-travels`, `pani-puri-masala` |
-| **Client sites** | `aguilars-hardscape-and-concrete`, `cab-lawn-care`, `carolina-lawn-enhancement`, `g-and-t-lawn-care`, `j-n-son-landscaping-concord-nc-lawn-n-hardscaping`, `jp-lawn-and-landscaping`, `landscaping-and-tree-service-solutions`, `mecha-civil-designs`, `mnj-tree-services`, `union-lawn-services-llc`, `vasquez-landcare-inc` |
+| **Client sites** | `aguilars-hardscape-and-concrete`, `cab-lawn-care`, `carolina-lawn-enhancement`, `g-and-t-lawn-care`, `j-n-son-landscaping-concord-nc-lawn-n-hardscaping`, `jp-lawn-and-landscaping`, `landscaping-and-tree-service-solutions`, `mecha-civil-designs`, `mnj-tree-services`, `trikha-interiors`, `union-lawn-services-llc`, `vasquez-landcare-inc` |
 
 Each folder is self-contained: its own `package.json`, build config, `vercel.json`,
 `.npmrc` and `.gitignore`. **No folder references another folder, and no config contains an
@@ -57,6 +57,7 @@ production.
 | 15 | [jp-lawn-and-landscaping](./jp-lawn-and-landscaping) | **https://jp-lawn-and-landscaping.vercel.app** | Vite · React 19 · TS · Tailwind v4 · booking API | Single-page |
 | 16 | [g-and-t-lawn-care](./g-and-t-lawn-care) | **https://g-and-t-lawn-care.vercel.app** | Vite · React 19 · TS · Tailwind v4 · booking API | Single-page |
 | 17 | [mecha-civil-designs](./mecha-civil-designs) | **https://mecha-civil-designs.vercel.app** | Vite · React 19 · TS · Tailwind v4 | Single-page |
+| 18 | [trikha-interiors](./trikha-interiors) | **https://trikha-interiors.vercel.app** | Vite · React 19 · TS · Tailwind v4 | Single-page |
 
 All demos are hosted on Vercel and served over HTTPS from Vistaran Tech's team scope
 (`jay-shahs-projects-ecf58304`).
@@ -231,6 +232,42 @@ matched nothing — now `/\s+/`.
 - **Open item:** the hero advertises a **"4.9★ Google"** rating — confirm with the client that this
   is a real rating before a custom domain goes live.
 
+### 18. trikha-interiors
+> Client site — Trikha Interiors (architectural interior design studio, Shahibag, Ahmedabad).
+
+Vite + React 19 + TS + Tailwind v4. Arrived as a Google AI Studio ZIP. `vercel.json`, the
+pinned `legacy-peer-deps` `.npmrc` (the export pins Vite 8 / TS 7 / `@vitejs/plugin-react` 6,
+which npm will not resolve otherwise), SEO/OG tags with a self-hosted `og.jpg`, README and
+`metadata.json` were added, and unused export deps (`@google/genai`, `express`, `dotenv`,
+`motion`) removed. Three real defects were fixed:
+
+- **A dead gallery image.** `photo-1556911221-5066928e7eb8` returns Unsplash's 29-byte 404
+  body — a broken tile in the Timeless Kitchen project. Replaced with a verified image.
+- **Two forms that faked success.** The contact form and the journal sign-up each called
+  `setSubmitted(true)` and nothing else, so a visitor saw "Message Received" for a message
+  that went nowhere. Both now hand the enquiry to the studio inbox through a prefilled
+  `mailto:`, with the email and phone repeated as a fallback on the success panel.
+- **The admin dashboard was dead code.** `AdminDashboard` plus `AvailabilitySettings`,
+  `IntegrationsModal` and `AppointmentDetailsModal` (~1,450 lines) were fully built and
+  never rendered by `App.tsx`. Wired to a `#admin` hash route.
+
+**Booking is entirely client-side** — `localStorage` seeded from `src/data/initialData.ts`.
+A booking made on one device is not visible from another, nothing is emailed and no payment
+is taken; the confirmation screen says so rather than implying otherwise. Real bookings need
+the PostgreSQL schema in `src/services/integrationStatus.ts` plus a server-side Stripe
+session. The `#admin` passcode is a client-side demo gate, not security (its session key is
+still `ao_admin_auth` from a previous export).
+
+- **Folder:** `trikha-interiors/`
+- **Demo:** https://trikha-interiors.vercel.app
+- **Contact:** +91 98250 12345 · contact@trikhainteriors.com
+- **Open item:** the copy contradicts itself. Home/Services quote `$999`–`$4999` and the
+  seed budgets are USD while the booking wizard quotes `₹999` and `₹35 Lakhs+`; every
+  portfolio project is in New York / Connecticut / California while the studio, JSON-LD
+  address and phone are Ahmedabad; and the hero stat block says "Satellite, Ahmedabad ·
+  Titanium City Center" against a Shahibag studio address. Confirm positioning with the
+  client before a custom domain.
+
 ### Client-site architectures
 
 Two patterns, chosen per project:
@@ -282,6 +319,7 @@ website-templates/
 ├── jp-lawn-and-landscaping/               # client site — Vite + api/ booking functions
 ├── landscaping-and-tree-service-solutions/# client site — Vite + booking API
 ├── mnj-tree-services/                     # client site — Vite + booking API
+├── trikha-interiors/                      # client site — Vite, client-side booking + admin
 ├── union-lawn-services-llc/               # client site — Vite + booking API
 ├── vasquez-landcare-inc/                  # client site — Vite + booking API
 ├── .gitignore                             # ignores node_modules, .next, dist, .vercel, .env*
@@ -312,7 +350,7 @@ Push-to-deploy is therefore handled by a small poller that runs every 5 minutes:
   `cab-lawn-care`, `landscaping-and-tree-service-solutions`, `mnj-tree-services`,
   `vasquez-landcare-inc`, `aguilars-hardscape-and-concrete`, `union-lawn-services-llc`,
   `carolina-lawn-enhancement`, `j-n-son-landscaping-concord-nc-lawn-n-hardscaping`,
-  `jp-lawn-and-landscaping`.
+  `jp-lawn-and-landscaping`, `mecha-civil-designs`, `trikha-interiors`.
 - It does **not** watch the `vistaran/<name>` mirrors — they no longer exist. Deploys build
   from the local folders in this repo, so honouring a mirror-only push would quietly ship
   this repo's code under that push, which is worse than not deploying.
@@ -352,7 +390,7 @@ npm run dev          # http://localhost:3000
 npm run build        # production build check
 ```
 
-**Vite projects** (`new-grass-life-llc` and all nine client sites):
+**Vite projects** (`new-grass-life-llc` and the client sites):
 
 ```bash
 cd new-grass-life-llc
