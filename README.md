@@ -58,6 +58,7 @@ production.
 | 16 | [g-and-t-lawn-care](./g-and-t-lawn-care) | **https://g-and-t-lawn-care.vercel.app** | Vite · React 19 · TS · Tailwind v4 · booking API | Single-page |
 | 17 | [mecha-civil-designs](./mecha-civil-designs) | **https://mecha-civil-designs.vercel.app** | Vite · React 19 · TS · Tailwind v4 | Single-page |
 | 18 | [trikha-interiors](./trikha-interiors) | **https://trikha-interiors.vercel.app** | Vite · React 19 · TS · Tailwind v4 | Single-page |
+| 19 | [laabh-ac-services](./laabh-ac-services) | **https://laabh-ac-services.vercel.app** | Next.js 16 · React 19 · Prisma · PostgreSQL | Multi-page + admin console |
 
 All demos are hosted on Vercel and served over HTTPS from Vistaran Tech's team scope
 (`jay-shahs-projects-ecf58304`).
@@ -267,6 +268,43 @@ still `ao_admin_auth` from a previous export).
   address and phone are Ahmedabad; and the hero stat block says "Satellite, Ahmedabad ·
   Titanium City Center" against a Shahibag studio address. Confirm positioning with the
   client before a custom domain.
+
+### 19. laabh-ac-services
+> Client site — Labh Air Conditioning Services (AC repair, installation and servicing, Ahmedabad).
+
+Next.js 16 (App Router) + React 19 + Prisma + PostgreSQL (Supabase). The first genuinely
+**full-stack** site in this repo rather than a static template: marketing site, DB-backed
+service pages, an online booking flow, a public booking-tracker, and an internal admin
+console (bookings, customers, technicians, services, WhatsApp, settings) behind JWT auth.
+Outbound notifications go through the Meta WhatsApp Cloud API, with a direct `wa.me`
+handoff wherever a credential is missing.
+
+Arrived as a ZIP whose `.env` assumed `localhost:3005`. Deployed with all 15 environment
+variables set on the Vercel project (production/preview/development), `NEXT_PUBLIC_APP_URL`
+repointed at the live alias. `postinstall` runs `prisma generate`; the Supabase database was
+already migrated and seeded (1 admin, 8 services, 3 technicians, business settings).
+
+Two **unauthenticated endpoints were publishing secrets and sending messages**; both were
+closed before handover:
+
+- `GET /api/settings` returned `businessSettings` — including the **WhatsApp Cloud API
+  token in plaintext** — to any anonymous caller. Now 401 without an admin session.
+  Verified live both ways: anonymous → 401, admin cookie → 200.
+- `POST`/`GET /api/reminders/process` was anonymous while `WHATSAPP_MOCK_MODE=false`, so
+  anyone could trigger repeated billable messages to the vendor and customers. Now requires
+  an admin session or `Authorization: Bearer $CRON_SECRET` (secret generated and set on all
+  three targets).
+
+Also rewritten: `.env.example` (it documented MySQL while the schema is PostgreSQL, and
+named the `WHATSAPP_*` variants the code deprioritises) and a real README replacing the
+create-next-app boilerplate. Local build is clean — 26 routes, TypeScript passing.
+
+- **Folder:** `laabh-ac-services/`
+- **Demo:** https://laabh-ac-services.vercel.app
+- **Admin:** `/admin/login` · **Booking:** `/book` · **Tracking:** `/track`
+- **Open item:** the seeded admin password is the placeholder `admin123` and `/admin/login`
+  pre-fills it in the form. Change the password and strip the prefill before the client
+  gets the console.
 
 ### Client-site architectures
 

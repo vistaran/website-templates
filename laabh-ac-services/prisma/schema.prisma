@@ -1,0 +1,212 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id           Int                    @id @default(autoincrement())
+  email        String                 @unique @db.VarChar(191)
+  passwordHash String                 @db.VarChar(255)
+  name         String                 @db.VarChar(191)
+  role         String                 @default("ADMIN") @db.VarChar(50)
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
+  notes        BookingNote[]
+  statusLogs   BookingStatusHistory[]
+
+  @@map("users")
+}
+
+model Customer {
+  id        Int               @id @default(autoincrement())
+  name      String            @db.VarChar(191)
+  phone     String            @db.VarChar(30)
+  email     String?           @db.VarChar(191)
+  notes     String?           @db.Text
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  addresses CustomerAddress[]
+  bookings  Booking[]
+
+  @@index([phone])
+  @@map("customers")
+}
+
+model CustomerAddress {
+  id          Int       @id @default(autoincrement())
+  customerId  Int
+  customer    Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  addressLine String    @db.Text
+  landmark    String?   @db.VarChar(255)
+  city        String    @default("Ahmedabad") @db.VarChar(100)
+  pincode     String?   @db.VarChar(20)
+  isDefault   Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  bookings    Booking[]
+
+  @@index([customerId])
+  @@map("customer_addresses")
+}
+
+model Technician {
+  id           Int       @id @default(autoincrement())
+  name         String    @db.VarChar(191)
+  phone        String    @db.VarChar(30)
+  email        String?   @db.VarChar(191)
+  skills       String?   @db.VarChar(255)
+  status       String    @default("ACTIVE") @db.VarChar(50)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  bookings     Booking[]
+
+  @@map("technicians")
+}
+
+model Service {
+  id                Int       @id @default(autoincrement())
+  slug              String    @unique @db.VarChar(191)
+  name              String    @db.VarChar(191)
+  shortDescription  String    @db.Text
+  fullDescription   String?   @db.Text
+  features          String?   @db.Text
+  faqs              String?   @db.Text
+  startingPrice     Decimal?  @db.Decimal(10, 2)
+  estimatedDuration String?   @db.VarChar(100)
+  imageUrl          String?   @db.VarChar(500)
+  icon              String?   @db.VarChar(100)
+  isActive          Boolean   @default(true)
+  sortOrder         Int       @default(0)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  bookings          Booking[]
+
+  @@index([slug])
+  @@index([isActive])
+  @@map("services")
+}
+
+model Booking {
+  id                 Int                    @id @default(autoincrement())
+  bookingRef         String                 @unique @db.VarChar(50)
+  customerId         Int
+  customer           Customer               @relation(fields: [customerId], references: [id])
+  customerAddressId  Int?
+  customerAddress    CustomerAddress?       @relation(fields: [customerAddressId], references: [id], onDelete: SetNull)
+  serviceId          Int
+  service            Service                @relation(fields: [serviceId], references: [id])
+  technicianId       Int?
+  technician         Technician?            @relation(fields: [technicianId], references: [id], onDelete: SetNull)
+  acType             String?                @db.VarChar(50)
+  unitCount          Int                    @default(1)
+  serviceAddress     String                 @db.Text
+  preferredDate      DateTime               @db.Date
+  preferredTimeSlot  String                 @db.VarChar(100)
+  problemDescription String?                @db.Text
+  status             String                 @default("PENDING") @db.VarChar(50)
+  totalAmount        Decimal?               @db.Decimal(10, 2)
+  cancellationReason String?                @db.Text
+  createdAt          DateTime               @default(now())
+  updatedAt          DateTime               @updatedAt
+  statusHistory      BookingStatusHistory[]
+  notes              BookingNote[]
+  notifications      Notification[]
+  reminders          Reminder[]
+
+  @@index([bookingRef])
+  @@index([customerId])
+  @@index([serviceId])
+  @@index([technicianId])
+  @@index([status])
+  @@index([preferredDate])
+  @@map("bookings")
+}
+
+model BookingStatusHistory {
+  id              Int      @id @default(autoincrement())
+  bookingId       Int
+  booking         Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  oldStatus       String?  @db.VarChar(50)
+  newStatus       String   @db.VarChar(50)
+  changedByUserId Int?
+  changedByUser   User?    @relation(fields: [changedByUserId], references: [id], onDelete: SetNull)
+  changedByName   String   @default("System") @db.VarChar(191)
+  reason          String?  @db.Text
+  createdAt       DateTime @default(now())
+
+  @@index([bookingId])
+  @@map("booking_status_histories")
+}
+
+model BookingNote {
+  id         Int      @id @default(autoincrement())
+  bookingId  Int
+  booking    Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  note       String   @db.Text
+  authorId   Int?
+  author     User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  authorName String   @default("Admin") @db.VarChar(191)
+  createdAt  DateTime @default(now())
+
+  @@index([bookingId])
+  @@map("booking_notes")
+}
+
+model Notification {
+  id                Int       @id @default(autoincrement())
+  bookingId         Int?
+  booking           Booking?  @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+  recipientPhone    String    @db.VarChar(30)
+  recipientType     String    @db.VarChar(50)
+  channel           String    @default("WHATSAPP") @db.VarChar(50)
+  templateName      String?   @db.VarChar(100)
+  messageContent    String    @db.Text
+  status            String    @default("PENDING") @db.VarChar(50)
+  whatsappMessageId String?   @db.VarChar(191)
+  errorMessage      String?   @db.Text
+  sentAt            DateTime?
+  createdAt         DateTime  @default(now())
+
+  @@index([bookingId])
+  @@index([recipientPhone])
+  @@index([status])
+  @@map("notifications")
+}
+
+model Reminder {
+  id           Int       @id @default(autoincrement())
+  bookingId    Int
+  booking      Booking   @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  scheduledFor DateTime
+  reminderType String    @default("UPCOMING_APPOINTMENT_24H") @db.VarChar(100)
+  status       String    @default("PENDING") @db.VarChar(50)
+  sentAt       DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([bookingId])
+  @@index([scheduledFor])
+  @@index([status])
+  @@map("reminders")
+}
+
+model BusinessSettings {
+  id                         Int      @id @default(autoincrement())
+  businessName               String   @default("Labh Air Conditioning Services") @db.VarChar(191)
+  vendorPhone                String   @default("918141434327") @db.VarChar(30)
+  vendorEmail                String   @default("contact@laabhservices.com") @db.VarChar(191)
+  address                    String?  @db.Text
+  whatsappCloudApiToken      String?  @db.Text
+  whatsappPhoneNumberId      String?  @db.VarChar(100)
+  whatsappBusinessAccountId  String?  @db.VarChar(100)
+  mockModeEnabled            Boolean  @default(true)
+  createdAt                  DateTime @default(now())
+  updatedAt                  DateTime @updatedAt
+
+  @@map("business_settings")
+}
