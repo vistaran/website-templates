@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import TrackerClient from './TrackerClient';
 
 export const metadata = {
-  title: 'Track AC Service Booking | Labh Air Conditioning Services',
+  title: 'Track Your Booking',
   description: 'Check the real-time status, technician assignment, and arrival timeline for your AC service booking.',
 };
 

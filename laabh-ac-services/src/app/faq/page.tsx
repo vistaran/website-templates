@@ -4,13 +4,13 @@ import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import FAQAccordion from '@/components/FAQAccordion';
 import { ALL_FAQS } from '@/lib/faqData';
-import { SITE_URL } from '@/lib/seo';
+import { SITE_URL, OG_IMAGE } from '@/lib/seo';
 import { HelpCircle, Sparkles, MessageSquare, PhoneCall, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { getFormattedVendorPhone, getWhatsAppVendorUrl, getTelVendorUrl } from '@/lib/config';
 
 export const metadata: Metadata = {
-  title: 'AC Service & Repair FAQs Ahmedabad | Labh Air Conditioning Services',
+  title: 'AC Service & Repair FAQs',
   description:
     'Got questions about AC jet cleaning, split AC installation, gas refilling, cooling problems, or pricing in Ahmedabad? Find detailed answers from certified HVAC technicians.',
   keywords: [
@@ -30,6 +30,7 @@ export const metadata: Metadata = {
       'Clear, honest answers to all your air conditioner questions: jet wash, gas leakage, split installation, and pricing.',
     url: `${SITE_URL}/faq`,
     type: 'website',
+    images: [OG_IMAGE],
   },
 };
 

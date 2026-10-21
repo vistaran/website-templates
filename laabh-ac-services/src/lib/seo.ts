@@ -3,6 +3,15 @@ import { getCleanVendorPhone, getFormattedVendorPhone } from './config';
 export const SITE_URL =
   process.env.NEXT_PUBLIC_APP_URL || 'https://laabh-ac-services.vercel.app';
 
+/** Shared Open Graph image. A child page replaces the parent's openGraph object outright,
+ *  so each one must repeat this or its shares render with no preview. */
+export const OG_IMAGE = {
+  url: '/images/hero_banner.jpg',
+  width: 1200,
+  height: 630,
+  alt: 'Labh Air Conditioning Services - AC repair, installation and servicing in Ahmedabad',
+};
+
 export const BUSINESS_INFO = {
   name: 'Labh Air Conditioning Services',
   legalName: 'Labh Air Conditioning Services LLP',

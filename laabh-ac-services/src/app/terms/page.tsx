@@ -4,9 +4,10 @@ import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import { SITE_URL } from '@/lib/seo';
 import { ShieldCheck } from 'lucide-react';
+import { getFormattedVendorPhone } from '@/lib/config';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | Labh Air Conditioning Services',
+  title: 'Terms of Service & Warranty',
   description:
     'Terms of service, warranty guidelines, 30-day guarantee policies, and customer service conditions for Labh Air Conditioning Services in Ahmedabad.',
   alternates: {
@@ -94,7 +95,7 @@ export default function TermsPage() {
               For any questions regarding our terms or warranty support, contact us at:<br />
               <strong>Labh Air Conditioning Services</strong><br />
               Shop No. 12, Commercial Complex, Bodakdev, SG Highway, Ahmedabad, Gujarat 380054<br />
-              Email: contact@laabhservices.com • Phone: +91 87588 66744
+              Email: contact@laabhservices.com • Phone: {getFormattedVendorPhone()}
             </p>
           </div>
         </section>

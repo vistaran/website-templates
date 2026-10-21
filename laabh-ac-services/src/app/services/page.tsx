@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import StructuredData from '@/components/StructuredData';
 import prisma from '@/lib/prisma';
-import { SITE_URL } from '@/lib/seo';
+import { SITE_URL, OG_IMAGE } from '@/lib/seo';
 import { getFormattedVendorPhone, getWhatsAppVendorUrl, getTelVendorUrl } from '@/lib/config';
 import {
   Sparkles,
@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'All AC Services & Repairs in Ahmedabad | Labh Air Conditioning Services',
+  title: 'All AC Services & Repairs',
   description:
     'Comprehensive air conditioning services in Ahmedabad: split AC installation, hydro-jet power wash, concealed piping, capacitor/PCB repair, and gas refilling. Transparent pricing and 30-day guarantee.',
   keywords: [
@@ -41,6 +41,7 @@ export const metadata: Metadata = {
       'Certified residential and commercial air conditioning installation, jet cleaning, and repair solutions across Ahmedabad.',
     url: `${SITE_URL}/services`,
     type: 'website',
+    images: [OG_IMAGE],
   },
 };
 

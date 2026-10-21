@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import StructuredData from '@/components/StructuredData';
-import { SITE_URL, getLocalBusinessSchema } from '@/lib/seo';
+import { SITE_URL, getLocalBusinessSchema, OG_IMAGE } from '@/lib/seo';
 import { getFormattedVendorPhone, getWhatsAppVendorUrl, getTelVendorUrl } from '@/lib/config';
 import {
   Sparkles,
@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us | Labh Air Conditioning Services Ahmedabad',
+  title: 'About Us',
   description:
     'Discover Ahmedabad’s leading HVAC air conditioning repair and installation specialists. Over 12,000+ ACs serviced with certified technicians, genuine OEM spares, and 30-day warranty.',
   keywords: [
@@ -41,6 +41,7 @@ export const metadata: Metadata = {
       'Precision cooling care, certified HVAC technicians, and 30-day warranty across Ahmedabad & Gandhinagar.',
     url: `${SITE_URL}/about`,
     type: 'website',
+    images: [OG_IMAGE],
   },
 };
 

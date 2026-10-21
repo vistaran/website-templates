@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import StructuredData from '@/components/StructuredData';
-import { SITE_URL, getLocalBusinessSchema } from '@/lib/seo';
+import { SITE_URL, getLocalBusinessSchema, OG_IMAGE } from '@/lib/seo';
 import { getFormattedVendorPhone, getCleanVendorPhone, getWhatsAppVendorUrl, getTelVendorUrl } from '@/lib/config';
 import {
   MapPin,
@@ -20,9 +20,9 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Contact Labh AC Services Ahmedabad | Doorstep Booking & Support',
+  title: 'Contact & Doorstep Booking',
   description:
-    'Contact Labh Air Conditioning Services in Ahmedabad. Reach our central workshop at Bodakdev, SG Highway or call +91 87588 66744 for immediate AC repair & booking dispatch.',
+    `Contact Labh Air Conditioning Services in Ahmedabad. Reach our central workshop at Bodakdev, SG Highway or call ${getFormattedVendorPhone()} for immediate AC repair & booking dispatch.`,
   keywords: [
     'Contact Labh AC Services',
     'AC repair contact number Ahmedabad',
@@ -36,9 +36,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact Labh AC Services | Ahmedabad Helpline',
     description:
-      'Doorstep AC service dispatch across Ahmedabad & Gandhinagar. Call +91 87588 66744 or chat on WhatsApp.',
+      `Doorstep AC service dispatch across Ahmedabad & Gandhinagar. Call ${getFormattedVendorPhone()} or chat on WhatsApp.`,
     url: `${SITE_URL}/contact`,
     type: 'website',
+    images: [OG_IMAGE],
   },
 };
 

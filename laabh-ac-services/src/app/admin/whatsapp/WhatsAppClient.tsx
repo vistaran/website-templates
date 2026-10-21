@@ -45,7 +45,7 @@ export default function WhatsAppClient({
 
   // Test message form
   const [testPhone, setTestPhone] = useState(
-    process.env.NEXT_PUBLIC_VENDOR_PHONE || '918758866744'
+    process.env.NEXT_PUBLIC_VENDOR_PHONE || '918141434327'
   );
   const [testMessage, setTestMessage] = useState(
     'Labh AC Services: WhatsApp Cloud API connectivity verification test message.'

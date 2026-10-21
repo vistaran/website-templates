@@ -17,7 +17,7 @@ export default async function AdminSettingsPage() {
       process.env.VENDOR_WHATSAPP_NUMBER ||
       process.env.NEXT_PUBLIC_VENDOR_PHONE ||
       settings?.vendorPhone ||
-      '918758866744',
+      '918141434327',
     vendorEmail: settings?.vendorEmail || 'contact@laabhservices.com',
     address: settings?.address || 'Shop No. 12, Commercial Complex, Bodakdev, SG Highway, Ahmedabad, Gujarat 380054',
     whatsappCloudApiToken:

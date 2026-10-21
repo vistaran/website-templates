@@ -6,7 +6,7 @@ import { SITE_URL, getLocalBusinessSchema, getWebSiteSchema } from '@/lib/seo';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Labh Air Conditioning Services | Expert AC Repair, Installation & Servicing Ahmedabad',
+    default: 'Labh AC Services Ahmedabad | AC Repair & Installation',
     template: '%s | Labh AC Services Ahmedabad',
   },
   description:

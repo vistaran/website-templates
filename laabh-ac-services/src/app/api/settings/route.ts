@@ -47,7 +47,7 @@ export async function PATCH(req: Request) {
             vendorPhone ||
             process.env.VENDOR_WHATSAPP_NUMBER ||
             process.env.NEXT_PUBLIC_VENDOR_PHONE ||
-            '918758866744',
+            '918141434327',
           vendorEmail: vendorEmail || 'contact@laabhservices.com',
           address,
           whatsappCloudApiToken,

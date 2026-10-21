@@ -5,7 +5,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import { SITE_URL } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Labh Air Conditioning Services',
+  title: 'Privacy Policy',
   description:
     'Privacy policy and customer data handling practices for Labh Air Conditioning Services in Ahmedabad.',
   alternates: {

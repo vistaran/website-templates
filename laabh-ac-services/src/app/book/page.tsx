@@ -6,7 +6,7 @@ import BookingFormClient from './BookingFormClient';
 import { ShieldCheck, Clock, CheckCircle } from 'lucide-react';
 
 export const metadata = {
-  title: 'Book AC Service Online | Labh Air Conditioning Services',
+  title: 'Book AC Service Online',
   description: 'Book instant doorstep AC service, repair, or installation in Ahmedabad with certified technicians.',
 };
 

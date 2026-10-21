@@ -20,7 +20,7 @@ export function getCleanVendorPhone(phone?: string): string {
 }
 
 /**
- * Returns phone formatted for display, e.g. "+91 87588 66744"
+ * Returns phone formatted for display, e.g. "+91 81414 34327"
  */
 export function getFormattedVendorPhone(phone?: string): string {
   const p = getCleanVendorPhone(phone);

@@ -21,7 +21,7 @@ export interface SendWhatsAppParams {
 }
 
 /**
- * Normalizes phone numbers to international format (e.g., 918758866744)
+ * Normalizes phone numbers to international format (e.g., 918141434327)
  */
 export function cleanPhoneNumber(phone: string): string {
   const digits = phone.replace(/\D/g, '');
@@ -302,7 +302,7 @@ export async function notifyVendorNewBooking(booking: {
     process.env.VENDOR_WHATSAPP_NUMBER ||
     process.env.NEXT_PUBLIC_VENDOR_PHONE ||
     settings?.vendorPhone ||
-    '918758866744';
+    '918141434327';
   const formattedDate = new Date(booking.preferredDate).toLocaleDateString('en-IN', {
     day: 'numeric',
     month: 'short',
@@ -367,7 +367,7 @@ export async function notifyCustomerBookingReceived(booking: {
     process.env.VENDOR_WHATSAPP_NUMBER ||
     process.env.NEXT_PUBLIC_VENDOR_PHONE ||
     settings?.vendorPhone ||
-    '+91 87588 66744';
+    '+91 81414 34327';
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3005';
   const trackingLink = `${appUrl}/track?ref=${booking.bookingRef}&phone=${booking.customer.phone}`;
@@ -440,7 +440,7 @@ export async function notifyCustomerBookingConfirmed(booking: {
     process.env.VENDOR_WHATSAPP_NUMBER ||
     process.env.NEXT_PUBLIC_VENDOR_PHONE ||
     settings?.vendorPhone ||
-    '+91 87588 66744';
+    '+91 81414 34327';
 
   const message = [
     `✅ *BOOKING CONFIRMED | Labh AC Services*`,
@@ -518,7 +518,7 @@ export async function notifyCustomerStatusChange(
     process.env.VENDOR_WHATSAPP_NUMBER ||
     process.env.NEXT_PUBLIC_VENDOR_PHONE ||
     settings?.vendorPhone ||
-    '+91 87588 66744';
+    '+91 81414 34327';
 
   const message = [
     `${statusEmoji} *Booking Update | ${newStatus}*`,
@@ -570,7 +570,7 @@ export async function notifyCustomerRescheduled(booking: {
     process.env.VENDOR_WHATSAPP_NUMBER ||
     process.env.NEXT_PUBLIC_VENDOR_PHONE ||
     settings?.vendorPhone ||
-    '+91 87588 66744';
+    '+91 81414 34327';
 
   const message = [
     `🗓️ *APPOINTMENT RESCHEDULED | Labh AC Services*`,
@@ -654,7 +654,7 @@ export async function notifyVendorTodayAppointment(booking: {
     process.env.VENDOR_WHATSAPP_NUMBER ||
     process.env.NEXT_PUBLIC_VENDOR_PHONE ||
     settings?.vendorPhone ||
-    '918758866744';
+    '918141434327';
 
   const formattedDate = new Date(booking.preferredDate).toLocaleDateString('en-IN', {
     day: 'numeric',
@@ -722,7 +722,7 @@ export async function notifyCustomerTodayAppointment(booking: {
     process.env.VENDOR_WHATSAPP_NUMBER ||
     process.env.NEXT_PUBLIC_VENDOR_PHONE ||
     settings?.vendorPhone ||
-    '+91 87588 66744';
+    '+91 81414 34327';
 
   const techInfo = booking.technician
     ? `${booking.technician.name} (${booking.technician.phone})`

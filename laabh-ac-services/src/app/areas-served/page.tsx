@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import StructuredData from '@/components/StructuredData';
-import { SITE_URL, getLocalBusinessSchema } from '@/lib/seo';
+import { SITE_URL, getLocalBusinessSchema, OG_IMAGE } from '@/lib/seo';
 import { getFormattedVendorPhone, getWhatsAppVendorUrl, getTelVendorUrl } from '@/lib/config';
 import {
   MapPin,
@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'AC Service Areas in Ahmedabad & Gandhinagar | Labh AC Services',
+  title: 'Service Areas: Ahmedabad & Gandhinagar',
   description:
     'Doorstep AC repair, split AC installation, and power-jet servicing across Ahmedabad & Gandhinagar. Serving Bodakdev, Satellite, Bopal, Prahlad Nagar, Vastrapur, SG Highway & more.',
   keywords: [
@@ -36,11 +36,12 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/areas-served`,
   },
   openGraph: {
-    title: 'AC Service Areas in Ahmedabad & Gandhinagar | Labh AC Services',
+    title: 'AC Service Areas in Ahmedabad & Gandhinagar',
     description:
       'Fast 90-minute doorstep AC repair, jet cleaning, and installation across all major Ahmedabad & Gandhinagar localities.',
     url: `${SITE_URL}/areas-served`,
     type: 'website',
+    images: [OG_IMAGE],
   },
 };
 
