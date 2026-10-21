@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import StructuredData from '@/components/StructuredData';
 import { SITE_URL, getLocalBusinessSchema } from '@/lib/seo';
-import { getFormattedVendorPhone, getWhatsAppVendorUrl, getTelVendorUrl } from '@/lib/config';
+import { getFormattedVendorPhone, getCleanVendorPhone, getWhatsAppVendorUrl, getTelVendorUrl } from '@/lib/config';
 import {
   MapPin,
   Phone,
@@ -51,7 +51,7 @@ export default function ContactPage() {
     mainEntity: {
       '@type': 'HVACBusiness',
       name: 'Labh Air Conditioning Services',
-      telephone: '+918758866744',
+      telephone: `+${getCleanVendorPhone()}`,
       email: 'contact@laabhservices.com',
       address: {
         '@type': 'PostalAddress',

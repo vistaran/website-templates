@@ -10,7 +10,7 @@ export const BUSINESS_INFO = {
   url: SITE_URL,
   logo: `${SITE_URL}/images/services/service.jpg`,
   image: `${SITE_URL}/images/hero_banner.jpg`,
-  telephone: '+918758866744',
+  telephone: `+${getCleanVendorPhone()}`,
   displayPhone: getFormattedVendorPhone(),
   email: 'contact@laabhservices.com',
   priceRange: '₹₹ (₹499 - ₹2,999)',

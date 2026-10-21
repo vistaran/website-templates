@@ -6,7 +6,7 @@
 export const VENDOR_PHONE =
   process.env.NEXT_PUBLIC_VENDOR_PHONE ||
   process.env.VENDOR_WHATSAPP_NUMBER ||
-  '918758866744';
+  '918141434327';
 
 /**
  * Strips all non-digit characters from the phone number
