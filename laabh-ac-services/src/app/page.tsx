@@ -4,6 +4,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import prisma from '@/lib/prisma';
 import { getFormattedVendorPhone, getWhatsAppVendorUrl, getTelVendorUrl } from '@/lib/config';
+import FAQAccordion from '@/components/FAQAccordion';
+import { HOMEPAGE_TOP_FAQS } from '@/lib/faqData';
 import {
   Wrench,
   Sparkles,
@@ -17,6 +19,8 @@ import {
   Users,
   Award,
   Zap,
+  MapPin,
+  HelpCircle,
 } from 'lucide-react';
 
 export default async function HomePage() {
@@ -24,6 +28,7 @@ export default async function HomePage() {
     where: { isActive: true },
     orderBy: { sortOrder: 'asc' },
   });
+
 
   return (
     <>
@@ -132,12 +137,24 @@ export default async function HomePage() {
                     <p style={{ color: '#94a3b8', fontSize: '0.85rem' }}>ACs Serviced</p>
                   </div>
                   <div>
-                    <h3 style={{ color: '#38bdf8', fontSize: '1.65rem', fontWeight: 800 }}>4.9 / 5</h3>
+                    <h3
+                      style={{
+                        color: '#38bdf8',
+                        fontSize: '1.65rem',
+                        fontWeight: 800,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.35rem',
+                      }}
+                    >
+                      4.9 / 5
+                      <Star size={18} fill="#fbbf24" color="#fbbf24" style={{ flexShrink: 0 }} />
+                    </h3>
                     <p style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Customer Rating</p>
                   </div>
                   <div>
-                    <h3 style={{ color: '#38bdf8', fontSize: '1.65rem', fontWeight: 800 }}>90 Mins</h3>
-                    <p style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Doorstep Response</p>
+                    <h3 style={{ color: '#38bdf8', fontSize: '1.65rem', fontWeight: 800 }}>Instant</h3>
+                    <p style={{ color: '#94a3b8', fontSize: '0.85rem' }}>WhatsApp Reply</p>
                   </div>
                 </div>
               </div>
@@ -531,8 +548,139 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* SERVICE AREAS BANNER SECTION */}
+        <section
+          style={{
+            padding: '4.5rem 0',
+            background: '#ffffff',
+            borderTop: '1px solid var(--color-slate-200)',
+            borderBottom: '1px solid var(--color-slate-200)',
+          }}
+        >
+          <div className="container">
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                gap: '3rem',
+                alignItems: 'center',
+              }}
+            >
+              <div>
+                <div className="badge badge-ice" style={{ marginBottom: '0.75rem' }}>
+                  <MapPin size={14} /> Local Ahmedabad Footprint
+                </div>
+                <h2 style={{ fontSize: '2.3rem', color: 'var(--color-navy)', marginBottom: '1rem' }}>
+                  Doorstep AC Service in Your Neighborhood Within 90 Mins
+                </h2>
+                <p style={{ color: 'var(--color-slate-600)', fontSize: '1.05rem', lineHeight: 1.65, marginBottom: '1.75rem' }}>
+                  Our mobile technician units are stationed across key junctions in Western, Central, and North Ahmedabad,
+                  as well as Gandhinagar. Prompt response with full diagnostic gear, hydro-jet bags, and virgin refrigerants.
+                </p>
+
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                  <Link href="/areas-served" className="btn btn-secondary" style={{ padding: '0.8rem 1.6rem' }}>
+                    View All 16+ Service Areas <ArrowRight size={16} />
+                  </Link>
+                  <Link href="/book" className="btn btn-primary" style={{ padding: '0.8rem 1.6rem' }}>
+                    Book In Your Area
+                  </Link>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  background: 'var(--color-slate-50)',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: '2rem',
+                  border: '1px solid var(--color-slate-200)',
+                }}
+              >
+                <h4 style={{ fontSize: '1.15rem', color: 'var(--color-navy)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Clock size={18} color="var(--color-primary)" /> Rapid Doorstep Coverage
+                </h4>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                  {[
+                    'Bodakdev',
+                    'Satellite',
+                    'Bopal',
+                    'South Bopal',
+                    'Prahlad Nagar',
+                    'Vastrapur',
+                    'Thaltej',
+                    'SG Highway',
+                    'Navrangpura',
+                    'Naranpura',
+                    'Science City',
+                    'Gota',
+                    'Chandkheda',
+                    'Paldi',
+                    'Gandhinagar',
+                  ].map((area) => (
+                    <Link
+                      key={area}
+                      href={`/areas-served`}
+                      style={{
+                        padding: '0.35rem 0.75rem',
+                        background: '#ffffff',
+                        border: '1px solid var(--color-slate-200)',
+                        borderRadius: 'var(--radius-full)',
+                        fontSize: '0.825rem',
+                        fontWeight: 600,
+                        color: 'var(--color-slate-700)',
+                        transition: 'all 150ms ease',
+                      }}
+                    >
+                      {area}
+                    </Link>
+                  ))}
+                </div>
+                <p style={{ fontSize: '0.85rem', color: 'var(--color-slate-500)' }}>
+                  ✓ 30-Day Re-service Guarantee • ✓ No hidden charges • ✓ Genuine OEM spares
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FREQUENTLY ASKED QUESTIONS SECTION */}
+        <section id="faqs" style={{ padding: '6rem 0', background: '#f8fafc' }}>
+          <div className="container">
+            <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 3rem' }}>
+              <div className="badge badge-ice" style={{ marginBottom: '0.75rem' }}>
+                <HelpCircle size={14} /> Have Questions?
+              </div>
+              <h2 style={{ fontSize: '2.5rem', color: 'var(--color-navy)', marginBottom: '1rem' }}>
+                Frequently Asked AC Questions
+              </h2>
+              <p style={{ color: 'var(--color-slate-600)', fontSize: '1.05rem', lineHeight: 1.6 }}>
+                Common inquiries regarding power-jet cleaning, split AC installation, cooling problems,
+                and pricing in Ahmedabad.
+              </p>
+            </div>
+
+            <FAQAccordion
+              items={HOMEPAGE_TOP_FAQS}
+              showCategories={false}
+              showSearch={false}
+              includeSchema={true}
+            />
+
+            <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+              <Link
+                href="/faq"
+                className="btn btn-secondary"
+                style={{ padding: '0.8rem 2rem', fontSize: '0.95rem' }}
+              >
+                View All Questions & Knowledge Hub <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* EMERGENCY HOTLINE BANNER */}
         <section
+
           style={{
             background: 'linear-gradient(135deg, var(--color-primary-dark) 0%, #0369a1 100%)',
             color: '#fff',

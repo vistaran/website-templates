@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Snowflake, Phone, MessageSquare, Calendar, ShieldCheck } from 'lucide-react';
+import { Snowflake, Phone, MessageSquare, Calendar } from 'lucide-react';
 import { getWhatsAppVendorUrl } from '@/lib/config';
 
 export default function Navbar() {
@@ -21,27 +21,38 @@ export default function Navbar() {
         <nav>
           <ul className="site-nav-links">
             <li>
-              <Link href="/#services" className="site-nav-link">
+              <Link href="/services" className="site-nav-link">
                 Services
               </Link>
             </li>
             <li>
-              <Link href="/#why-us" className="site-nav-link">
-                Why Us
+              <Link href="/areas-served" className="site-nav-link">
+                Areas Served
+              </Link>
+            </li>
+            <li>
+              <Link href="/faq" className="site-nav-link">
+                FAQs
+              </Link>
+            </li>
+            <li>
+              <Link href="/about" className="site-nav-link">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="site-nav-link">
+                Contact
               </Link>
             </li>
             <li>
               <Link href="/track" className="site-nav-link">
-                Track Booking
-              </Link>
-            </li>
-            <li>
-              <Link href="/admin" className="site-nav-link" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <ShieldCheck size={16} /> Admin
+                Track
               </Link>
             </li>
           </ul>
         </nav>
+
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <a

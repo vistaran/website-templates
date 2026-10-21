@@ -76,6 +76,10 @@ export async function POST(req: Request) {
       acType,
       unitCount,
       serviceAddress,
+      flatNo,
+      buildingName,
+      areaLocality,
+      city = 'Ahmedabad',
       landmark,
       pincode,
       preferredDate,
@@ -83,9 +87,13 @@ export async function POST(req: Request) {
       problemDescription,
     } = body;
 
+    const resolvedAddress =
+      serviceAddress?.trim() ||
+      [flatNo, buildingName, areaLocality].filter(Boolean).join(', ');
+
     // Validate required fields
     if (!customerName || !customerName.trim()) {
-      return NextResponse.json({ error: 'Customer name is required' }, { status: 400 });
+      return NextResponse.json({ error: 'Full name is required' }, { status: 400 });
     }
     if (!mobileNumber || !mobileNumber.trim()) {
       return NextResponse.json({ error: 'Mobile number is required' }, { status: 400 });
@@ -93,7 +101,7 @@ export async function POST(req: Request) {
     if (!serviceId) {
       return NextResponse.json({ error: 'Please select a service' }, { status: 400 });
     }
-    if (!serviceAddress || !serviceAddress.trim()) {
+    if (!resolvedAddress || !resolvedAddress.trim()) {
       return NextResponse.json({ error: 'Service address is required' }, { status: 400 });
     }
     if (!preferredDate) {
@@ -117,6 +125,17 @@ export async function POST(req: Request) {
 
     if (!service) {
       return NextResponse.json({ error: 'Selected service does not exist' }, { status: 404 });
+    }
+
+    const isRepair =
+      service.slug === 'ac-repair' ||
+      service.name.toLowerCase().includes('repair');
+
+    if (isRepair && (!problemDescription || !problemDescription.trim())) {
+      return NextResponse.json(
+        { error: 'Problem description is required for AC Repair service so our technician can prepare appropriate equipment.' },
+        { status: 400 }
+      );
     }
 
     const bookingRef = generateBookingRef();
@@ -152,10 +171,10 @@ export async function POST(req: Request) {
       const address = await tx.customerAddress.create({
         data: {
           customerId: customer.id,
-          addressLine: serviceAddress.trim(),
+          addressLine: resolvedAddress.trim(),
           landmark: landmark ? landmark.trim() : null,
           pincode: pincode ? pincode.trim() : null,
-          city: 'Ahmedabad',
+          city: city?.trim() || 'Ahmedabad',
           isDefault: true,
         },
       });
@@ -169,7 +188,7 @@ export async function POST(req: Request) {
           serviceId: service.id,
           acType: acType || 'Split AC',
           unitCount: Number(unitCount) || 1,
-          serviceAddress: serviceAddress.trim() + (landmark ? `, Near ${landmark.trim()}` : ''),
+          serviceAddress: resolvedAddress.trim() + (landmark ? `, Near ${landmark.trim()}` : ''),
           preferredDate: parsedDate,
           preferredTimeSlot,
           problemDescription: problemDescription ? problemDescription.trim() : null,

@@ -356,6 +356,29 @@ input, textarea, select {
   color: var(--color-slate-400);
 }
 
+/* Date inputs - make entire field interactive */
+input[type="date"],
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-datetime-edit,
+input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: transform var(--transition-fast);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  transform: scale(1.1);
+}
+
 /* Modal Backdrops */
 .modal-backdrop {
   position: fixed;
@@ -508,3 +531,13 @@ input, textarea, select {
     display: none;
   }
 }
+
+.breadcrumb-link:hover {
+  color: #ffffff !important;
+}
+
+.faq-container input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18);
+}
+

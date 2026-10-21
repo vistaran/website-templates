@@ -3,7 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
+import StructuredData from '@/components/StructuredData';
 import prisma from '@/lib/prisma';
+import { SITE_URL, getServiceSchema, getFAQSchema } from '@/lib/seo';
 import { getFormattedVendorPhone, getWhatsAppVendorUrl, getTelVendorUrl } from '@/lib/config';
 import {
   CheckCircle2,
@@ -31,9 +34,35 @@ export async function generateMetadata({ params }: ServiceDetailProps) {
     return { title: 'Service Not Found | Labh AC Services' };
   }
 
+  const imageUrl = service.imageUrl || '/images/services/service.jpg';
+
   return {
     title: `${service.name} in Ahmedabad | Labh Air Conditioning Services`,
     description: service.shortDescription,
+    keywords: [
+      `${service.name} Ahmedabad`,
+      `${service.name} cost`,
+      `${service.name} near me`,
+      'Labh AC services',
+      'HVAC Ahmedabad',
+    ],
+    alternates: {
+      canonical: `${SITE_URL}/services/${service.slug}`,
+    },
+    openGraph: {
+      title: `${service.name} in Ahmedabad | Labh AC Services`,
+      description: service.shortDescription,
+      url: `${SITE_URL}/services/${service.slug}`,
+      type: 'website',
+      images: [
+        {
+          url: imageUrl,
+          width: 800,
+          height: 600,
+          alt: service.name,
+        },
+      ],
+    },
   };
 }
 
@@ -67,6 +96,12 @@ export default async function ServiceDetailPage({ params }: ServiceDetailProps) 
 
   return (
     <>
+      <StructuredData
+        data={[
+          getServiceSchema(service),
+          ...(faqsList.length > 0 ? [getFAQSchema(faqsList)] : []),
+        ]}
+      />
       <Navbar />
 
       <main style={{ paddingBottom: '5rem', background: '#f8fafc' }}>
@@ -79,19 +114,13 @@ export default async function ServiceDetailPage({ params }: ServiceDetailProps) 
           }}
         >
           <div className="container">
-            <Link
-              href="/#services"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                color: '#94a3b8',
-                fontSize: '0.875rem',
-                marginBottom: '1.5rem',
-              }}
-            >
-              <ArrowLeft size={16} /> Back to All Services
-            </Link>
+            <Breadcrumb
+              items={[
+                { label: 'All Services', href: '/services' },
+                { label: service.name },
+              ]}
+            />
+
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
               <span

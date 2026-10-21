@@ -39,24 +39,25 @@ export default function Footer() {
           <div>
             <h4 style={{ color: '#fff', fontSize: '1.05rem', marginBottom: '1.25rem' }}>Our Services</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.9rem' }}>
-              <li><Link href="/services/ac-installation" style={{ color: 'var(--color-slate-400)' }}>AC Installation</Link></li>
-              <li><Link href="/services/ac-fitting" style={{ color: 'var(--color-slate-400)' }}>AC Fitting</Link></li>
-              <li><Link href="/services/ac-service" style={{ color: 'var(--color-slate-400)' }}>AC Service</Link></li>
-              <li><Link href="/services/ac-maintenance" style={{ color: 'var(--color-slate-400)' }}>AC Maintenance</Link></li>
-              <li><Link href="/services/ac-repair" style={{ color: 'var(--color-slate-400)' }}>AC Repair</Link></li>
-              <li><Link href="/services/concealed-ac-piping" style={{ color: 'var(--color-slate-400)' }}>Concealed AC Piping</Link></li>
+              <li><Link href="/services" style={{ color: 'var(--color-primary-light)', fontWeight: 600 }}>All Services Catalogue →</Link></li>
               <li><Link href="/services/split-ac-installation" style={{ color: 'var(--color-slate-400)' }}>Split AC Installation</Link></li>
+              <li><Link href="/services/ac-service" style={{ color: 'var(--color-slate-400)' }}>AC Jet Servicing</Link></li>
+              <li><Link href="/services/ac-repair" style={{ color: 'var(--color-slate-400)' }}>AC Repair & Diagnostics</Link></li>
+              <li><Link href="/services/concealed-ac-piping" style={{ color: 'var(--color-slate-400)' }}>Concealed AC Piping</Link></li>
+              <li><Link href="/services/ac-maintenance" style={{ color: 'var(--color-slate-400)' }}>Preventative Maintenance</Link></li>
               <li><Link href="/services/window-ac-installation" style={{ color: 'var(--color-slate-400)' }}>Window AC Installation</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 style={{ color: '#fff', fontSize: '1.05rem', marginBottom: '1.25rem' }}>Quick Links</h4>
+            <h4 style={{ color: '#fff', fontSize: '1.05rem', marginBottom: '1.25rem' }}>Company & Links</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.9rem' }}>
+              <li><Link href="/about" style={{ color: 'var(--color-slate-400)' }}>About Us</Link></li>
+              <li><Link href="/areas-served" style={{ color: 'var(--color-slate-400)' }}>Service Areas (Ahmedabad)</Link></li>
+              <li><Link href="/faq" style={{ color: 'var(--color-slate-400)' }}>Frequently Asked Questions</Link></li>
+              <li><Link href="/contact" style={{ color: 'var(--color-slate-400)' }}>Contact & Location</Link></li>
               <li><Link href="/book" style={{ color: 'var(--color-slate-400)' }}>Book an Appointment</Link></li>
               <li><Link href="/track" style={{ color: 'var(--color-slate-400)' }}>Track Your Booking</Link></li>
-              <li><Link href="/#why-us" style={{ color: 'var(--color-slate-400)' }}>Why Choose Us</Link></li>
-              <li><Link href="/admin" style={{ color: 'var(--color-slate-400)' }}>Technician & Admin Portal</Link></li>
             </ul>
           </div>
 
@@ -85,9 +86,14 @@ export default function Footer() {
 
         <div style={{ paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', fontSize: '0.875rem', color: 'var(--color-slate-500)' }}>
           <p>© {new Date().getFullYear()} Labh Air Conditioning Services. All rights reserved.</p>
-          <p>Powered by Next.js, MySQL & Prisma ORM</p>
+          <div style={{ display: 'flex', gap: '1.5rem' }}>
+            <Link href="/privacy" style={{ color: 'var(--color-slate-400)' }}>Privacy Policy</Link>
+            <Link href="/terms" style={{ color: 'var(--color-slate-400)' }}>Terms of Service</Link>
+            {/* <Link href="/sitemap.xml" style={{ color: 'var(--color-slate-400)' }}>Sitemap</Link> */}
+          </div>
         </div>
       </div>
+
     </footer>
   );
 }
