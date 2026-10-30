@@ -34,7 +34,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote, onOpenCalculator }) => 
       {/* Subtle Natural Daylight Lawn Background with soft ambient blend */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img 
-          src="https://images.unsplash.com/photo-1592417817098-8f3d69102656?auto=format&fit=crop&w=2000&q=80" 
+          src="https://images.unsplash.com/photo-1533460004989-cef01064af7e?auto=format&fit=crop&w=2000&q=80" 
           alt="Sunlit green lawn background"
           className="w-full h-full object-cover object-center opacity-15"
         />

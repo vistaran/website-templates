@@ -42,6 +42,12 @@ production.
 | 5 | [new-sonal-travels](./new-sonal-travels) | **https://newsonaltravels.com** · [vercel.app](https://new-sonal-travels.vercel.app) | Next.js 16 · React 19 · Tailwind CSS | Single-page |
 | 6 | [pani-puri-masala](./pani-puri-masala) | **https://pani-puri-masala.vercel.app** | HTML5 · CSS · Vanilla JS | Single-page |
 
+### Generic pitch templates
+
+| Project | Live demo | Stack | Type |
+|---------|-----------|-------|------|
+| [lawn-and-landscaping](./lawn-and-landscaping) | **https://lawn-and-landscaping.vercel.app** | Vite · React 19 · TS · Tailwind v4 · booking API | Single-page, re-brands itself from URL query params |
+
 ### Client sites
 
 | # | Project | Live demo | Stack | Type |
@@ -336,6 +342,34 @@ environment variables, never in the repo.
 environment variables and no backend**. The appointment is stored in the browser and the
 visitor is given a Google Calendar / Outlook / `.ics` handoff, so these deploy as pure
 static builds and cannot break when a credential expires.
+
+### 20. lawn-and-landscaping
+> Generic pitch template — a lawn care / landscaping site that re-brands itself from URL query parameters.
+
+Vite 8 + React 19 + TS + Tailwind v4. Unlike every other template here the business identity
+is not baked in: `?name=`, `?phone=`, `?city=`, `?state=`, `?secondaryCity=`, `?owner=`,
+`?rating=`, `?reviews=`, `?email=` and aliases are parsed on load and drive the navbar, hero,
+service areas, reviews, page title / OG tags, every `tel:` link and the calendar invites, with
+`sessionStorage` persistence across refreshes. Customizing the name or city also suppresses the
+old default leaks (Kannapolis address, ZIP, the "Concord" neighbour) rather than half-branding
+the page.
+
+Booking keeps the same serverless contract as `jp-lawn-and-landscaping`
+(`/api/appointments/{slots,book,status}`, `POST` only for `book`). Two production defects were
+fixed at handover:
+
+- the hero backdrop pointed at an Unsplash ID that returns **404**, so the hero shipped with a
+  broken image (swapped for a verified one);
+- the quote form's submit only flipped local state — it showed "Quote Request Received!" while
+  the enquiry went nowhere. It now builds a real handoff: a prefilled `mailto:` to the business
+  inbox (honouring `?email=`) plus a `wa.me` alternative driven by the customized phone number.
+
+The floating "Test Query Params" dev toolbar is intentionally **not** shipped — the template is
+pitched by hand-crafted URLs.
+
+- **Folder:** `lawn-and-landscaping/`
+- **Demo:** https://lawn-and-landscaping.vercel.app
+- **Pitch example:** https://lawn-and-landscaping.vercel.app/?name=SunState+Landscape+%26+Sod&phone=(407)+555-3392&city=Orlando&state=FL&secondaryCity=Winter+Park&owner=Carlos
 
 ---
 

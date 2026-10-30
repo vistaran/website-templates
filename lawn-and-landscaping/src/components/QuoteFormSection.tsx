@@ -44,12 +44,40 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
     }
   };
 
+  // A request that only flips local state never reaches anyone, so the submit
+  // hands the details to a real inbox (mailto) with a WhatsApp alternative.
+  const [handoff, setHandoff] = useState<{ mailto: string; whatsapp: string } | null>(null);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !phone || !address) {
       alert('Please enter your name, phone number, and address.');
       return;
     }
+
+    const serviceArea = businessInfo.secondaryCity
+      ? `${businessInfo.city} / ${businessInfo.secondaryCity}`
+      : businessInfo.city;
+
+    const summary = [
+      `New estimate request for ${businessInfo.name}`,
+      '',
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      email ? `Email: ${email}` : '',
+      `Property address: ${address}`,
+      `Service area: ${serviceArea}`,
+      `Services: ${selectedServices.length ? selectedServices.join(', ') : 'Not specified'}`,
+      `Timeline: ${timeline}`,
+      notes ? `Notes: ${notes}` : '',
+    ].filter(Boolean).join('\n');
+
+    const mailto = `mailto:${businessInfo.email}?subject=${encodeURIComponent(
+      `Estimate request — ${name} (${address})`
+    )}&body=${encodeURIComponent(summary)}`;
+    const whatsapp = `https://wa.me/${businessInfo.phoneRaw.replace(/\D/g, '')}?text=${encodeURIComponent(summary)}`;
+
+    setHandoff({ mailto, whatsapp });
     setIsSubmitted(true);
   };
 
@@ -133,12 +161,35 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({
 
                   <div className="space-y-2">
                     <h3 className="text-2xl font-extrabold text-white">
-                      Quote Request Received!
+                      Your Request Is Ready to Send
                     </h3>
                     <p className="text-sm text-stone-300 max-w-md mx-auto">
-                      Thank you, <strong>{name}</strong>! We've received your request for <strong>{address}</strong>. Our estimator will review your yard measurements and get back to you shortly at <strong>{phone}</strong>.
+                      Thanks, <strong>{name}</strong>! Your estimate request for <strong>{address}</strong> has been
+                      prepared. Send it through so {businessInfo.ownerName || 'our team'} can reply to{' '}
+                      <strong>{phone}</strong> — typically within one business day.
                     </p>
                   </div>
+
+                  {handoff && (
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                      <a
+                        href={handoff.mailto}
+                        className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold transition-colors"
+                      >
+                        <Send className="w-4 h-4" />
+                        Send by Email
+                      </a>
+                      <a
+                        href={handoff.whatsapp}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#1fb959] text-stone-950 text-sm font-bold transition-colors"
+                      >
+                        <Phone className="w-4 h-4" />
+                        Send on WhatsApp
+                      </a>
+                    </div>
+                  )}
 
                   <div className="p-4 rounded-xl bg-stone-900 border border-stone-800 max-w-sm mx-auto text-xs text-stone-400">
                     Questions right now? Call or text {businessInfo.ownerName || 'our team'} at <br />
