@@ -17,7 +17,7 @@ no longer exist; nothing pushes to them.)
 | Kind | Folders |
 |------|---------|
 | **Business templates** | `interior-design-website`, `js-dye-chem`, `lab-equipments`, `new-grass-life-llc`, `new-sonal-travels`, `pani-puri-masala` |
-| **Client sites** | `aguilars-hardscape-and-concrete`, `cab-lawn-care`, `carolina-lawn-enhancement`, `g-and-t-lawn-care`, `j-n-son-landscaping-concord-nc-lawn-n-hardscaping`, `jp-lawn-and-landscaping`, `landscaping-and-tree-service-solutions`, `mecha-civil-designs`, `mnj-tree-services`, `trikha-interiors`, `union-lawn-services-llc`, `vasquez-landcare-inc` |
+| **Client sites** | `aguilars-hardscape-and-concrete`, `cab-lawn-care`, `carolina-lawn-enhancement`, `g-and-t-lawn-care`, `j-n-son-landscaping-concord-nc-lawn-n-hardscaping`, `jp-lawn-and-landscaping`, `landscaping-and-tree-service-solutions`, `mecha-civil-designs`, `mnj-tree-services`, `rajdhani-living`, `trikha-interiors`, `union-lawn-services-llc`, `vasquez-landcare-inc` |
 
 Each folder is self-contained: its own `package.json`, build config, `vercel.json`,
 `.npmrc` and `.gitignore`. **No folder references another folder, and no config contains an
@@ -65,6 +65,7 @@ production.
 | 17 | [mecha-civil-designs](./mecha-civil-designs) | **https://mecha-civil-designs.vercel.app** | Vite · React 19 · TS · Tailwind v4 | Single-page |
 | 18 | [trikha-interiors](./trikha-interiors) | **https://trikha-interiors.vercel.app** | Vite · React 19 · TS · Tailwind v4 | Single-page |
 | 19 | [laabh-ac-services](./laabh-ac-services) | **https://laabh-ac-services.vercel.app** | Next.js 16 · React 19 · Prisma · PostgreSQL | Multi-page + admin console |
+| 20 | [rajdhani-living](./rajdhani-living) | **https://rajdhani-living.vercel.app** | Next.js 14 · React 18 · Tailwind v3 · Framer Motion | Multi-page + vertical showcase video |
 
 All demos are hosted on Vercel and served over HTTPS from Vistaran Tech's team scope
 (`jay-shahs-projects-ecf58304`).

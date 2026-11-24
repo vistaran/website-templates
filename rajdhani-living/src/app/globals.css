@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 20% 98%; /* warm off-white */
+    --foreground: 20 14% 10%; /* charcoal */
+    --card: 0 0% 100%;
+    --card-foreground: 20 14% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14% 10%;
+    --primary: 35 80% 50%; /* gold/copper */
+    --primary-foreground: 40 20% 98%;
+    --secondary: 40 10% 90%;
+    --secondary-foreground: 20 14% 10%;
+    --tertiary: 40 15% 95%; /* slightly darker off-white for sections */
+    --muted: 40 10% 90%;
+    --muted-foreground: 20 5% 45%;
+    --accent: 35 80% 50%;
+    --accent-foreground: 40 20% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 40 20% 98%;
+    --border: 40 10% 85%;
+    --input: 40 10% 85%;
+    --ring: 35 80% 50%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 10% 8%; /* Obsidian */
+    --foreground: 220 10% 95%; /* Soft white */
+    --card: 220 10% 12%; /* Dark gray card */
+    --card-foreground: 220 10% 95%;
+    --popover: 220 10% 12%;
+    --popover-foreground: 220 10% 95%;
+    --primary: 35 80% 50%; /* Gold/copper accent */
+    --primary-foreground: 220 10% 8%;
+    --secondary: 220 10% 15%;
+    --secondary-foreground: 220 10% 95%;
+    --tertiary: 220 10% 10%; /* slightly lighter for sections */
+    --muted: 220 10% 15%;
+    --muted-foreground: 220 5% 65%;
+    --accent: 35 80% 50%;
+    --accent-foreground: 220 10% 8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 220 10% 95%;
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 35 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.h1 {
+  @apply text-5xl xl:text-[60px] xl:leading-[70px] xl:tracking-[-2px] font-bold mb-4 mt-2 font-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-serif font-bold tracking-tight;
+}
+
+.lime {
+  @apply font-serif italic text-primary;
+}
+
+.hero-bg {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/images/homepage.png");
+  background-repeat: no-repeat;
+  position: fixed;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+}
