@@ -11,19 +11,19 @@ export default function ShowcaseComponent() {
 
     const items = [
         {
-            src: '/images/projectfor.png',
+            src: '/images/r-kitchen-image-1.png',
             title: 'Kitchen',
             description:
                 'Explore our modern and stylish kitchen designs, crafted for functionality and elegance. From sleek cabinets to innovative storage solutions, our kitchens are designed to enhance your culinary experience.',
         },
         {
-            src: '/images/plywood.jpg',
+            src: '/images/rajdhani-plywood-image-4.jpg',
             title: 'Plywood',
             description:
                 'Browse our extensive hardware collection, featuring top-of-the-line fittings and accessories. From door handles to drawer slides, we provide everything you need to complete your interiors with precision and finesse.',
         },
         {
-            src: '/images/hardware.png',
+            src: '/images/rajdhani-hardware-image-1.jpeg',
             title: 'Hardware',
             description: 'Bedroom with a clean and comfortable design for your family. Charming with a modern design.',
         }
