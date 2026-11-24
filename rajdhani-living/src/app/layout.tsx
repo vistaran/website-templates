@@ -18,6 +18,7 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://rajdhaniliving.com'),
   title: 'Top Interior Design Group in Gandhinagar | Rajdhani Group',
   description: 'We create stunning, personalized home decor solutions that reflect your unique taste. Transform your space with our expert design team today.',
   keywords: ['Interior Design', 'Home Decor', 'Gandhinagar', 'Stylish Decor', 'Hardware', 'Plywood'],
